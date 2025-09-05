@@ -1,0 +1,148 @@
+Replit AI Agent Prompt
+
+You are Replit AI. Build a fast, production-ready newsletter site for Deeds Without Debt (DWD), focused on alternative real estate investing: tax deeds, tax liens, HOA foreclosures, probate, and other non-bank strategies.
+
+Use Vite + React + TypeScript. No server backend beyond potential form proxy required. Prioritize performance (Lighthouse 95+), accessibility (WCAG AA), and clean, modern UI.
+
+1) Style Inspiration: The Van Trump Report
+
+Review: https://www.vantrumpreport.com/
+
+Clean, magazine-like layout with clear issue structure and subscribe CTA.
+
+Prominent headers, a sign-up prompt, archives by month/year, and author positioning.
+Use this as a structural template — content area-driven and subscriber-first design.
+
+2) Brand & UI
+
+Name: Deeds Without Debt
+
+Tagline: Buy Real Estate Without Banks
+
+Color Palette:
+
+Background: #F5F5F0 (cream)
+
+Primary: #1B4332 (forest green)
+
+Secondary: #2D6A4F (medium green)
+
+Tertiary/Borders: #A3B18A (sage)
+
+Text: #000000
+
+Typography:
+
+Headings: DM Serif Text
+
+Body: Nunito Sans
+
+Buttons: Montserrat
+Embed via Google Fonts.
+
+Logo placeholder: simple “DWD” mark (text in rounded square) with “Deeds Without Debt” lockup.
+
+3) Pages & Routes
+
+Create these pages:
+
+/ Home: Hero, featured recent posts, and newsletter signup block.
+
+/archive: List of all issues (filterable by tags).
+
+/about: Short Ralph Biah bio, mission, and a disclaimer.
+
+/subscribe: Standalone subscription page with value props.
+
+/resources: Free downloads (checklists, scripts, “No-Bank Offer Calculator”).
+
+/state-guides: Lists guides — create one for Alaska explaining borough structure and highlighted Sept 2025 auction.
+
+4) Markdown/MDX Content System
+
+Store posts in content/ with frontmatter:
+
+---
+title: ""
+description: ""
+date: "YYYY-MM-DD"
+tags: []
+cover: ""
+slug: ""
+---
+
+
+Build home page, archive, and JSON search index at compile time.
+
+Seed with:
+
+Issue #1: “3 Ways to Buy Real Estate Without Banks…”
+
+Alaska Explainer: “How Alaska Tax Sales Work…”
+
+Catron County Case Study: personal win (paid $17K, sold cabin subdivided 5 acres for $120K).
+
+5) Components
+
+Header, Footer (with nav and disclaimer)
+
+Hero, PostCard, Tag, NewsletterForm (email + submit), CTABox
+
+SearchBar for archive
+Include pinned issue highlight on home (like Van Trump’s approach).
+
+6) Newsletter Integration
+
+Use Beehiiv (or substack/buttondown) form action via VITE_NEWSLETTER_ACTION_URL.
+
+NewsletterForm posts email only, shows success/error feedback.
+
+No spam or tracking — lean form.
+
+7) SEO & Social
+
+Title, meta description, canonical, and Open Graph/Twitter tags per page.
+
+JSON-LD schema for Organization and BlogPosting.
+
+Embed SEO keywords naturally: “tax deeds”, “tax liens”, “no-bank real estate”, “Alaska tax foreclosure auction”, etc.
+
+Include /rss.xml and /sitemap.xml.
+
+8) Performance & Accessibility
+
+Use minimal CSS (Tailwind optional with purging).
+
+Lazy-load images; minimize layout shift.
+
+Semantic markup and 4.5:1 color contrast.
+
+9) File Structure
+/public/images
+/src/components/
+pages/
+lib/
+main.tsx
+styles.css
+/content/...
+README.md
+
+10) README
+
+Install/dev/build/run instructions.
+
+How to add new posts, change theming/logo, configure newsletter endpoint.
+
+Deployment steps (Replit, Netlify, Vercel).
+
+11) Summary
+
+Once built:
+
+Home features hero, latest posts, pinned issue, and subscribe CTA
+
+Archive filters by tag, searchable
+
+Rich, branded, newsletter-first style inspired by Van Trump Report
+
+Fully functional email capture to Beehiiv or similar.
