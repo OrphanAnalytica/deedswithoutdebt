@@ -10,7 +10,7 @@ import About from "@/pages/About";
 import Subscribe from "@/pages/Subscribe";
 import Resources from "@/pages/Resources";
 import StateGuides from "@/pages/StateGuides";
-import AlaskaGuide from "@/pages/AlaskaGuide";
+import StateGuidePage from "@/pages/StateGuidePage";
 import Layout from "@/components/Layout";
 
 function Router() {
@@ -23,7 +23,7 @@ function Router() {
         <Route path="/subscribe" component={Subscribe} />
         <Route path="/resources" component={Resources} />
         <Route path="/state-guides" component={StateGuides} />
-        <Route path="/state-guides/alaska" component={AlaskaGuide} />
+        <Route path="/state-guides/:slug" component={StateGuidePage} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

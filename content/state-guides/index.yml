@@ -1,0 +1,617 @@
+# Master registry of all US states and DC for tax deed/lien investing
+# Updated: 2025-01-07
+
+states:
+  # Verified states with detailed information
+  - slug: alaska
+    name: Alaska
+    type: deed
+    status: available
+    difficulty: intermediate
+    roi_range: "150–300%"
+    auctions_per_year: "Every ~2 years (borough dependent)"
+    format: "Sealed bid (varies by borough)"
+    headline: "Unique borough system creates exceptional opportunities with limited competition."
+    cover: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2024-12-15"
+
+  - slug: texas
+    name: Texas
+    type: deed
+    status: available
+    difficulty: advanced
+    roi_range: "200–400%"
+    auctions_per_year: "Monthly (first Tuesday)"
+    format: "Courthouse steps auction"
+    headline: "First Tuesday courthouse auctions with strong property rights and oil considerations."
+    cover: "https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2024-12-01"
+
+  - slug: new-mexico
+    name: New Mexico
+    type: deed
+    status: available
+    difficulty: advanced
+    roi_range: "200–500%"
+    auctions_per_year: "Varies by county"
+    format: "County-specific processes"
+    headline: "County variations with subdivision potential and water rights complexity."
+    cover: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2024-11-20"
+
+  - slug: florida
+    name: Florida
+    type: lien
+    status: available
+    difficulty: beginner
+    roi_range: "8–12%"
+    auctions_per_year: "Annual certificate sales"
+    format: "Online bidding platform"
+    headline: "Certificate state with online bidding and hurricane recovery opportunities."
+    cover: "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2024-11-15"
+
+  - slug: arizona
+    name: Arizona
+    type: lien
+    status: available
+    difficulty: beginner
+    roi_range: "12–16%"
+    auctions_per_year: "Annual certificate auctions"
+    format: "Competitive certificate bidding"
+    headline: "Tax lien state with competitive certificate auctions and strong redemption rates."
+    cover: "https://images.unsplash.com/photo-1444927714506-8492d94b5ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2024-11-10"
+
+  - slug: georgia
+    name: Georgia
+    type: hybrid
+    status: available
+    difficulty: intermediate
+    roi_range: "180–250%"
+    auctions_per_year: "First Tuesday monthly"
+    format: "Courthouse steps (redeemable deed)"
+    headline: "Redeemable deed state with First Tuesday tradition and rural opportunities."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2024-11-05"
+
+  # Placeholder states to be researched
+  - slug: alabama
+    name: Alabama
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1494783367193-149034c05e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: arkansas
+    name: Arkansas
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: california
+    name: California
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: colorado
+    name: Colorado
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: connecticut
+    name: Connecticut
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: delaware
+    name: Delaware
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: washington-dc
+    name: Washington, DC
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1509909756405-be0199881695?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: hawaii
+    name: Hawaii
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: idaho
+    name: Idaho
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: illinois
+    name: Illinois
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1494783367193-149034c05e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: indiana
+    name: Indiana
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1494783367193-149034c05e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: iowa
+    name: Iowa
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1494783367193-149034c05e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: kansas
+    name: Kansas
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1494783367193-149034c05e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: kentucky
+    name: Kentucky
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: louisiana
+    name: Louisiana
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: maine
+    name: Maine
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: maryland
+    name: Maryland
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: massachusetts
+    name: Massachusetts
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: michigan
+    name: Michigan
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1494783367193-149034c05e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: minnesota
+    name: Minnesota
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1494783367193-149034c05e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: mississippi
+    name: Mississippi
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: missouri
+    name: Missouri
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1494783367193-149034c05e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: montana
+    name: Montana
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: nebraska
+    name: Nebraska
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1494783367193-149034c05e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: nevada
+    name: Nevada
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1444927714506-8492d94b5ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: new-hampshire
+    name: New Hampshire
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: new-jersey
+    name: New Jersey
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: new-york
+    name: New York
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: north-carolina
+    name: North Carolina
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: north-dakota
+    name: North Dakota
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1494783367193-149034c05e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: ohio
+    name: Ohio
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1494783367193-149034c05e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: oklahoma
+    name: Oklahoma
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1494783367193-149034c05e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: oregon
+    name: Oregon
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: pennsylvania
+    name: Pennsylvania
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: rhode-island
+    name: Rhode Island
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: south-carolina
+    name: South Carolina
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: south-dakota
+    name: South Dakota
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1494783367193-149034c05e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: tennessee
+    name: Tennessee
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: utah
+    name: Utah
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: vermont
+    name: Vermont
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: virginia
+    name: Virginia
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: washington
+    name: Washington
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: west-virginia
+    name: West Virginia
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: wisconsin
+    name: Wisconsin
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1494783367193-149034c05e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"
+
+  - slug: wyoming
+    name: Wyoming
+    type: tbd
+    status: research
+    difficulty: tbd
+    roi_range: "TBD"
+    auctions_per_year: "TBD"
+    format: "TBD"
+    headline: "To be verified."
+    cover: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+    last_updated: "2025-01-07"

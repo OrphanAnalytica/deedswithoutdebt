@@ -36,6 +36,9 @@ app.use((req, res, next) => {
   next();
 });
 
+// Serve content directory for MDX files and YAML data
+app.use('/content', express.static('content'));
+
 (async () => {
   const server = await registerRoutes(app);
 

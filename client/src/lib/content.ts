@@ -10,6 +10,20 @@ export interface Post {
   content?: string;
 }
 
+export interface StateGuide {
+  slug: string;
+  name: string;
+  type: 'deed' | 'lien' | 'hybrid' | 'tbd';
+  status: 'available' | 'coming_soon' | 'research';
+  difficulty: 'beginner' | 'intermediate' | 'advanced' | 'tbd';
+  roi_range: string;
+  auctions_per_year: string;
+  format: string;
+  headline: string;
+  cover: string;
+  last_updated: string;
+}
+
 // Static post data - in a real implementation this would come from markdown files
 const posts: Post[] = [
   {
@@ -102,4 +116,96 @@ export function searchPosts(query: string): Post[] {
     post.description.toLowerCase().includes(lowercaseQuery) ||
     post.tags.some(tag => tag.toLowerCase().includes(lowercaseQuery))
   ).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+
+// State Guides functionality
+let stateGuideData: { states: StateGuide[] } | null = null;
+
+export async function loadStateGuides(): Promise<StateGuide[]> {
+  if (stateGuideData) {
+    return stateGuideData.states;
+  }
+
+  try {
+    const response = await fetch('/content/state-guides/index.yml');
+    const yamlText = await response.text();
+    
+    // Basic YAML parsing for our simple structure
+    const lines = yamlText.split('\n');
+    const states: StateGuide[] = [];
+    let currentState: Partial<StateGuide> = {};
+    
+    for (const line of lines) {
+      if (line.trim().startsWith('- slug:')) {
+        if (currentState.slug) {
+          states.push(currentState as StateGuide);
+        }
+        currentState = { slug: line.split(':')[1].trim() };
+      } else if (line.trim().includes(':') && currentState.slug) {
+        const [key, ...valueParts] = line.trim().split(':');
+        const value = valueParts.join(':').trim().replace(/^"/, '').replace(/"$/, '');
+        
+        switch (key.trim()) {
+          case 'name':
+            currentState.name = value;
+            break;
+          case 'type':
+            currentState.type = value as StateGuide['type'];
+            break;
+          case 'status':
+            currentState.status = value as StateGuide['status'];
+            break;
+          case 'difficulty':
+            currentState.difficulty = value as StateGuide['difficulty'];
+            break;
+          case 'roi_range':
+            currentState.roi_range = value;
+            break;
+          case 'auctions_per_year':
+            currentState.auctions_per_year = value;
+            break;
+          case 'format':
+            currentState.format = value;
+            break;
+          case 'headline':
+            currentState.headline = value;
+            break;
+          case 'cover':
+            currentState.cover = value;
+            break;
+          case 'last_updated':
+            currentState.last_updated = value;
+            break;
+        }
+      }
+    }
+    
+    // Don't forget the last state
+    if (currentState.slug) {
+      states.push(currentState as StateGuide);
+    }
+    
+    stateGuideData = { states };
+    return states;
+  } catch (error) {
+    console.error('Error loading state guides:', error);
+    return [];
+  }
+}
+
+export function getStateGuideBySlug(slug: string): StateGuide | undefined {
+  return stateGuideData?.states.find(state => state.slug === slug);
+}
+
+export function getAvailableStateGuides(): StateGuide[] {
+  return stateGuideData?.states.filter(state => state.status === 'available') || [];
+}
+
+export function getStateGuidesByType(type: StateGuide['type']): StateGuide[] {
+  return stateGuideData?.states.filter(state => state.type === type) || [];
+}
+
+export function getFeaturedStateGuide(): StateGuide | undefined {
+  // Return Alaska as the featured guide
+  return stateGuideData?.states.find(state => state.slug === 'alaska');
 }
