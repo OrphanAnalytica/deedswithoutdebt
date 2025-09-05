@@ -133,15 +133,15 @@ export default function StateGuideRenderer({ guide }: StateGuideRendererProps) {
             </h1>
             
             <p className="font-sans text-xl text-muted-foreground mb-8 leading-relaxed">
-              {guide.headline}
+              {guide.summary}
             </p>
             
             {/* Stats grid */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
               <Card className="p-4 text-center">
                 <DollarSign className="w-6 h-6 text-primary mx-auto mb-2" />
-                <p className="font-mono font-bold text-lg text-foreground">{guide.roi_range}</p>
-                <p className="text-sm text-muted-foreground">ROI Range</p>
+                <p className="font-mono font-bold text-lg text-foreground">{guide.type.toUpperCase()}</p>
+                <p className="text-sm text-muted-foreground">System Type</p>
               </Card>
               <Card className="p-4 text-center">
                 <Calendar className="w-6 h-6 text-primary mx-auto mb-2" />

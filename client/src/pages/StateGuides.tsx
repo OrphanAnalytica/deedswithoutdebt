@@ -1,15 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { setSEOData } from "@/lib/seo";
 import { Link } from "wouter";
-import { MapPin, Calendar, DollarSign, FileText } from "lucide-react";
+import { MapPin, Calendar, DollarSign, FileText, Search } from "lucide-react";
 import { StateGuide, loadStateGuides } from "@/lib/content";
+import Fuse from 'fuse.js';
 
 export default function StateGuides() {
   const [stateGuides, setStateGuides] = useState<StateGuide[]>([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeFilter, setActiveFilter] = useState('all');
 
   useEffect(() => {
     setSEOData({
@@ -23,6 +28,48 @@ export default function StateGuides() {
       setLoading(false);
     });
   }, []);
+
+  // Initialize Fuse.js for fuzzy search
+  const fuse = useMemo(() => {
+    if (!stateGuides.length) return null;
+    return new Fuse(stateGuides, {
+      keys: ['name', 'summary', 'type', 'status'],
+      threshold: 0.4,
+      includeScore: true
+    });
+  }, [stateGuides]);
+
+  // Filter and search logic
+  const filteredGuides = useMemo(() => {
+    let guides = stateGuides;
+
+    // Apply type filter
+    if (activeFilter !== 'all') {
+      if (activeFilter === 'verify') {
+        guides = guides.filter(guide => guide.status === 'research');
+      } else {
+        guides = guides.filter(guide => guide.type === activeFilter);
+      }
+    }
+
+    // Apply search if query exists
+    if (searchQuery.trim() && fuse) {
+      const searchResults = fuse.search(searchQuery);
+      const searchedGuides = searchResults.map(result => result.item);
+      
+      // Filter searched results by active filter
+      if (activeFilter !== 'all') {
+        if (activeFilter === 'verify') {
+          return searchedGuides.filter(guide => guide.status === 'research');
+        } else {
+          return searchedGuides.filter(guide => guide.type === activeFilter);
+        }
+      }
+      return searchedGuides;
+    }
+
+    return guides;
+  }, [stateGuides, activeFilter, searchQuery, fuse]);
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -118,7 +165,7 @@ export default function StateGuides() {
                     {featuredGuide.name} Tax Investment Guide
                   </h2>
                   <p className="font-sans text-lg text-muted-foreground mb-6 leading-relaxed">
-                    {featuredGuide.headline}
+                    {featuredGuide.summary}
                   </p>
                   <div className="grid sm:grid-cols-3 gap-4 mb-6">
                     <div className="text-center">
@@ -126,8 +173,8 @@ export default function StateGuides() {
                       <p className="font-sans text-sm text-muted-foreground">Investment Type</p>
                     </div>
                     <div className="text-center">
-                      <p className="font-mono font-bold text-2xl text-primary">{featuredGuide.roi_range}</p>
-                      <p className="font-sans text-sm text-muted-foreground">Average ROI</p>
+                      <p className="font-mono font-bold text-2xl text-primary">{featuredGuide.auctions_per_year}</p>
+                      <p className="font-sans text-sm text-muted-foreground">Auction Frequency</p>
                     </div>
                     <div className="text-center">
                       <p className="font-mono font-bold text-2xl text-primary">{formatDifficulty(featuredGuide.difficulty)}</p>
@@ -144,7 +191,7 @@ export default function StateGuides() {
                 </div>
                 <div>
                   <img
-                    src={featuredGuide.cover}
+                    src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
                     alt={`${featuredGuide.name} landscape for tax investing opportunities`}
                     className="rounded-lg shadow-lg w-full h-auto"
                     loading="lazy"
@@ -154,13 +201,42 @@ export default function StateGuides() {
             </div>
           )}
 
-          {/* All State Guides */}
+          {/* Search and Filters */}
           <div className="mb-12">
-            <h2 className="font-serif text-3xl font-bold text-foreground text-center mb-8">
-              All State Guides
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {allGuides.map((guide) => (
+            <div className="max-w-md mx-auto mb-6">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                <Input
+                  type="text"
+                  placeholder="Search states..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10"
+                  data-testid="input-search-states"
+                />
+              </div>
+            </div>
+
+            <Tabs value={activeFilter} onValueChange={setActiveFilter} className="mb-8">
+              <TabsList className="grid w-full grid-cols-5 max-w-2xl mx-auto">
+                <TabsTrigger value="all" data-testid="tab-all">All</TabsTrigger>
+                <TabsTrigger value="deed" data-testid="tab-deed">Deed</TabsTrigger>
+                <TabsTrigger value="lien" data-testid="tab-lien">Lien</TabsTrigger>
+                <TabsTrigger value="hybrid" data-testid="tab-hybrid">Hybrid</TabsTrigger>
+                <TabsTrigger value="verify" data-testid="tab-verify">To Verify</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value={activeFilter} className="mt-8">
+                <div className="text-center mb-6">
+                  <p className="text-sm text-muted-foreground">
+                    Showing {filteredGuides.length} {activeFilter === 'all' ? 'states' : 
+                      activeFilter === 'verify' ? 'states to verify' : `${activeFilter} states`}
+                    {searchQuery && ` matching "${searchQuery}"`}
+                  </p>
+                </div>
+                
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {filteredGuides.map((guide) => (
                 <Card key={guide.slug} className="p-6 hover:shadow-md transition-shadow">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="font-serif text-xl font-bold text-foreground">
@@ -172,7 +248,7 @@ export default function StateGuides() {
                   </div>
                   
                   <p className="font-sans text-muted-foreground mb-4 leading-relaxed text-sm">
-                    {guide.headline}
+                    {guide.summary}
                   </p>
                   
                   <div className="grid grid-cols-2 gap-4 mb-4 text-xs">
@@ -182,7 +258,7 @@ export default function StateGuides() {
                     </div>
                     <div className="flex items-center gap-2">
                       <DollarSign className="w-3 h-3 text-primary" />
-                      <span className="text-muted-foreground">{guide.roi_range} ROI</span>
+                      <span className="text-muted-foreground">{guide.type.toUpperCase()} System</span>
                     </div>
                   </div>
                   
@@ -219,9 +295,19 @@ export default function StateGuides() {
                       </Button>
                     )}
                   </div>
-                </Card>
-              ))}
-            </div>
+                    </Card>
+                  ))}
+                  
+                  {filteredGuides.length === 0 && (
+                    <div className="col-span-full text-center py-12">
+                      <p className="text-muted-foreground">
+                        No states found matching your criteria.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </TabsContent>
+            </Tabs>
           </div>
 
           {/* Request Guide */}

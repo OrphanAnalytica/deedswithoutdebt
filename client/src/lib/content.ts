@@ -16,11 +16,9 @@ export interface StateGuide {
   type: 'deed' | 'lien' | 'hybrid' | 'tbd';
   status: 'available' | 'coming_soon' | 'research';
   difficulty: 'beginner' | 'intermediate' | 'advanced' | 'tbd';
-  roi_range: string;
+  summary: string;
   auctions_per_year: string;
   format: string;
-  headline: string;
-  cover: string;
   last_updated: string;
 }
 
@@ -158,20 +156,14 @@ export async function loadStateGuides(): Promise<StateGuide[]> {
           case 'difficulty':
             currentState.difficulty = value as StateGuide['difficulty'];
             break;
-          case 'roi_range':
-            currentState.roi_range = value;
+          case 'summary':
+            currentState.summary = value;
             break;
           case 'auctions_per_year':
             currentState.auctions_per_year = value;
             break;
           case 'format':
             currentState.format = value;
-            break;
-          case 'headline':
-            currentState.headline = value;
-            break;
-          case 'cover':
-            currentState.cover = value;
             break;
           case 'last_updated':
             currentState.last_updated = value;

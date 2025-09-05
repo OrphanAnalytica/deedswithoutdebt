@@ -28,7 +28,7 @@ export default function StateGuidePage() {
           // Set SEO data
           setSEOData({
             title: `${foundGuide.name} Tax Investment Guide | Deeds Without Debt`,
-            description: `${foundGuide.headline} Learn about ${foundGuide.type} investing in ${foundGuide.name} with our comprehensive guide.`,
+            description: `${foundGuide.summary} Learn about ${foundGuide.type} investing in ${foundGuide.name} with our comprehensive guide.`,
             canonical: `/state-guides/${slug}`
           });
         } else {
