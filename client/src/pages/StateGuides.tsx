@@ -1,13 +1,13 @@
 import { useEffect, useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
 import { setSEOData } from "@/lib/seo";
-import { Link } from "wouter";
-import { MapPin, Calendar, DollarSign, FileText, Search } from "lucide-react";
-import { StateGuide, listStates, searchStates, filterByType, filterToVerify } from "@/lib/stateGuides";
+import { Link, useSearch, useLocation } from "wouter";
+import { MapPin, Search, Settings } from "lucide-react";
+import { StateGuide, listStates } from "@/lib/stateGuides";
 import { StateCard } from "@/components/ui/StateCard";
 import { TypeTabs } from "@/components/ui/TypeTabs";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -18,38 +18,99 @@ export default function StateGuides() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState('all');
+  const [statusFilters, setStatusFilters] = useState<string[]>(['available', 'coming_soon', 'research']);
+  const [showFilters, setShowFilters] = useState(false);
+  const searchParams = useSearch();
+  const [, setLocation] = useLocation();
 
   useEffect(() => {
     setSEOData({
-      title: "State Guides | Deeds Without Debt",
-      description: "Comprehensive guides to tax deed and tax lien laws by state. Learn auction schedules, redemption periods, and investment opportunities.",
+      title: "State Investment Guides | Deeds Without Debt",
+      description: "Guides to tax deed, tax lien, and hybrid (redeemable deed) investing by state. Learn auction schedules, redemption periods, and investment opportunities across all 50 states plus Washington DC.",
       canonical: "/state-guides"
     });
+
+    // Load saved preferences from localStorage
+    const savedSearch = localStorage.getItem('stateGuides.search') || '';
+    const savedType = localStorage.getItem('stateGuides.type') || 'all';
+    const savedStatus = JSON.parse(localStorage.getItem('stateGuides.status') || '["available", "coming_soon", "research"]');
+
+    // Parse URL params
+    const params = new URLSearchParams(searchParams);
+    const urlType = params.get('type');
+    const urlSearch = params.get('q');
+    const urlStatus = params.get('status')?.split(',') || savedStatus;
+
+    // Set initial state from URL or localStorage
+    setSearchQuery(urlSearch || savedSearch);
+    setActiveFilter(urlType || savedType);
+    setStatusFilters(urlStatus);
 
     listStates().then((guides) => {
       setStateGuides(guides);
       setLoading(false);
     });
-  }, []);
+  }, [searchParams]);
+
+  // Update URL and localStorage when filters change
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (searchQuery) params.set('q', searchQuery);
+    if (activeFilter !== 'all') params.set('type', activeFilter);
+    if (statusFilters.length !== 3) params.set('status', statusFilters.join(','));
+    
+    const newUrl = `/state-guides${params.toString() ? '?' + params.toString() : ''}`;
+    if (window.location.pathname + window.location.search !== newUrl) {
+      window.history.replaceState({}, '', newUrl);
+    }
+
+    // Save to localStorage
+    localStorage.setItem('stateGuides.search', searchQuery);
+    localStorage.setItem('stateGuides.type', activeFilter);
+    localStorage.setItem('stateGuides.status', JSON.stringify(statusFilters));
+  }, [searchQuery, activeFilter, statusFilters]);
+
+  // Initialize Fuse.js for fuzzy search
+  const fuse = useMemo(() => {
+    if (!stateGuides.length) return null;
+    return new Fuse(stateGuides, {
+      keys: ['name', 'summary'],
+      threshold: 0.3,
+      includeScore: true
+    });
+  }, [stateGuides]);
 
   // Filter and search logic
   const filteredGuides = useMemo(() => {
     let guides = stateGuides;
 
-    // Apply search first
-    if (searchQuery.trim()) {
-      guides = searchStates(guides, searchQuery);
+    // Apply status filter first
+    guides = guides.filter(guide => statusFilters.includes(guide.status));
+
+    // Apply search with fuzzy matching
+    if (searchQuery.trim() && fuse) {
+      const searchResults = fuse.search(searchQuery);
+      const searchedGuides = searchResults.map(result => result.item);
+      guides = guides.filter(guide => searchedGuides.includes(guide));
     }
 
     // Apply type filter
     if (activeFilter === 'verify') {
-      guides = filterToVerify(guides);
+      guides = guides.filter(guide => guide.status === 'research');
     } else if (activeFilter !== 'all') {
-      guides = filterByType(guides, activeFilter as StateGuide['type']);
+      guides = guides.filter(guide => guide.type === activeFilter);
     }
 
     return guides;
-  }, [stateGuides, activeFilter, searchQuery]);
+  }, [stateGuides, activeFilter, searchQuery, statusFilters, fuse]);
+
+  const handleStatusChange = (status: string, checked: boolean) => {
+    if (checked) {
+      setStatusFilters(prev => [...prev, status]);
+    } else {
+      setStatusFilters(prev => prev.filter(s => s !== status));
+    }
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -95,9 +156,8 @@ export default function StateGuides() {
     return difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
   };
 
-  // Get featured guide (Alaska) and other guides
+  // Get featured guide (Alaska)
   const featuredGuide = stateGuides.find(guide => guide.slug === 'alaska');
-  const allGuides = stateGuides.filter(guide => guide.slug !== 'alaska');
 
   if (loading) {
     return (
@@ -149,24 +209,25 @@ export default function StateGuides() {
                   </p>
                   <div className="grid sm:grid-cols-3 gap-4 mb-6">
                     <div className="text-center">
-                      <p className="font-mono font-bold text-2xl text-primary">{featuredGuide.type.toUpperCase()}</p>
-                      <p className="font-sans text-sm text-muted-foreground">Investment Type</p>
+                      <p className="font-mono font-bold text-2xl text-primary">3 Sales</p>
+                      <p className="font-sans text-sm text-muted-foreground">Avg/2 Years</p>
                     </div>
                     <div className="text-center">
-                      <p className="font-mono font-bold text-2xl text-primary">{featuredGuide.auctions_per_year}</p>
-                      <p className="font-sans text-sm text-muted-foreground">Auction Frequency</p>
+                      <p className="font-mono font-bold text-2xl text-primary">150–300%</p>
+                      <p className="font-sans text-sm text-muted-foreground">ROI Range</p>
                     </div>
                     <div className="text-center">
-                      <p className="font-mono font-bold text-2xl text-primary">{formatDifficulty(featuredGuide.difficulty)}</p>
-                      <p className="font-sans text-sm text-muted-foreground">Difficulty Level</p>
+                      <p className="font-mono font-bold text-2xl text-primary">19 Boroughs</p>
+                      <p className="font-sans text-sm text-muted-foreground">Covered</p>
                     </div>
                   </div>
+                  <p className="text-xs text-muted-foreground mb-6 italic">*Example estimates based on available data</p>
                   <Button 
                     asChild
                     className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-mono font-bold hover:bg-secondary transition-colors"
                     data-testid={`button-read-${featuredGuide.slug}-guide`}
                   >
-                    <Link href={`/state-guides/${featuredGuide.slug}`}>Read {featuredGuide.name} Guide</Link>
+                    <Link href={`/state-guides/${featuredGuide.slug}`}>Read Alaska Guide</Link>
                   </Button>
                 </div>
                 <div>
