@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { ArrowLeft, Calendar, DollarSign, FileText, MapPin, ExternalLink } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
-import { StateGuide } from "@/lib/content";
+import { StateGuide } from "@/lib/stateGuides";
+import { FactsPanel } from "@/components/ui/FactsPanel";
+import { TableOfContents } from "@/components/ui/TableOfContents";
 
 interface StateGuideRendererProps {
   guide: StateGuide;
@@ -20,7 +21,7 @@ export default function StateGuideRenderer({ guide }: StateGuideRendererProps) {
         const response = await fetch(`/content/state-guides/${guide.slug}.mdx`);
         if (response.ok) {
           const mdxContent = await response.text();
-          // Simple MDX to HTML conversion - remove frontmatter and basic markdown parsing
+          // Remove frontmatter
           const contentWithoutFrontmatter = mdxContent.replace(/^---[\s\S]*?---\n/, '');
           setContent(contentWithoutFrontmatter);
         } else {
@@ -63,31 +64,32 @@ export default function StateGuideRenderer({ guide }: StateGuideRendererProps) {
     }
   };
 
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty.toLowerCase()) {
-      case "beginner":
-        return "text-green-600";
-      case "intermediate":
-        return "text-yellow-600";
-      case "advanced":
-        return "text-red-600";
+  const getStatusLabel = (status: string) => {
+    switch (status) {
+      case "available":
+        return "Available";
+      case "coming_soon":
+        return "Coming Soon";
+      case "research":
+        return "Research";
       default:
-        return "text-muted-foreground";
+        return "Unknown";
     }
   };
 
-  const formatDifficulty = (difficulty: string) => {
-    if (difficulty === 'tbd') return 'TBD';
-    return difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
-  };
+  // Parse content to add IDs to headings for TOC
+  const processedContent = content.replace(/^(#{1,6})\s+(.+)$/gm, (match, hashes, title) => {
+    const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    return `<${hashes.length === 1 ? 'h1' : hashes.length === 2 ? 'h2' : hashes.length === 3 ? 'h3' : 'h4'} id="${id}" class="font-serif font-bold text-foreground mb-4 mt-8 ${
+      hashes.length === 1 ? 'text-4xl' : 
+      hashes.length === 2 ? 'text-3xl' : 
+      hashes.length === 3 ? 'text-2xl' : 'text-xl'
+    }">${title}</${hashes.length === 1 ? 'h1' : hashes.length === 2 ? 'h2' : hashes.length === 3 ? 'h3' : 'h4'}>`;
+  });
 
   // Simple markdown to HTML conversion
   const renderMarkdown = (text: string) => {
     return text
-      .replace(/^# (.+)$/gm, '<h1 class="font-serif text-4xl font-bold text-foreground mb-6 mt-8">$1</h1>')
-      .replace(/^## (.+)$/gm, '<h2 class="font-serif text-3xl font-bold text-foreground mb-4 mt-8">$2</h2>')
-      .replace(/^### (.+)$/gm, '<h3 class="font-serif text-2xl font-bold text-foreground mb-3 mt-6">$3</h3>')
-      .replace(/^\*(.+)\*$/gm, '<p class="text-sm text-muted-foreground italic mb-4">$1</p>')
       .replace(/^\*\*(.+):\*\*$/gm, '<h4 class="font-semibold text-foreground mb-2 mt-4">$1:</h4>')
       .replace(/^- (.+)$/gm, '<li class="ml-4 mb-1">• $1</li>')
       .replace(/^\d+\. (.+)$/gm, '<li class="ml-4 mb-1 list-decimal">$1</li>')
@@ -97,16 +99,32 @@ export default function StateGuideRenderer({ guide }: StateGuideRendererProps) {
       .replace(/`(.+?)`/g, '<code class="bg-muted px-2 py-1 rounded text-sm">$1</code>');
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center">
+              <h1 className="font-serif text-4xl font-bold text-foreground mb-6">
+                Loading {guide.name} Guide...
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="py-16">
+    <div className="min-h-screen py-16">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          {/* Back button */}
+        <div className="max-w-7xl mx-auto">
+          {/* Back Navigation */}
           <div className="mb-8">
-            <Button 
+            <Button
               asChild
-              variant="ghost"
-              className="text-muted-foreground hover:text-foreground"
+              variant="outline"
+              className="font-mono font-semibold hover:bg-accent hover:text-accent-foreground transition-colors"
               data-testid="button-back-to-state-guides"
             >
               <Link href="/state-guides">
@@ -117,121 +135,45 @@ export default function StateGuideRenderer({ guide }: StateGuideRendererProps) {
           </div>
 
           {/* Header */}
-          <div className="mb-12">
-            <div className="flex flex-wrap items-center gap-3 mb-6">
-              <Badge className={`px-3 py-1 rounded-full border ${getStatusColor(guide.status)}`}>
-                {guide.status === "available" ? "Available" : guide.status === "coming_soon" ? "Coming Soon" : "Research"}
+          <div className="text-center mb-12">
+            <div className="flex justify-center items-center gap-4 mb-6">
+              <Badge className={`px-4 py-2 rounded-full font-mono font-bold text-sm ${getStatusColor(guide.status)}`}>
+                {getStatusLabel(guide.status)}
               </Badge>
-              <Badge className={`px-3 py-1 rounded-full border ${getTypeColor(guide.type)}`}>
-                {guide.type === 'tbd' ? 'TBD' : guide.type.toUpperCase()} System
+              <Badge className={`px-4 py-2 rounded-full font-mono font-bold text-sm ${getTypeColor(guide.type)}`}>
+                {guide.type.toUpperCase()} SYSTEM
               </Badge>
-              <span className="text-sm text-muted-foreground">Updated {guide.last_updated}</span>
             </div>
-            
             <h1 className="font-serif text-4xl lg:text-5xl font-bold text-foreground mb-6">
               {guide.name} Tax Investment Guide
             </h1>
-            
             <p className="font-sans text-xl text-muted-foreground mb-8 leading-relaxed">
               {guide.summary}
             </p>
-            
-            {/* Stats grid */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-              <Card className="p-4 text-center">
-                <DollarSign className="w-6 h-6 text-primary mx-auto mb-2" />
-                <p className="font-mono font-bold text-lg text-foreground">{guide.type.toUpperCase()}</p>
-                <p className="text-sm text-muted-foreground">System Type</p>
-              </Card>
-              <Card className="p-4 text-center">
-                <Calendar className="w-6 h-6 text-primary mx-auto mb-2" />
-                <p className="font-mono font-bold text-lg text-foreground">{guide.auctions_per_year}</p>
-                <p className="text-sm text-muted-foreground">Auction Frequency</p>
-              </Card>
-              <Card className="p-4 text-center">
-                <FileText className="w-6 h-6 text-primary mx-auto mb-2" />
-                <p className="font-mono font-bold text-lg text-foreground">{guide.format}</p>
-                <p className="text-sm text-muted-foreground">Auction Format</p>
-              </Card>
-              <Card className="p-4 text-center">
-                <MapPin className="w-6 h-6 text-primary mx-auto mb-2" />
-                <p className={`font-mono font-bold text-lg ${getDifficultyColor(guide.difficulty)}`}>
-                  {formatDifficulty(guide.difficulty)}
-                </p>
-                <p className="text-sm text-muted-foreground">Difficulty Level</p>
-              </Card>
-            </div>
           </div>
 
-          {/* Content */}
-          <div className="prose prose-lg max-w-none">
-            {loading ? (
-              <div className="text-center py-12">
-                <p className="text-muted-foreground">Loading guide content...</p>
-              </div>
-            ) : guide.status === "research" ? (
-              <div className="bg-muted/50 rounded-lg p-8 text-center mb-8">
-                <h2 className="font-serif text-2xl font-bold text-foreground mb-4">
-                  Research in Progress
-                </h2>
-                <p className="text-muted-foreground mb-6">
-                  We are currently researching tax investment opportunities in {guide.name}. 
-                  This comprehensive guide will be available soon with detailed information about local laws, 
-                  auction schedules, and investment strategies.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button 
-                    asChild
-                    className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-mono font-semibold hover:bg-secondary transition-colors"
-                  >
-                    <Link href="/subscribe">Get Notified When Available</Link>
-                  </Button>
-                  <Button 
-                    asChild
-                    variant="outline"
-                    className="border border-border text-foreground px-6 py-3 rounded-lg font-mono font-semibold hover:bg-accent hover:text-accent-foreground transition-colors"
-                  >
-                    <Link href="/state-guides">Explore Available Guides</Link>
-                  </Button>
+          {/* Main Layout with Sidebar */}
+          <div className="grid lg:grid-cols-4 gap-8">
+            {/* Main Content */}
+            <div className="lg:col-span-3">
+              <div className="bg-card rounded-xl shadow-sm border border-border p-8 lg:p-12">
+                <div className="prose prose-lg max-w-none">
+                  <div 
+                    className="leading-relaxed text-foreground font-sans"
+                    dangerouslySetInnerHTML={{ __html: renderMarkdown(processedContent) }}
+                  />
                 </div>
               </div>
-            ) : (
-              <div 
-                className="font-sans text-foreground leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: renderMarkdown(content) }}
-              />
-            )}
-          </div>
+            </div>
 
-          {/* CTA section */}
-          {guide.status === "available" && (
-            <div className="mt-12 bg-card rounded-xl shadow-sm border border-border p-8 text-center">
-              <h2 className="font-serif text-2xl font-bold text-foreground mb-4">
-                Ready to Start Investing in {guide.name}?
-              </h2>
-              <p className="font-sans text-muted-foreground mb-6 leading-relaxed">
-                Get the latest updates on {guide.name} tax investment opportunities, 
-                auction schedules, and market insights delivered to your inbox.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Button 
-                  asChild
-                  className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-mono font-semibold hover:bg-secondary transition-colors"
-                  data-testid="button-subscribe-state-updates"
-                >
-                  <Link href="/subscribe">Subscribe for Updates</Link>
-                </Button>
-                <Button 
-                  asChild
-                  variant="outline"
-                  className="border border-border text-foreground px-6 py-3 rounded-lg font-mono font-semibold hover:bg-accent hover:text-accent-foreground transition-colors"
-                  data-testid="button-all-state-guides"
-                >
-                  <Link href="/state-guides">All State Guides</Link>
-                </Button>
+            {/* Sidebar */}
+            <div className="lg:col-span-1">
+              <div className="space-y-6">
+                <FactsPanel guide={guide} />
+                <TableOfContents content={content} />
               </div>
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>

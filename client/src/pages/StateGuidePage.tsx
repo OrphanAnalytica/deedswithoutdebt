@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "wouter";
 import { setSEOData } from "@/lib/seo";
-import { StateGuide, loadStateGuides, getStateGuideBySlug } from "@/lib/content";
+import { StateGuide, getState } from "@/lib/stateGuides";
 import StateGuideRenderer from "@/components/StateGuideRenderer";
 
 export default function StateGuidePage() {
@@ -19,17 +19,35 @@ export default function StateGuidePage() {
       }
 
       try {
-        const guides = await loadStateGuides();
-        const foundGuide = guides.find(g => g.slug === slug);
+        const foundGuide = await getState(slug);
         
         if (foundGuide) {
           setGuide(foundGuide);
           
-          // Set SEO data
+          // Set SEO data with JSON-LD
           setSEOData({
-            title: `${foundGuide.name} Tax Investment Guide | Deeds Without Debt`,
+            title: `${foundGuide.name} Tax Sales Guide | Deeds Without Debt`,
             description: `${foundGuide.summary} Learn about ${foundGuide.type} investing in ${foundGuide.name} with our comprehensive guide.`,
-            canonical: `/state-guides/${slug}`
+            canonical: `/state-guides/${slug}`,
+            jsonLd: {
+              "@context": "https://schema.org",
+              "@type": "Article",
+              "headline": `${foundGuide.name} Tax Investment Guide`,
+              "description": foundGuide.summary,
+              "author": {
+                "@type": "Organization",
+                "name": "Deeds Without Debt"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "Deeds Without Debt",
+                "url": "https://deedswithoutdebt.com"
+              },
+              "dateModified": foundGuide.last_updated,
+              "datePublished": foundGuide.last_updated,
+              "about": ["tax deeds", "tax liens", `${foundGuide.name} tax foreclosure`],
+              "url": `https://deedswithoutdebt.com/state-guides/${slug}`
+            }
           });
         } else {
           setNotFound(true);

@@ -7,7 +7,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { setSEOData } from "@/lib/seo";
 import { Link } from "wouter";
 import { MapPin, Calendar, DollarSign, FileText, Search } from "lucide-react";
-import { StateGuide, loadStateGuides } from "@/lib/content";
+import { StateGuide, listStates, searchStates, filterByType, filterToVerify } from "@/lib/stateGuides";
+import { StateCard } from "@/components/ui/StateCard";
+import { TypeTabs } from "@/components/ui/TypeTabs";
+import { EmptyState } from "@/components/ui/EmptyState";
 import Fuse from 'fuse.js';
 
 export default function StateGuides() {
@@ -23,53 +26,30 @@ export default function StateGuides() {
       canonical: "/state-guides"
     });
 
-    loadStateGuides().then((guides) => {
+    listStates().then((guides) => {
       setStateGuides(guides);
       setLoading(false);
     });
   }, []);
 
-  // Initialize Fuse.js for fuzzy search
-  const fuse = useMemo(() => {
-    if (!stateGuides.length) return null;
-    return new Fuse(stateGuides, {
-      keys: ['name', 'summary', 'type', 'status'],
-      threshold: 0.4,
-      includeScore: true
-    });
-  }, [stateGuides]);
-
   // Filter and search logic
   const filteredGuides = useMemo(() => {
     let guides = stateGuides;
 
-    // Apply type filter
-    if (activeFilter !== 'all') {
-      if (activeFilter === 'verify') {
-        guides = guides.filter(guide => guide.status === 'research');
-      } else {
-        guides = guides.filter(guide => guide.type === activeFilter);
-      }
+    // Apply search first
+    if (searchQuery.trim()) {
+      guides = searchStates(guides, searchQuery);
     }
 
-    // Apply search if query exists
-    if (searchQuery.trim() && fuse) {
-      const searchResults = fuse.search(searchQuery);
-      const searchedGuides = searchResults.map(result => result.item);
-      
-      // Filter searched results by active filter
-      if (activeFilter !== 'all') {
-        if (activeFilter === 'verify') {
-          return searchedGuides.filter(guide => guide.status === 'research');
-        } else {
-          return searchedGuides.filter(guide => guide.type === activeFilter);
-        }
-      }
-      return searchedGuides;
+    // Apply type filter
+    if (activeFilter === 'verify') {
+      guides = filterToVerify(guides);
+    } else if (activeFilter !== 'all') {
+      guides = filterByType(guides, activeFilter as StateGuide['type']);
     }
 
     return guides;
-  }, [stateGuides, activeFilter, searchQuery, fuse]);
+  }, [stateGuides, activeFilter, searchQuery]);
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -217,97 +197,30 @@ export default function StateGuides() {
               </div>
             </div>
 
-            <Tabs value={activeFilter} onValueChange={setActiveFilter} className="mb-8">
-              <TabsList className="grid w-full grid-cols-5 max-w-2xl mx-auto">
-                <TabsTrigger value="all" data-testid="tab-all">All</TabsTrigger>
-                <TabsTrigger value="deed" data-testid="tab-deed">Deed</TabsTrigger>
-                <TabsTrigger value="lien" data-testid="tab-lien">Lien</TabsTrigger>
-                <TabsTrigger value="hybrid" data-testid="tab-hybrid">Hybrid</TabsTrigger>
-                <TabsTrigger value="verify" data-testid="tab-verify">To Verify</TabsTrigger>
-              </TabsList>
+            <TypeTabs value={activeFilter} onValueChange={setActiveFilter} />
 
-              <TabsContent value={activeFilter} className="mt-8">
-                <div className="text-center mb-6">
-                  <p className="text-sm text-muted-foreground">
-                    Showing {filteredGuides.length} {activeFilter === 'all' ? 'states' : 
-                      activeFilter === 'verify' ? 'states to verify' : `${activeFilter} states`}
-                    {searchQuery && ` matching "${searchQuery}"`}
-                  </p>
-                </div>
-                
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {filteredGuides.map((guide) => (
-                <Card key={guide.slug} className="p-6 hover:shadow-md transition-shadow">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-serif text-xl font-bold text-foreground">
-                      {guide.name}
-                    </h3>
-                    <Badge className={`px-3 py-1 rounded-full font-mono font-bold text-xs ${getStatusColor(guide.status)}`}>
-                      {getStatusLabel(guide.status)}
-                    </Badge>
-                  </div>
-                  
-                  <p className="font-sans text-muted-foreground mb-4 leading-relaxed text-sm">
-                    {guide.summary}
-                  </p>
-                  
-                  <div className="grid grid-cols-2 gap-4 mb-4 text-xs">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-3 h-3 text-primary" />
-                      <span className="text-muted-foreground">{guide.auctions_per_year}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <DollarSign className="w-3 h-3 text-primary" />
-                      <span className="text-muted-foreground">{guide.type.toUpperCase()} System</span>
-                    </div>
-                  </div>
-                  
-                  <div className="mb-4">
-                    <div className="flex items-center gap-2 text-xs">
-                      <FileText className="w-3 h-3 text-primary" />
-                      <span className="text-muted-foreground capitalize">{guide.type} System</span>
-                      <span className="text-muted-foreground">•</span>
-                      <span className="text-muted-foreground">{guide.format}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center justify-between">
-                    <span className={`font-sans text-xs font-semibold ${getDifficultyColor(guide.difficulty)}`}>
-                      {formatDifficulty(guide.difficulty)}
-                    </span>
-                    {guide.status === "available" ? (
-                      <Button 
-                        asChild
-                        size="sm"
-                        className="bg-primary text-primary-foreground font-mono font-semibold hover:bg-secondary transition-colors"
-                        data-testid={`button-read-${guide.slug}-guide`}
-                      >
-                        <Link href={`/state-guides/${guide.slug}`}>Read Guide</Link>
-                      </Button>
-                    ) : (
-                      <Button 
-                        size="sm"
-                        variant="outline"
-                        disabled
-                        className="font-mono font-semibold"
-                      >
-                        {getStatusLabel(guide.status)}
-                      </Button>
-                    )}
-                  </div>
-                    </Card>
-                  ))}
-                  
-                  {filteredGuides.length === 0 && (
-                    <div className="col-span-full text-center py-12">
-                      <p className="text-muted-foreground">
-                        No states found matching your criteria.
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </TabsContent>
-            </Tabs>
+            <div className="mt-8">
+              <div className="text-center mb-6">
+                <p className="text-sm text-muted-foreground">
+                  Showing {filteredGuides.length} {activeFilter === 'all' ? 'states' : 
+                    activeFilter === 'verify' ? 'states to verify' : `${activeFilter} states`}
+                  {searchQuery && ` matching "${searchQuery}"`}
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredGuides.length > 0 ? (
+                  filteredGuides.map((guide) => (
+                    <StateCard key={guide.slug} guide={guide} />
+                  ))
+                ) : (
+                  <EmptyState 
+                    title="No states found"
+                    description="Try adjusting your search or filter criteria."
+                  />
+                )}
+              </div>
+            </div>
           </div>
 
           {/* Request Guide */}
