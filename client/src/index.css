@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital,wght@0,400;1,400&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Brand Colors */
+  --background: hsl(60, 9%, 96%); /* #F5F5F0 cream */
+  --foreground: hsl(0, 0%, 0%); /* #000000 black */
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(0, 0%, 0%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(0, 0%, 0%);
+  --primary: hsl(154, 57%, 20%); /* #1B4332 forest green */
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(154, 42%, 29%); /* #2D6A4F medium green */
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(81, 17%, 61%); /* #A3B18A sage */
+  --muted-foreground: hsl(0, 0%, 20%);
+  --accent: hsl(81, 17%, 61%); /* #A3B18A sage */
+  --accent-foreground: hsl(0, 0%, 0%);
+  --destructive: hsl(356, 90%, 54%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(81, 17%, 61%);
+  --input: hsl(0, 0%, 100%);
+  --ring: hsl(154, 57%, 20%);
+  
+  /* Fonts */
+  --font-serif: 'DM Serif Text', serif;
+  --font-sans: 'Nunito Sans', sans-serif;
+  --font-mono: 'Montserrat', monospace;
+  
+  /* Other variables */
+  --radius: 0.5rem;
+  --chart-1: hsl(154, 57%, 20%);
+  --chart-2: hsl(154, 42%, 29%);
+  --chart-3: hsl(81, 17%, 61%);
+  --chart-4: hsl(147, 78%, 42%);
+  --chart-5: hsl(341, 75%, 51%);
+  --sidebar-background: hsl(60, 9%, 96%);
+  --sidebar-foreground: hsl(0, 0%, 0%);
+  --sidebar-primary: hsl(154, 57%, 20%);
+  --sidebar-primary-foreground: hsl(0, 0%, 100%);
+  --sidebar-accent: hsl(81, 17%, 61%);
+  --sidebar-accent-foreground: hsl(0, 0%, 0%);
+  --sidebar-border: hsl(81, 17%, 61%);
+  --sidebar-ring: hsl(154, 57%, 20%);
+  --shadow-2xs: 0px 2px 0px 0px hsl(154, 57%, 20% / 0.00);
+  --shadow-xs: 0px 2px 0px 0px hsl(154, 57%, 20% / 0.00);
+  --shadow-sm: 0px 2px 0px 0px hsl(154, 57%, 20% / 0.00), 0px 1px 2px -1px hsl(154, 57%, 20% / 0.00);
+  --shadow: 0px 2px 0px 0px hsl(154, 57%, 20% / 0.00), 0px 1px 2px -1px hsl(154, 57%, 20% / 0.00);
+  --shadow-md: 0px 2px 0px 0px hsl(154, 57%, 20% / 0.00), 0px 2px 4px -1px hsl(154, 57%, 20% / 0.00);
+  --shadow-lg: 0px 2px 0px 0px hsl(154, 57%, 20% / 0.00), 0px 4px 6px -1px hsl(154, 57%, 20% / 0.00);
+  --shadow-xl: 0px 2px 0px 0px hsl(154, 57%, 20% / 0.00), 0px 8px 10px -1px hsl(154, 57%, 20% / 0.00);
+  --shadow-2xl: 0px 2px 0px 0px hsl(154, 57%, 20% / 0.00);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+}
+
+.dark {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(200, 7%, 91%);
+  --card: hsl(228, 10%, 10%);
+  --card-foreground: hsl(0, 0%, 85%);
+  --popover: hsl(0, 0%, 0%);
+  --popover-foreground: hsl(200, 7%, 91%);
+  --primary: hsl(154, 57%, 25%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(154, 42%, 35%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(81, 17%, 30%);
+  --muted-foreground: hsl(210, 4%, 46%);
+  --accent: hsl(81, 17%, 30%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(356, 90%, 54%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(210, 5%, 15%);
+  --input: hsl(207, 28%, 18%);
+  --ring: hsl(154, 57%, 25%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .prose {
+    @apply text-foreground;
+  }
+  
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    @apply font-serif text-foreground;
+  }
+  
+  .prose p {
+    @apply font-sans text-muted-foreground leading-relaxed;
+  }
+  
+  .prose a {
+    @apply text-primary hover:text-secondary transition-colors;
+  }
+}
