@@ -75,27 +75,23 @@ states:
 
   - slug: arkansas
     name: Arkansas
-    type: tbd
-    status: research
-    difficulty: tbd
-    
-    auctions_per_year: "TBD"
-    format: "TBD"
-    summary: "To be verified."
-    
-    last_updated: "2025-09-05"
+    type: deed
+    status: available
+    difficulty: intermediate
+    auctions_per_year: "Annual (July-September)"
+    format: "Live regional auctions"
+    summary: "Centralized tax deed system; no redemption after sale; Commissioner of State Lands manages all 75 counties."
+    last_updated: "2025-09-06"
 
   - slug: california
     name: California
-    type: tbd
-    status: research
-    difficulty: tbd
-    
-    auctions_per_year: "TBD"
-    format: "TBD"
-    summary: "To be verified."
-    
-    last_updated: "2025-09-05"
+    type: deed
+    status: available
+    difficulty: advanced
+    auctions_per_year: "County-specific (varies)"
+    format: "Online auctions (county-run)"
+    summary: "5-year delinquency tax deed system; online sales; no post-sale redemption; title challenges within one year."
+    last_updated: "2025-09-06"
 
   - slug: colorado
     name: Colorado
@@ -119,15 +115,13 @@ states:
 
   - slug: delaware
     name: Delaware
-    type: tbd
-    status: research
-    difficulty: tbd
-    
-    auctions_per_year: "TBD"
-    format: "TBD"
-    summary: "To be verified."
-    
-    last_updated: "2025-09-05"
+    type: deed
+    status: available
+    difficulty: advanced
+    auctions_per_year: "As needed (county-run)"
+    format: "Sheriff's monition sales"
+    summary: "Mortgage-style foreclosure sales; county-specific processes; limited inventory; high capital requirements."
+    last_updated: "2025-09-06"
 
   - slug: washington-dc
     name: Washington, DC
