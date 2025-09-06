@@ -63,15 +63,14 @@ states:
     format: "Courthouse steps (redeemable deed)"
     last_updated: "2025-09-05"
 
-  # Placeholder states to be researched
   - slug: alabama
     name: Alabama
-    type: tbd
-    status: research
-    difficulty: tbd
-    summary: "To be verified."
-    auctions_per_year: "TBD"
-    format: "TBD"
+    type: lien
+    status: available
+    difficulty: intermediate
+    summary: "Tax lien certificate sales; 3-year redemption period; county-run auctions."
+    auctions_per_year: "Annual (county-run)"
+    format: "In-person or online by county"
     last_updated: "2025-09-05"
 
   - slug: arkansas
@@ -100,26 +99,22 @@ states:
 
   - slug: colorado
     name: Colorado
-    type: tbd
-    status: research
-    difficulty: tbd
-    
-    auctions_per_year: "TBD"
-    format: "TBD"
-    summary: "To be verified."
-    
+    type: hybrid
+    status: available
+    difficulty: intermediate
+    summary: "Hybrid system; treasurer's deeds with redemption; county variations."
+    auctions_per_year: "Annual county sales"
+    format: "Public auction at courthouse"
     last_updated: "2025-09-05"
 
   - slug: connecticut
     name: Connecticut
-    type: tbd
-    status: research
-    difficulty: tbd
-    
-    auctions_per_year: "TBD"
-    format: "TBD"
-    summary: "To be verified."
-    
+    type: lien
+    status: available
+    difficulty: beginner
+    summary: "Tax lien certificates; 18% interest rate; municipal tax collectors."
+    auctions_per_year: "Annual municipal sales"
+    format: "Municipal auctions (in-person/online)"
     last_updated: "2025-09-05"
 
   - slug: delaware
