@@ -125,39 +125,33 @@ states:
 
   - slug: washington-dc
     name: Washington, DC
-    type: tbd
-    status: research
-    difficulty: tbd
-    
-    auctions_per_year: "TBD"
-    format: "TBD"
-    summary: "To be verified."
-    
-    last_updated: "2025-09-05"
+    type: lien
+    status: available
+    difficulty: intermediate
+    auctions_per_year: "Annual (July) + OTC sales"
+    format: "In-person auction + online OTC"
+    summary: "Tax lien certificate sales; annual July auction; over-the-counter sales year-round; 20% minimum deposit."
+    last_updated: "2025-09-06"
 
   - slug: hawaii
     name: Hawaii
-    type: tbd
-    status: research
-    difficulty: tbd
-    
-    auctions_per_year: "TBD"
-    format: "TBD"
-    summary: "To be verified."
-    
-    last_updated: "2025-09-05"
+    type: deed
+    status: available
+    difficulty: advanced
+    auctions_per_year: "County-specific (varies)"
+    format: "Public auction by county"
+    summary: "County-managed tax deed system; 3+ year delinquency; 1-year redemption; 12% redemption interest."
+    last_updated: "2025-09-06"
 
   - slug: idaho
     name: Idaho
-    type: tbd
-    status: research
-    difficulty: tbd
-    
-    auctions_per_year: "TBD"
-    format: "TBD"
-    summary: "To be verified."
-    
-    last_updated: "2025-09-05"
+    type: deed
+    status: available
+    difficulty: intermediate
+    auctions_per_year: "Annual (spring/summer)"
+    format: "County auctions (online/in-person)"
+    summary: "3-year delinquency tax deed system; 14-month redemption period; county-run auctions."
+    last_updated: "2025-09-06"
 
   - slug: illinois
     name: Illinois
