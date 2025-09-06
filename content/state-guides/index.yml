@@ -515,39 +515,33 @@ states:
 
   - slug: vermont
     name: Vermont
-    type: tbd
-    status: research
-    difficulty: tbd
-    
-    auctions_per_year: "TBD"
-    format: "TBD"
-    summary: "To be verified."
-    
-    last_updated: "2025-09-05"
+    type: deed
+    status: available
+    difficulty: advanced
+    auctions_per_year: "Municipal (varies)"
+    format: "Public auction by municipality"
+    summary: "Municipal tax deed system; 1+ year delinquency; 1-year redemption; 1% monthly interest; Act 106 reforms."
+    last_updated: "2025-09-06"
 
   - slug: virginia
     name: Virginia
-    type: tbd
-    status: research
-    difficulty: tbd
-    
-    auctions_per_year: "TBD"
-    format: "TBD"
-    summary: "To be verified."
-    
-    last_updated: "2025-09-05"
+    type: deed
+    status: available
+    difficulty: intermediate
+    auctions_per_year: "County-specific (varies)"
+    format: "Judicial sales at courthouse"
+    summary: "Tax deed system; 3-year delinquency; special warranty deed; no post-sale redemption."
+    last_updated: "2025-09-06"
 
   - slug: washington
     name: Washington
-    type: tbd
-    status: research
-    difficulty: tbd
-    
-    auctions_per_year: "TBD"
-    format: "TBD"
-    summary: "To be verified."
-    
-    last_updated: "2025-09-05"
+    type: deed
+    status: available
+    difficulty: intermediate
+    auctions_per_year: "Annual (winter months)"
+    format: "County foreclosure auctions"
+    summary: "3-year delinquency tax deed system; no general redemption; 7-year title seasoning period."
+    last_updated: "2025-09-06"
 
   - slug: west-virginia
     name: West Virginia
