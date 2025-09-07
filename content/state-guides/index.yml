@@ -407,39 +407,33 @@ states:
 
   - slug: ohio
     name: Ohio
-    type: tbd
-    status: research
-    difficulty: tbd
-    
-    auctions_per_year: "TBD"
-    format: "TBD"
-    summary: "To be verified."
-    
-    last_updated: "2025-09-05"
+    type: hybrid
+    status: available
+    difficulty: advanced
+    auctions_per_year: "County-specific (varies)"
+    format: "Bulk tax lien sales / Sheriff's tax deed sales"
+    summary: "Hybrid system; 34 counties bulk lien sales, 54 counties Sheriff's deed sales; high capital requirements."
+    last_updated: "2025-09-07"
 
   - slug: oklahoma
     name: Oklahoma
-    type: tbd
-    status: research
-    difficulty: tbd
-    
-    auctions_per_year: "TBD"
-    format: "TBD"
-    summary: "To be verified."
-    
-    last_updated: "2025-09-05"
+    type: deed
+    status: available
+    difficulty: intermediate
+    auctions_per_year: "Annual (second Monday of June)"
+    format: "County courthouse auctions"
+    summary: "Tax deed system; 3+ year delinquency; annual June sales; quiet title recommended."
+    last_updated: "2025-09-07"
 
   - slug: oregon
     name: Oregon
-    type: tbd
-    status: research
-    difficulty: tbd
-    
-    auctions_per_year: "TBD"
-    format: "TBD"
-    summary: "To be verified."
-    
-    last_updated: "2025-09-05"
+    type: deed
+    status: available
+    difficulty: intermediate
+    auctions_per_year: "County-specific (varies)"
+    format: "County foreclosure auctions"
+    summary: "Tax deed system; 3-year delinquency; 2-year redemption period; county-managed auctions."
+    last_updated: "2025-09-07"
 
   - slug: pennsylvania
     name: Pennsylvania
