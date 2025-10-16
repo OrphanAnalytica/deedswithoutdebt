@@ -1,0 +1,627 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deeds Without Debt - Buy Real Estate Without Banks</title>
+    <meta name="description" content="Learn alternative real estate investing strategies including tax deeds, tax liens, HOA foreclosures, and probate deals. No bank financing required.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital,wght@0,400;1,400&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Heroicons -->
+    <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js" type="module"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    border: "var(--border)",
+                    input: "var(--input)",
+                    ring: "var(--ring)",
+                },
+                fontFamily: {
+                    serif: ['DM Serif Text', 'serif'],
+                    sans: ['Nunito Sans', 'sans-serif'],
+                    mono: ['Montserrat', 'monospace'],
+                }
+            },
+        }
+    };
+    </script>
+    
+    <style>
+        :root {
+            --radius: 0.5rem;
+            --background: hsl(60 9% 96%); /* #F5F5F0 cream */
+            --foreground: hsl(0 0% 0%); /* #000000 black */
+            --card: hsl(0 0% 100%);
+            --card-foreground: hsl(0 0% 0%);
+            --primary: hsl(154 57% 20%); /* #1B4332 forest green */
+            --primary-foreground: hsl(0 0% 100%);
+            --secondary: hsl(154 42% 29%); /* #2D6A4F medium green */
+            --secondary-foreground: hsl(0 0% 100%);
+            --muted: hsl(81 17% 61%); /* #A3B18A sage */
+            --muted-foreground: hsl(0 0% 20%);
+            --accent: hsl(81 17% 61%); /* #A3B18A sage */
+            --accent-foreground: hsl(0 0% 0%);
+            --border: hsl(81 17% 61%);
+            --input: hsl(0 0% 100%);
+            --ring: hsl(154 57% 20%);
+        }
+        
+        .font-serif { font-family: 'DM Serif Text', serif; }
+        .font-sans { font-family: 'Nunito Sans', sans-serif; }
+        .font-mono { font-family: 'Montserrat', monospace; }
+    </style>
+</head>
+<body class="bg-background text-foreground font-sans antialiased">
+    <!-- Header -->
+    <!-- @COMPONENT: Header [navigation, logo, mobile menu] -->
+    <header class="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                        <span class="text-primary-foreground font-mono font-bold text-lg">DWD</span>
+                    </div>
+                    <div>
+                        <h1 class="font-serif font-bold text-xl text-foreground">Deeds Without Debt</h1>
+                        <p class="text-muted-foreground text-sm font-sans">Buy Real Estate Without Banks</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="font-sans font-medium text-foreground hover:text-primary transition-colors">Home</a>
+                    <a href="#" class="font-sans font-medium text-muted-foreground hover:text-primary transition-colors">Archive</a>
+                    <a href="#" class="font-sans font-medium text-muted-foreground hover:text-primary transition-colors">About</a>
+                    <a href="#" class="font-sans font-medium text-muted-foreground hover:text-primary transition-colors">Resources</a>
+                    <a href="#" class="font-sans font-medium text-muted-foreground hover:text-primary transition-colors">State Guides</a>
+                    <button class="bg-primary text-primary-foreground px-6 py-2 rounded-md font-mono font-semibold text-sm hover:bg-secondary transition-colors">
+                        Subscribe
+                    </button>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 text-foreground hover:text-primary transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- @END_COMPONENT: Header -->
+
+    <!-- Hero Section -->
+    <!-- @COMPONENT: Hero [headline, value proposition, CTA] -->
+    <section class="py-16 lg:py-24 border-b border-border">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="font-serif text-4xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+                    Master Alternative Real Estate Investing
+                </h2>
+                <p class="font-sans text-xl lg:text-2xl text-muted-foreground mb-8 leading-relaxed">
+                    Learn how to acquire properties through tax deeds, tax liens, HOA foreclosures, and probate deals. 
+                    No bank financing, no credit checks, no traditional mortgages required.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button class="bg-primary text-primary-foreground px-8 py-4 rounded-lg font-mono font-bold text-lg hover:bg-secondary transition-colors shadow-lg">
+                        Get Free Newsletter
+                    </button>
+                    <button class="border border-border text-foreground px-8 py-4 rounded-lg font-mono font-semibold text-lg hover:bg-accent hover:text-accent-foreground transition-colors">
+                        Browse Archive
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Hero -->
+
+    <!-- Pinned Issue Section -->
+    <!-- @COMPONENT: PinnedIssue [featured post highlight] -->
+    <section class="py-12 bg-accent/10 border-b border-border">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-2 h-2 bg-primary rounded-full"></div>
+                    <span class="font-mono font-semibold text-sm text-primary uppercase tracking-wide">Pinned Issue</span>
+                </div>
+                
+                <div class="bg-card rounded-xl shadow-sm border border-border p-8 lg:p-12">
+                    <div class="grid lg:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full font-mono font-bold text-sm">
+                                    Issue #1
+                                </span>
+                                <span class="text-muted-foreground font-sans text-sm">March 15, 2024</span>
+                            </div>
+                            <h3 class="font-serif text-3xl lg:text-4xl font-bold text-foreground mb-4 leading-tight">
+                                3 Ways to Buy Real Estate Without Banks (And Why They Work)
+                            </h3>
+                            <p class="font-sans text-lg text-muted-foreground mb-6 leading-relaxed">
+                                Discover the proven strategies I've used to acquire over $2M in real estate without traditional financing. 
+                                From tax deed auctions to probate deals, here's your complete roadmap.
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <button class="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-mono font-semibold hover:bg-secondary transition-colors">
+                                    Read Full Issue
+                                </button>
+                                <span class="font-sans text-sm text-muted-foreground">5 min read</span>
+                            </div>
+                        </div>
+                        <div class="lg:order-first">
+                            <!-- Real estate investment strategy visualization -->
+                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                                 alt="Modern house with sold sign representing successful real estate investment" 
+                                 class="rounded-lg shadow-lg w-full h-auto" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: PinnedIssue -->
+
+    <!-- Latest Issues Section -->
+    <!-- @COMPONENT: LatestIssues [recent posts grid] -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center justify-between mb-12">
+                    <div>
+                        <h3 class="font-serif text-3xl lg:text-4xl font-bold text-foreground mb-2">Latest Issues</h3>
+                        <p class="font-sans text-lg text-muted-foreground">Fresh insights delivered weekly</p>
+                    </div>
+                    <button class="hidden sm:block border border-border text-foreground px-6 py-3 rounded-lg font-mono font-semibold hover:bg-accent hover:text-accent-foreground transition-colors">
+                        View All Issues
+                    </button>
+                </div>
+                
+                <!-- @MAP: posts.map(post => ( -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Post Card 1 -->
+                    <article class="bg-card rounded-xl shadow-sm border border-border overflow-hidden hover:shadow-md transition-shadow" data-mock="true">
+                        <div class="aspect-video bg-accent/20 relative">
+                            <!-- Alaska landscape for tax sale guide -->
+                            <img src="https://pixabay.com/get/g72651147db9f98abcc2aca8e1b635b5127d3d4cda42411cef233377037e3be94756992e6411efddcfd4fdf1e0e1b4d4ec5cfce99243febde72b662ab1f65c8b7_1280.jpg" 
+                                 alt="Scenic Alaska wilderness landscape with mountains and forest" 
+                                 class="w-full h-full object-cover" />
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-secondary text-secondary-foreground px-3 py-1 rounded-full font-mono font-bold text-xs">
+                                    STATE GUIDE
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-muted-foreground font-sans text-sm" data-bind="post.date">March 8, 2024</span>
+                                <span class="text-muted-foreground">•</span>
+                                <span class="text-muted-foreground font-sans text-sm">3 min read</span>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-foreground mb-3 leading-tight" data-bind="post.title">
+                                How Alaska Tax Sales Work: September 2025 Borough Auction Guide
+                            </h4>
+                            <p class="font-sans text-muted-foreground mb-4 leading-relaxed" data-bind="post.excerpt">
+                                Alaska's unique borough structure creates exceptional opportunities. Here's everything you need to know about the upcoming September auction.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex gap-2">
+                                    <span class="bg-accent/20 text-accent-foreground px-2 py-1 rounded-md font-sans text-xs">Alaska</span>
+                                    <span class="bg-accent/20 text-accent-foreground px-2 py-1 rounded-md font-sans text-xs">Tax Sales</span>
+                                </div>
+                                <button class="text-primary hover:text-secondary font-mono font-semibold text-sm transition-colors">
+                                    Read More →
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post Card 2 -->
+                    <article class="bg-card rounded-xl shadow-sm border border-border overflow-hidden hover:shadow-md transition-shadow" data-mock="true">
+                        <div class="aspect-video bg-accent/20 relative">
+                            <!-- Rural property representing successful investment -->
+                            <img src="https://pixabay.com/get/gf70d3f79c71dcc81a2e7d04b7007d524c30bb8893efd9c2bb01767a8911429701bbc9471409c377fd00bef7026b79b7b4bb055a379568591e889a968c88e01c9_1280.jpg" 
+                                 alt="Rustic log cabin on wooded property representing rural real estate investment" 
+                                 class="w-full h-full object-cover" />
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-primary text-primary-foreground px-3 py-1 rounded-full font-mono font-bold text-xs">
+                                    CASE STUDY
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-muted-foreground font-sans text-sm" data-bind="post.date">March 1, 2024</span>
+                                <span class="text-muted-foreground">•</span>
+                                <span class="text-muted-foreground font-sans text-sm">7 min read</span>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-foreground mb-3 leading-tight" data-bind="post.title">
+                                Catron County Win: $17K to $120K in 18 Months
+                            </h4>
+                            <p class="font-sans text-muted-foreground mb-4 leading-relaxed" data-bind="post.excerpt">
+                                My personal case study of turning a tax deed purchase into a massive profit by subdividing 5 acres and selling the cabin separately.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex gap-2">
+                                    <span class="bg-accent/20 text-accent-foreground px-2 py-1 rounded-md font-sans text-xs">Case Study</span>
+                                    <span class="bg-accent/20 text-accent-foreground px-2 py-1 rounded-md font-sans text-xs">Profit</span>
+                                </div>
+                                <button class="text-primary hover:text-secondary font-mono font-semibold text-sm transition-colors">
+                                    Read More →
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post Card 3 -->
+                    <article class="bg-card rounded-xl shadow-sm border border-border overflow-hidden hover:shadow-md transition-shadow" data-mock="true">
+                        <div class="aspect-video bg-accent/20 relative">
+                            <!-- Courthouse representing legal processes -->
+                            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=450" 
+                                 alt="Classical courthouse building representing legal real estate processes" 
+                                 class="w-full h-full object-cover" />
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-secondary text-secondary-foreground px-3 py-1 rounded-full font-mono font-bold text-xs">
+                                    STRATEGY
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-muted-foreground font-sans text-sm" data-bind="post.date">February 22, 2024</span>
+                                <span class="text-muted-foreground">•</span>
+                                <span class="text-muted-foreground font-sans text-sm">5 min read</span>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-foreground mb-3 leading-tight" data-bind="post.title">
+                                HOA Foreclosures: The Hidden Opportunity in Every City
+                            </h4>
+                            <p class="font-sans text-muted-foreground mb-4 leading-relaxed" data-bind="post.excerpt">
+                                While everyone focuses on tax sales, HOA foreclosures happen year-round with less competition and faster timelines.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex gap-2">
+                                    <span class="bg-accent/20 text-accent-foreground px-2 py-1 rounded-md font-sans text-xs">HOA</span>
+                                    <span class="bg-accent/20 text-accent-foreground px-2 py-1 rounded-md font-sans text-xs">Strategy</span>
+                                </div>
+                                <button class="text-primary hover:text-secondary font-mono font-semibold text-sm transition-colors">
+                                    Read More →
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <!-- @END_MAP )) -->
+                
+                <div class="text-center mt-12">
+                    <button class="sm:hidden border border-border text-foreground px-8 py-3 rounded-lg font-mono font-semibold hover:bg-accent hover:text-accent-foreground transition-colors">
+                        View All Issues
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: LatestIssues -->
+
+    <!-- Newsletter Signup Section -->
+    <!-- @COMPONENT: NewsletterSignup [email form, value props] -->
+    <section class="py-16 bg-primary text-primary-foreground">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h3 class="font-serif text-3xl lg:text-4xl font-bold mb-6 leading-tight">
+                    Get the Deeds Without Debt Newsletter
+                </h3>
+                <p class="font-sans text-xl text-primary-foreground/80 mb-8 leading-relaxed">
+                    Weekly insights on alternative real estate investing. Real deals, proven strategies, and actionable opportunities delivered to your inbox.
+                </p>
+                
+                <!-- Newsletter Form -->
+                <form class="max-w-md mx-auto mb-8" data-implementation="Submit to VITE_NEWSLETTER_ACTION_URL">
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input 
+                            type="email" 
+                            placeholder="Enter your email address" 
+                            required
+                            class="flex-1 px-4 py-3 rounded-lg bg-input text-foreground font-sans placeholder:text-muted-foreground border border-border focus:outline-none focus:ring-2 focus:ring-ring"
+                            data-bind="email"
+                        />
+                        <button 
+                            type="submit" 
+                            class="bg-secondary text-secondary-foreground px-8 py-3 rounded-lg font-mono font-bold hover:bg-accent hover:text-accent-foreground transition-colors whitespace-nowrap"
+                            data-event="click:handleNewsletterSubmit"
+                        >
+                            Subscribe Free
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Value Props -->
+                <div class="grid sm:grid-cols-3 gap-6 text-sm">
+                    <div class="flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="font-sans text-primary-foreground/90">Weekly delivery</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                        <span class="font-sans text-primary-foreground/90">No spam ever</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                        <span class="font-sans text-primary-foreground/90">Unsubscribe anytime</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: NewsletterSignup -->
+
+    <!-- About Section -->
+    <!-- @COMPONENT: About [author bio, mission] -->
+    <section class="py-16 border-b border-border">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="font-serif text-3xl lg:text-4xl font-bold text-foreground mb-6">
+                            About Ralph Biah
+                        </h3>
+                        <div class="prose prose-lg max-w-none">
+                            <p class="font-sans text-lg text-muted-foreground mb-6 leading-relaxed" data-mock="true">
+                                I've been investing in real estate without traditional bank financing for over 8 years, 
+                                acquiring properties through tax deed auctions, probate deals, and HOA foreclosures across 12 states.
+                            </p>
+                            <p class="font-sans text-lg text-muted-foreground mb-6 leading-relaxed" data-mock="true">
+                                My biggest win was a $17,000 Catron County tax deed purchase that I subdivided and sold for $120,000. 
+                                But more importantly, I've helped hundreds of investors discover these alternative strategies.
+                            </p>
+                            <p class="font-sans text-lg text-muted-foreground mb-8 leading-relaxed" data-mock="true">
+                                This newsletter shares the exact strategies, real deals, and hard-won lessons from the trenches of alternative real estate investing.
+                            </p>
+                        </div>
+                        <div class="flex gap-4">
+                            <button class="border border-border text-foreground px-6 py-3 rounded-lg font-mono font-semibold hover:bg-accent hover:text-accent-foreground transition-colors">
+                                Read Full Bio
+                            </button>
+                            <button class="text-primary hover:text-secondary font-mono font-semibold text-sm transition-colors flex items-center gap-2">
+                                Connect on LinkedIn 
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="lg:order-first">
+                        <!-- Professional headshot placeholder -->
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=1000" 
+                             alt="Professional headshot of Ralph Biah, real estate investor and newsletter author" 
+                             class="rounded-xl shadow-lg w-full h-auto max-w-md mx-auto lg:mx-0" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: About -->
+
+    <!-- Resources Preview Section -->
+    <!-- @COMPONENT: ResourcesPreview [free downloads teaser] -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h3 class="font-serif text-3xl lg:text-4xl font-bold text-foreground mb-4">Free Resources</h3>
+                    <p class="font-sans text-lg text-muted-foreground max-w-2xl mx-auto">
+                        Download the tools and templates I use for every deal
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Resource 1 -->
+                    <div class="bg-card rounded-xl shadow-sm border border-border p-8 text-center hover:shadow-md transition-shadow" data-mock="true">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="font-serif text-xl font-bold text-foreground mb-3">Tax Deed Checklist</h4>
+                        <p class="font-sans text-muted-foreground mb-6">
+                            Pre-auction research steps, bidding strategy, and post-purchase action items.
+                        </p>
+                        <button class="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-mono font-semibold hover:bg-secondary transition-colors w-full">
+                            Download Free
+                        </button>
+                    </div>
+
+                    <!-- Resource 2 -->
+                    <div class="bg-card rounded-xl shadow-sm border border-border p-8 text-center hover:shadow-md transition-shadow" data-mock="true">
+                        <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="font-serif text-xl font-bold text-foreground mb-3">No-Bank Offer Calculator</h4>
+                        <p class="font-sans text-muted-foreground mb-6">
+                            Excel spreadsheet to analyze deals and calculate your maximum offer price.
+                        </p>
+                        <button class="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-mono font-semibold hover:bg-secondary transition-colors w-full">
+                            Download Free
+                        </button>
+                    </div>
+
+                    <!-- Resource 3 -->
+                    <div class="bg-card rounded-xl shadow-sm border border-border p-8 text-center hover:shadow-md transition-shadow" data-mock="true">
+                        <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-accent-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="font-serif text-xl font-bold text-foreground mb-3">Cold Call Scripts</h4>
+                        <p class="font-sans text-muted-foreground mb-6">
+                            Proven phone scripts for contacting probate attorneys and property owners.
+                        </p>
+                        <button class="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-mono font-semibold hover:bg-secondary transition-colors w-full">
+                            Download Free
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <button class="border border-border text-foreground px-8 py-4 rounded-lg font-mono font-semibold hover:bg-accent hover:text-accent-foreground transition-colors">
+                        View All Resources
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ResourcesPreview -->
+
+    <!-- Footer -->
+    <!-- @COMPONENT: Footer [navigation, disclaimer, social] -->
+    <footer class="bg-accent/5 border-t border-border py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-4 gap-8 mb-8">
+                    <!-- Brand -->
+                    <div class="md:col-span-2">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                                <span class="text-primary-foreground font-mono font-bold">DWD</span>
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-lg text-foreground">Deeds Without Debt</h4>
+                                <p class="text-muted-foreground text-sm font-sans">Buy Real Estate Without Banks</p>
+                            </div>
+                        </div>
+                        <p class="font-sans text-muted-foreground mb-4 leading-relaxed max-w-md">
+                            Weekly insights on alternative real estate investing strategies including tax deeds, tax liens, and probate deals.
+                        </p>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div>
+                        <h5 class="font-mono font-semibold text-foreground mb-4">Quick Links</h5>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="font-sans text-muted-foreground hover:text-primary transition-colors">Newsletter Archive</a></li>
+                            <li><a href="#" class="font-sans text-muted-foreground hover:text-primary transition-colors">Free Resources</a></li>
+                            <li><a href="#" class="font-sans text-muted-foreground hover:text-primary transition-colors">State Guides</a></li>
+                            <li><a href="#" class="font-sans text-muted-foreground hover:text-primary transition-colors">About Ralph</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Legal -->
+                    <div>
+                        <h5 class="font-mono font-semibold text-foreground mb-4">Legal</h5>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="font-sans text-muted-foreground hover:text-primary transition-colors">Privacy Policy</a></li>
+                            <li><a href="#" class="font-sans text-muted-foreground hover:text-primary transition-colors">Terms of Service</a></li>
+                            <li><a href="#" class="font-sans text-muted-foreground hover:text-primary transition-colors">Disclaimer</a></li>
+                            <li><a href="#" class="font-sans text-muted-foreground hover:text-primary transition-colors">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Disclaimer -->
+                <div class="border-t border-border pt-8">
+                    <div class="bg-accent/10 rounded-lg p-6 mb-6">
+                        <p class="font-sans text-sm text-muted-foreground leading-relaxed">
+                            <strong class="text-foreground">Disclaimer:</strong> This content is for educational purposes only and does not constitute investment advice. 
+                            Real estate investing involves risk. Always consult with qualified professionals and conduct your own due diligence 
+                            before making investment decisions. Past performance does not guarantee future results.
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <p class="font-sans text-sm text-muted-foreground">
+                            © 2024 Deeds Without Debt. All rights reserved.
+                        </p>
+                        <div class="flex items-center gap-6">
+                            <a href="#" class="text-muted-foreground hover:text-primary transition-colors">
+                                <span class="sr-only">RSS Feed</span>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="text-muted-foreground hover:text-primary transition-colors">
+                                <span class="sr-only">LinkedIn</span>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+    
+    <script>
+        // TODO: Implement newsletter form submission
+        // TODO: Implement mobile menu toggle
+        // TODO: Implement search functionality
+        // TODO: Implement tag filtering
+        // TODO: Add scroll-to-top functionality
+        
+        (function() {
+            // Mobile menu toggle (placeholder)
+            const mobileMenuButton = document.querySelector('[class*="md:hidden"]');
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', function() {
+                    console.log('Mobile menu toggle clicked');
+                    // TODO: Implement mobile menu dropdown
+                });
+            }
+            
+            // Newsletter form handling (placeholder)
+            const newsletterForm = document.querySelector('form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log('Newsletter form submitted');
+                    // TODO: Submit to VITE_NEWSLETTER_ACTION_URL
+                    // TODO: Show success/error feedback
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

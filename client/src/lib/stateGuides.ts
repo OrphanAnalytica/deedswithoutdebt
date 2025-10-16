@@ -3,13 +3,20 @@ import * as yaml from 'js-yaml';
 export interface StateGuide {
   slug: string;
   name: string;
-  type: 'deed' | 'lien' | 'hybrid' | 'tbd';
+  type: 'Tax Deed State' | 'Tax Lien State' | 'Redeemable Deed' | 'Hybrid';
   status: 'available' | 'coming_soon' | 'research';
   difficulty: 'beginner' | 'intermediate' | 'advanced' | 'tbd';
   summary: string;
   auctions_per_year: string;
   format: string;
   last_updated: string;
+  featured?: boolean;
+  image?: string;
+  description?: string;
+  saleType?: string;
+  redemptionPeriod?: string;
+  interestRate?: string;
+  keyFeatures?: string[];
 }
 
 interface StateGuideRegistry {
@@ -64,12 +71,7 @@ export async function loadStateGuides(): Promise<StateGuide[]> {
     });
 
     // Log warnings for incomplete data
-    const tbdStates = stateGuides.filter(s => s.type === 'tbd');
     const researchStates = stateGuides.filter(s => s.status === 'research');
-    
-    if (tbdStates.length > 0) {
-      console.warn(`${tbdStates.length} states have type: tbd`, tbdStates.map(s => s.name));
-    }
     
     if (researchStates.length > 0) {
       console.warn(`${researchStates.length} states need research`, researchStates.map(s => s.name));
@@ -93,7 +95,7 @@ function validateStateGuide(state: any): asserts state is StateGuide {
   }
 
   // Validate enum values
-  const validTypes = ['deed', 'lien', 'hybrid', 'tbd'];
+  const validTypes = ['Tax Deed State', 'Tax Lien State', 'Redeemable Deed', 'Hybrid'];
   const validStatuses = ['available', 'coming_soon', 'research'];
   const validDifficulties = ['beginner', 'intermediate', 'advanced', 'tbd'];
 

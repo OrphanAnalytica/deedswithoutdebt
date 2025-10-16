@@ -28,6 +28,10 @@
   
   /* Fonts */
   --font-serif: 'DM Serif Text', serif;
+  
+  /* Auction Page Colors */
+  --primary-green: #2C5F2D;
+  --cream: #F5F5F0;
   --font-sans: 'Nunito Sans', sans-serif;
   --font-mono: 'Montserrat', monospace;
   

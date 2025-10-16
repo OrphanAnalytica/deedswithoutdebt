@@ -10,10 +10,10 @@ export function TypeTabs({ value, onValueChange }: TypeTabsProps) {
     <Tabs value={value} onValueChange={onValueChange}>
       <TabsList className="grid w-full grid-cols-5 max-w-2xl mx-auto">
         <TabsTrigger value="all" data-testid="tab-all">All</TabsTrigger>
-        <TabsTrigger value="deed" data-testid="tab-deed">Deed</TabsTrigger>
-        <TabsTrigger value="lien" data-testid="tab-lien">Lien</TabsTrigger>
-        <TabsTrigger value="hybrid" data-testid="tab-hybrid">Hybrid</TabsTrigger>
-        <TabsTrigger value="verify" data-testid="tab-verify">To Verify</TabsTrigger>
+        <TabsTrigger value="Tax Deed State" data-testid="tab-tax-deed">Tax Deed</TabsTrigger>
+        <TabsTrigger value="Tax Lien State" data-testid="tab-tax-lien">Tax Lien</TabsTrigger>
+        <TabsTrigger value="Redeemable Deed" data-testid="tab-redeemable-deed">Redeemable Deed</TabsTrigger>
+        <TabsTrigger value="Hybrid" data-testid="tab-hybrid">Hybrid</TabsTrigger>
       </TabsList>
     </Tabs>
   );

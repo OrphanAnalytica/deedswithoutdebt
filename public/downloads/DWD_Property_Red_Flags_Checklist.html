@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Red Flags Checklist - Deeds Without Debt</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            line-height: 1.4;
+            color: #1a1a1a;
+            background: #0B2E13;
+            padding: 20px;
+        }
+        
+        .page {
+            width: 8.5in;
+            height: 11in;
+            background: white;
+            margin: 0 auto 20px;
+            padding: 0.75in;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #0B2E13;
+            padding-bottom: 20px;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 900;
+            color: #0B2E13;
+            margin-bottom: 10px;
+        }
+        
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #0B2E13;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .copyright {
+            font-size: 10px;
+            color: #888;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #0B2E13;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid #EDE6D7;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            padding: 4px 0;
+        }
+        
+        .checkbox {
+            width: 14px;
+            height: 14px;
+            border: 2px solid #0B2E13;
+            margin-right: 10px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .item-text {
+            flex: 1;
+            font-size: 11px;
+            line-height: 1.4;
+        }
+        
+        .note-box {
+            background: #EDE6D7;
+            border-left: 4px solid #0B2E13;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 4px;
+        }
+        
+        .note-title {
+            font-weight: 600;
+            color: #0B2E13;
+            margin-bottom: 6px;
+        }
+        
+        .note-text {
+            font-size: 10px;
+            line-height: 1.4;
+            color: #333;
+        }
+        
+        .decision-checkpoint {
+            background: #0B2E13;
+            color: white;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .decision-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .decision-text {
+            font-size: 11px;
+            line-height: 1.4;
+        }
+        
+        .property-info {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .info-row {
+            display: flex;
+            margin-bottom: 8px;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            width: 120px;
+            color: #0B2E13;
+        }
+        
+        .info-field {
+            flex: 1;
+            border-bottom: 1px solid #ccc;
+            min-height: 16px;
+        }
+        
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 9px;
+            color: #666;
+            border-top: 1px solid #EDE6D7;
+            padding-top: 8px;
+            margin-top: 30px;
+        }
+        
+        .disclaimer {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 9px;
+            line-height: 1.3;
+            color: #666;
+        }
+        
+        .disclaimer-title {
+            font-weight: 600;
+            color: #0B2E13;
+            margin-bottom: 8px;
+        }
+        
+        @page {
+            margin: 0.75in;
+            size: letter;
+        }
+        
+        @media print {
+            @page {
+                margin: 0.75in;
+            }
+            
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+            
+            .page:last-child {
+                page-break-after: avoid;
+            }
+            
+            .footer {
+                position: absolute;
+                bottom: 0.5in;
+                left: 0.75in;
+                right: 0.75in;
+                margin-top: 0;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .checklist-item {
+                page-break-inside: avoid;
+            }
+            
+            .header, .section-title {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1 -->
+    <div class="page">
+        <div class="header">
+            <div class="logo">DWD</div>
+            <div class="title">Property Red Flags Checklist</div>
+            <div class="subtitle">Eliminate 80% of Bad Deals in 10 Minutes</div>
+            <div class="copyright">© Deeds Without Debt | DeedsWithoutDebt.com</div>
+        </div>
+        
+        <div class="property-info">
+            <div class="info-row">
+                <div class="info-label">Property Address:</div>
+                <div class="info-field"></div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Tax Sale Date:</div>
+                <div class="info-field"></div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Assessed Value:</div>
+                <div class="info-field"></div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Your Max Bid:</div>
+                <div class="info-field"></div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Access & Location Issues</div>
+            
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Property has no road access or requires crossing private land</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Located in flood zone or high-risk area</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Surrounded by industrial facilities or waste sites</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">In area with declining property values</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">No utilities available (water, sewer, electric)</div>
+            </div>
+            
+            <div class="note-box">
+                <div class="note-title">Why this matters:</div>
+                <div class="note-text">Properties without proper access or in undesirable locations are difficult to sell and may require expensive improvements to make them marketable.</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Environmental Hazards</div>
+            
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Property listed on environmental databases (EPA, state records)</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Evidence of underground storage tanks</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Asbestos or lead-based paint in older structures</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Mold or water damage visible</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Nearby contamination sources (gas stations, dry cleaners)</div>
+            </div>
+            
+            <div class="note-box">
+                <div class="note-title">Why this matters:</div>
+                <div class="note-text">Environmental issues can cost tens of thousands to remediate and may make the property unsellable until cleaned up.</div>
+            </div>
+        </div>
+        
+        <div class="decision-checkpoint">
+            <div class="decision-title">🟢 DECISION CHECKPOINT</div>
+            <div class="decision-text">If you checked 2 or more items above, STOP. This property likely has serious issues that will cost more to fix than it's worth.</div>
+        </div>
+        
+        <div class="footer">
+            <div>Deeds Without Debt</div>
+            <div>DeedsWithoutDebt.com/resources</div>
+            <div>Page 1</div>
+        </div>
+    </div>
+    
+    <!-- Page 2 -->
+    <div class="page">
+        <div class="header">
+            <div class="logo">DWD</div>
+            <div class="title">Property Red Flags Checklist</div>
+            <div class="subtitle">Eliminate 80% of Bad Deals in 10 Minutes</div>
+            <div class="copyright">© Deeds Without Debt | DeedsWithoutDebt.com</div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Zoning & Legal Restrictions</div>
+            
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Zoning doesn't allow intended use (residential vs commercial)</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Property subject to HOA restrictions or fees</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Easements that limit development or access</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Historic preservation restrictions</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Covenants that run with the land</div>
+            </div>
+            
+            <div class="note-box">
+                <div class="note-title">Why this matters:</div>
+                <div class="note-text">Legal restrictions can prevent you from using the property as intended or require expensive compliance measures.</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Structural & Condition Issues</div>
+            
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Foundation cracks or settling visible</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Roof damage or missing shingles</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Electrical or plumbing systems outdated</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">HVAC system missing or non-functional</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Windows and doors need replacement</div>
+            </div>
+            
+            <div class="note-box">
+                <div class="note-title">Why this matters:</div>
+                <div class="note-text">Major structural or system repairs can easily exceed the property's value, especially in lower-priced tax sale properties.</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Financial Red Flags</div>
+            
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Property taxes exceed 2% of assessed value annually</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Outstanding liens or judgments against property</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">HOA fees over $200/month</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Special assessments pending</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Insurance costs unusually high</div>
+            </div>
+            
+            <div class="note-box">
+                <div class="note-title">Why this matters:</div>
+                <div class="note-text">High ongoing costs can make a property unprofitable even if acquired cheaply at auction.</div>
+            </div>
+        </div>
+        
+        <div class="decision-checkpoint">
+            <div class="decision-title">🟢 DECISION CHECKPOINT</div>
+            <div class="decision-text">If you checked 3 or more items total across all sections, this property is likely not worth pursuing. Focus your time on better opportunities.</div>
+        </div>
+        
+        <div class="footer">
+            <div>Deeds Without Debt</div>
+            <div>DeedsWithoutDebt.com/resources</div>
+            <div>Page 2</div>
+        </div>
+    </div>
+    
+    <!-- Page 3 -->
+    <div class="page">
+        <div class="header">
+            <div class="logo">DWD</div>
+            <div class="title">Property Red Flags Checklist</div>
+            <div class="subtitle">Eliminate 80% of Bad Deals in 10 Minutes</div>
+            <div class="copyright">© Deeds Without Debt | DeedsWithoutDebt.com</div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Market & Neighborhood Factors</div>
+            
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">High crime rate in neighborhood</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Declining school district ratings</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">High vacancy rates in area</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Limited comparable sales in past 12 months</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Property values declining over past 3 years</div>
+            </div>
+            
+            <div class="note-box">
+                <div class="note-title">Why this matters:</div>
+                <div class="note-text">Market conditions affect your ability to sell or rent the property profitably. Poor market conditions can trap your capital.</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Due Diligence Checklist</div>
+            
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Title search completed and clean</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Property inspection scheduled</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Comparable sales analysis done</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Zoning verification completed</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Environmental database checked</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Utility availability confirmed</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Insurance quote obtained</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Financing options explored</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Final Decision Notes</div>
+            
+            <div style="margin-bottom: 15px;">
+                <div style="font-weight: 600; margin-bottom: 8px;">Total Red Flags Counted:</div>
+                <div style="border: 1px solid #ccc; min-height: 20px; padding: 4px;"></div>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <div style="font-weight: 600; margin-bottom: 8px;">Estimated Repair Costs:</div>
+                <div style="border: 1px solid #ccc; min-height: 20px; padding: 4px;"></div>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <div style="font-weight: 600; margin-bottom: 8px;">Maximum Bid Recommendation:</div>
+                <div style="border: 1px solid #ccc; min-height: 20px; padding: 4px;"></div>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <div style="font-weight: 600; margin-bottom: 8px;">Final Decision (PASS/FAIL):</div>
+                <div style="border: 1px solid #ccc; min-height: 20px; padding: 4px;"></div>
+            </div>
+        </div>
+        
+        <div class="disclaimer">
+            <div class="disclaimer-title">Legal Disclaimer</div>
+            <div>
+                This checklist is for educational purposes only and does not constitute legal, financial, or professional advice. 
+                Property investment involves risk, and past performance does not guarantee future results. Always consult with 
+                qualified professionals (attorneys, accountants, inspectors) before making investment decisions. Deeds Without 
+                Debt and its affiliates are not responsible for any losses incurred from using this information. This checklist 
+                is not a substitute for professional due diligence, property inspections, or legal review of documents.
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>Deeds Without Debt</div>
+            <div>DeedsWithoutDebt.com/resources</div>
+            <div>Page 3</div>
+        </div>
+    </div>
+</body>
+</html>

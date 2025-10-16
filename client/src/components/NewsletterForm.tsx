@@ -82,7 +82,7 @@ export default function NewsletterForm({ variant = "default", className = "" }: 
                   className="bg-secondary text-secondary-foreground px-8 py-3 rounded-lg font-mono font-bold hover:bg-accent hover:text-accent-foreground transition-colors whitespace-nowrap"
                   data-testid="button-newsletter-submit"
                 >
-                  {isSubmitting ? "Subscribing..." : isSuccess ? "Subscribed!" : "Subscribe Free"}
+                  {isSubmitting ? "Subscribing..." : isSuccess ? "Subscribed!" : "Get Free Access"}
                 </Button>
               </div>
             </form>
@@ -90,7 +90,7 @@ export default function NewsletterForm({ variant = "default", className = "" }: 
             <div className="grid sm:grid-cols-3 gap-6 text-sm">
               <div className="flex items-center justify-center gap-2">
                 <Check className="w-5 h-5 text-secondary" />
-                <span className="font-sans text-primary-foreground/90">Weekly delivery</span>
+                <span className="font-sans text-primary-foreground/90">3x weekly delivery</span>
               </div>
               <div className="flex items-center justify-center gap-2">
                 <Lock className="w-5 h-5 text-secondary" />

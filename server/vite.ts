@@ -41,6 +41,11 @@ export async function setupVite(app: Express, server: Server) {
   });
 
   app.use(vite.middlewares);
+  
+  // Serve static files from /public/downloads/ before SPA fallback
+  const publicDownloadsPath = path.resolve(import.meta.dirname, "..", "public", "downloads");
+  app.use("/downloads", express.static(publicDownloadsPath));
+  
   app.use("*", async (req, res, next) => {
     const url = req.originalUrl;
 

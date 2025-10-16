@@ -15,11 +15,11 @@ export default function Footer() {
                 </div>
                 <div>
                   <h4 className="font-serif font-bold text-lg text-foreground">Deeds Without Debt</h4>
-                  <p className="text-muted-foreground text-sm font-sans">Buy Real Estate Without Banks</p>
+                  <p className="text-muted-foreground text-sm font-sans">Own Property Through Tax Deeds & Liens</p>
                 </div>
               </div>
               <p className="font-sans text-muted-foreground mb-4 leading-relaxed max-w-md">
-                Weekly insights on alternative real estate investing strategies including tax deeds, tax liens, and probate deals.
+                Explore tax deed and tax lien strategies that help you buy real estate without banks, agents, or traditional financing. New guides and insights added weekly.
               </p>
             </div>
 
@@ -51,7 +51,7 @@ export default function Footer() {
                     className="font-sans text-muted-foreground hover:text-primary transition-colors"
                     data-testid="link-footer-state-guides"
                   >
-                    State Guides
+                    State by State Guide
                   </Link>
                 </li>
                 <li>
@@ -60,7 +60,7 @@ export default function Footer() {
                     className="font-sans text-muted-foreground hover:text-primary transition-colors"
                     data-testid="link-footer-about"
                   >
-                    About Ralph
+                    About the Editor
                   </Link>
                 </li>
               </ul>
@@ -71,40 +71,40 @@ export default function Footer() {
               <h5 className="font-mono font-semibold text-foreground mb-4">Legal</h5>
               <ul className="space-y-2">
                 <li>
-                  <a 
-                    href="#" 
+                  <Link 
+                    href="/privacy" 
                     className="font-sans text-muted-foreground hover:text-primary transition-colors"
                     data-testid="link-footer-privacy"
                   >
                     Privacy Policy
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a 
-                    href="#" 
+                  <Link 
+                    href="/terms" 
                     className="font-sans text-muted-foreground hover:text-primary transition-colors"
                     data-testid="link-footer-terms"
                   >
                     Terms of Service
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a 
-                    href="#" 
+                  <Link 
+                    href="/disclaimer" 
                     className="font-sans text-muted-foreground hover:text-primary transition-colors"
                     data-testid="link-footer-disclaimer"
                   >
                     Disclaimer
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a 
-                    href="#" 
+                  <Link 
+                    href="/contact" 
                     className="font-sans text-muted-foreground hover:text-primary transition-colors"
                     data-testid="link-footer-contact"
                   >
                     Contact
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -114,15 +114,13 @@ export default function Footer() {
           <div className="border-t border-border pt-8">
             <div className="bg-accent/10 rounded-lg p-6 mb-6">
               <p className="font-sans text-sm text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">Disclaimer:</strong> This content is for educational purposes only and does not constitute investment advice.
-                Real estate investing involves risk. Always consult with qualified professionals and conduct your own due diligence
-                before making investment decisions. Past performance does not guarantee future results.
+                <strong className="text-foreground">Disclaimer:</strong> This content is for educational and informational purposes only. It does not constitute legal, financial, or investment advice. Always consult licensed professionals and perform your own due diligence before making real estate decisions. Investing in real estate involves risk, and past performance is not indicative of future results.
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <p className="font-sans text-sm text-muted-foreground">
-                © 2024 Deeds Without Debt. All rights reserved.
+                © 2025 Biah Capital Holdings Ltd. All rights reserved.
               </p>
               <div className="flex items-center gap-6">
                 <a 

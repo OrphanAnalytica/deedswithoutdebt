@@ -1,0 +1,9 @@
+# Serve static download files directly
+/downloads/* /downloads/:splat 200
+
+# SPA fallback for everything else
+/* /index.html 200
+
+
+
+

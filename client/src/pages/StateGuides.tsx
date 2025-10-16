@@ -1,25 +1,19 @@
 import { useEffect, useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { setSEOData } from "@/lib/seo";
 import { Link, useSearch, useLocation } from "wouter";
-import { MapPin, Search, Settings } from "lucide-react";
+import { Calendar, TrendingUp, DollarSign, CheckCircle, ArrowRight, Search, Star } from 'lucide-react';
 import { StateGuide, listStates } from "@/lib/stateGuides";
 import { StateCard } from "@/components/ui/StateCard";
-import { TypeTabs } from "@/components/ui/TypeTabs";
 import { EmptyState } from "@/components/ui/EmptyState";
 import Fuse from 'fuse.js';
 
 export default function StateGuides() {
   const [stateGuides, setStateGuides] = useState<StateGuide[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [activeFilter, setActiveFilter] = useState('all');
-  const [statusFilters, setStatusFilters] = useState<string[]>(['available', 'coming_soon', 'research']);
-  const [showFilters, setShowFilters] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedType, setSelectedType] = useState<string>('all');
   const searchParams = useSearch();
   const [, setLocation] = useLocation();
 
@@ -33,18 +27,15 @@ export default function StateGuides() {
     // Load saved preferences from localStorage
     const savedSearch = localStorage.getItem('stateGuides.search') || '';
     const savedType = localStorage.getItem('stateGuides.type') || 'all';
-    const savedStatus = JSON.parse(localStorage.getItem('stateGuides.status') || '["available", "coming_soon", "research"]');
 
     // Parse URL params
     const params = new URLSearchParams(searchParams);
     const urlType = params.get('type');
     const urlSearch = params.get('q');
-    const urlStatus = params.get('status')?.split(',') || savedStatus;
 
     // Set initial state from URL or localStorage
-    setSearchQuery(urlSearch || savedSearch);
-    setActiveFilter(urlType || savedType);
-    setStatusFilters(urlStatus);
+    setSearchTerm(urlSearch || savedSearch);
+    setSelectedType(urlType || savedType);
 
     listStates().then((guides) => {
       setStateGuides(guides);
@@ -55,9 +46,8 @@ export default function StateGuides() {
   // Update URL and localStorage when filters change
   useEffect(() => {
     const params = new URLSearchParams();
-    if (searchQuery) params.set('q', searchQuery);
-    if (activeFilter !== 'all') params.set('type', activeFilter);
-    if (statusFilters.length !== 3) params.set('status', statusFilters.join(','));
+    if (searchTerm) params.set('q', searchTerm);
+    if (selectedType !== 'all') params.set('type', selectedType);
     
     const newUrl = `/state-guides${params.toString() ? '?' + params.toString() : ''}`;
     if (window.location.pathname + window.location.search !== newUrl) {
@@ -65,10 +55,9 @@ export default function StateGuides() {
     }
 
     // Save to localStorage
-    localStorage.setItem('stateGuides.search', searchQuery);
-    localStorage.setItem('stateGuides.type', activeFilter);
-    localStorage.setItem('stateGuides.status', JSON.stringify(statusFilters));
-  }, [searchQuery, activeFilter, statusFilters]);
+    localStorage.setItem('stateGuides.search', searchTerm);
+    localStorage.setItem('stateGuides.type', selectedType);
+  }, [searchTerm, selectedType]);
 
   // Initialize Fuse.js for fuzzy search
   const fuse = useMemo(() => {
@@ -81,62 +70,24 @@ export default function StateGuides() {
   }, [stateGuides]);
 
   // Filter and search logic
-  const filteredGuides = useMemo(() => {
+  const filteredStates = useMemo(() => {
     let guides = stateGuides;
 
-    // Apply status filter first
-    guides = guides.filter(guide => statusFilters.includes(guide.status));
-
     // Apply search with fuzzy matching
-    if (searchQuery.trim() && fuse) {
-      const searchResults = fuse.search(searchQuery);
+    if (searchTerm.trim() && fuse) {
+      const searchResults = fuse.search(searchTerm);
       const searchedGuides = searchResults.map(result => result.item);
       guides = guides.filter(guide => searchedGuides.includes(guide));
     }
 
     // Apply type filter
-    if (activeFilter === 'verify') {
-      guides = guides.filter(guide => guide.status === 'research');
-    } else if (activeFilter !== 'all') {
-      guides = guides.filter(guide => guide.type === activeFilter);
-    }
+    guides = guides.filter(guide => {
+      const matchesType = selectedType === 'all' || guide.type === selectedType;
+      return matchesType;
+    });
 
     return guides;
-  }, [stateGuides, activeFilter, searchQuery, statusFilters, fuse]);
-
-  const handleStatusChange = (status: string, checked: boolean) => {
-    if (checked) {
-      setStatusFilters(prev => [...prev, status]);
-    } else {
-      setStatusFilters(prev => prev.filter(s => s !== status));
-    }
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "available":
-        return "bg-primary text-primary-foreground";
-      case "coming_soon":
-        return "bg-muted text-muted-foreground";
-      case "research":
-        return "bg-muted text-muted-foreground";
-      default:
-        return "bg-muted text-muted-foreground";
-    }
-  };
-
-  const getStatusLabel = (status: string) => {
-    switch (status) {
-      case "available":
-        return "Available";
-      case "coming_soon":
-        return "Coming Soon";
-      case "research":
-        return "Research";
-      default:
-        return "TBD";
-    }
-  };
+  }, [stateGuides, selectedType, searchTerm, fuse]);
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty.toLowerCase()) {
@@ -156,8 +107,8 @@ export default function StateGuides() {
     return difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
   };
 
-  // Get featured guide (Alaska)
-  const featuredGuide = stateGuides.find(guide => guide.slug === 'alaska');
+  // Get featured state
+  const featuredState = stateGuides.find(state => state.featured === true);
 
   if (loading) {
     return (
@@ -190,53 +141,100 @@ export default function StateGuides() {
             </p>
           </div>
 
-          {/* Featured Guide */}
-          {featuredGuide && (
-            <div className="bg-primary/5 rounded-xl p-8 lg:p-12 mb-12 border border-primary/20">
-              <div className="grid lg:grid-cols-2 gap-8 items-center">
-                <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <Badge className="bg-primary text-primary-foreground px-3 py-1 rounded-full font-mono font-bold text-sm">
-                      FEATURED GUIDE
-                    </Badge>
-                    <span className="text-muted-foreground font-sans text-sm">Updated {featuredGuide.last_updated}</span>
+          {/* Featured State - NEW MODERN DESIGN */}
+          {featuredState && (
+            <div className="mb-12">
+              {/* Featured Badge & Title */}
+              <div className="mb-4">
+                <span className="inline-flex items-center gap-2 px-3 py-1 bg-green-600 text-white rounded-full text-sm font-semibold mb-3">
+                  <Star className="h-4 w-4" />
+                  Featured Investment Guide
+                </span>
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+                  Explore {featuredState.name}
+                </h2>
+              </div>
+
+              {/* Main Featured Card - Horizontal Layout */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 bg-white rounded-xl shadow-lg overflow-hidden">
+                
+                {/* Left Side - Image */}
+                {featuredState.image && (
+                  <div className="relative h-64 lg:h-full min-h-[400px]">
+                    <img 
+                      src={featuredState.image} 
+                      alt={`${featuredState.name} landscape`}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-green-900/40 to-blue-900/40"></div>
+                    <div className="absolute top-6 left-6">
+                      <h3 className="text-4xl font-bold text-white mb-2">
+                        {featuredState.name}
+                      </h3>
+                      <p className="text-white/90 text-lg font-semibold">
+                        Tax Investment Guide
+                      </p>
+                    </div>
                   </div>
-                  <h2 className="font-serif text-3xl lg:text-4xl font-bold text-foreground mb-4">
-                    {featuredGuide.name} Tax Investment Guide
-                  </h2>
-                  <p className="font-sans text-lg text-muted-foreground mb-6 leading-relaxed">
-                    {featuredGuide.summary}
-                  </p>
-                  <div className="grid sm:grid-cols-3 gap-4 mb-6">
-                    <div className="text-center">
-                      <p className="font-mono font-bold text-2xl text-primary">3 Sales</p>
-                      <p className="font-sans text-sm text-muted-foreground">Avg/2 Years</p>
+                )}
+
+                {/* Right Side - Content */}
+                <div className="p-8 flex flex-col justify-between">
+                  
+                  {/* Description */}
+                  <div className="mb-6">
+                    <p className="text-gray-700 leading-relaxed mb-6">
+                      {featuredState.description}
+                    </p>
+
+                    {/* Quick Stats - Compact Inline */}
+                    <div className="grid grid-cols-1 gap-3 mb-6">
+                      <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg">
+                        <Calendar className="h-5 w-5 text-blue-600 flex-shrink-0" />
+                        <div>
+                          <span className="text-xs text-gray-600 block">Sale Type</span>
+                          <span className="text-sm font-semibold text-gray-900">{featuredState.saleType}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
+                        <TrendingUp className="h-5 w-5 text-green-600 flex-shrink-0" />
+                        <div>
+                          <span className="text-xs text-gray-600 block">Redemption Period</span>
+                          <span className="text-sm font-semibold text-gray-900">{featuredState.redemptionPeriod}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-3 p-3 bg-purple-50 rounded-lg">
+                        <DollarSign className="h-5 w-5 text-purple-600 flex-shrink-0" />
+                        <div>
+                          <span className="text-xs text-gray-600 block">Returns</span>
+                          <span className="text-sm font-semibold text-gray-900">{featuredState.interestRate}</span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="text-center">
-                      <p className="font-mono font-bold text-2xl text-primary">150–300%</p>
-                      <p className="font-sans text-sm text-muted-foreground">ROI Range</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="font-mono font-bold text-2xl text-primary">19 Boroughs</p>
-                      <p className="font-sans text-sm text-muted-foreground">Covered</p>
-                    </div>
+
+                    {/* Top 3 Key Features Only */}
+                    {featuredState.keyFeatures && featuredState.keyFeatures.length > 0 && (
+                      <div className="space-y-2">
+                        {featuredState.keyFeatures.slice(0, 3).map((feature, idx) => (
+                          <div key={idx} className="flex items-start gap-2">
+                            <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                            <span className="text-sm text-gray-700">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                  <p className="text-xs text-muted-foreground mb-6 italic">*Example estimates based on available data</p>
-                  <Button 
-                    asChild
-                    className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-mono font-bold hover:bg-secondary transition-colors"
-                    data-testid={`button-read-${featuredGuide.slug}-guide`}
+
+                  {/* CTA Button */}
+                  <Link 
+                    to={`/state-guides/${featuredState.id}`}
+                    className="inline-flex items-center justify-center w-full px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-all hover:shadow-lg"
                   >
-                    <Link href={`/state-guides/${featuredGuide.slug}`}>Read Alaska Guide</Link>
-                  </Button>
-                </div>
-                <div>
-                  <img
-                    src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
-                    alt={`${featuredGuide.name} landscape for tax investing opportunities`}
-                    className="rounded-lg shadow-lg w-full h-auto"
-                    loading="lazy"
-                  />
+                    View Complete Guide
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -244,34 +242,80 @@ export default function StateGuides() {
 
           {/* Search and Filters */}
           <div className="mb-12">
-            <div className="max-w-md mx-auto mb-6">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                <Input
-                  type="text"
-                  placeholder="Search states..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
-                  data-testid="input-search-states"
-                />
-              </div>
+            <div className="relative max-w-2xl mx-auto mb-8">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <input
+                type="text"
+                placeholder="Search states..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              />
             </div>
 
-            <TypeTabs value={activeFilter} onValueChange={setActiveFilter} />
+            <div className="flex gap-2 mb-6 bg-gray-100 rounded-lg p-2">
+              <button
+                onClick={() => setSelectedType('all')}
+                className={`px-6 py-3 rounded-lg font-semibold transition-all ${
+                  selectedType === 'all'
+                    ? 'bg-white text-green-700 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                All
+              </button>
+              <button
+                onClick={() => setSelectedType('Tax Deed State')}
+                className={`px-6 py-3 rounded-lg font-semibold transition-all ${
+                  selectedType === 'Tax Deed State'
+                    ? 'bg-white text-green-700 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                Tax Deed
+              </button>
+              <button
+                onClick={() => setSelectedType('Tax Lien State')}
+                className={`px-6 py-3 rounded-lg font-semibold transition-all ${
+                  selectedType === 'Tax Lien State'
+                    ? 'bg-white text-green-700 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                Tax Lien
+              </button>
+              <button
+                onClick={() => setSelectedType('Redeemable Deed')}
+                className={`px-6 py-3 rounded-lg font-semibold transition-all ${
+                  selectedType === 'Redeemable Deed'
+                    ? 'bg-white text-green-700 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                Redeemable Deed
+              </button>
+              <button
+                onClick={() => setSelectedType('Hybrid')}
+                className={`px-6 py-3 rounded-lg font-semibold transition-all ${
+                  selectedType === 'Hybrid'
+                    ? 'bg-white text-green-700 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                Hybrid
+              </button>
+            </div>
 
             <div className="mt-8">
               <div className="text-center mb-6">
-                <p className="text-sm text-muted-foreground">
-                  Showing {filteredGuides.length} {activeFilter === 'all' ? 'states' : 
-                    activeFilter === 'verify' ? 'states to verify' : `${activeFilter} states`}
-                  {searchQuery && ` matching "${searchQuery}"`}
+                <p className="text-gray-600 mb-6">
+                  Showing {filteredStates.length} {filteredStates.length === 1 ? 'state' : 'states'}
                 </p>
               </div>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredGuides.length > 0 ? (
-                  filteredGuides.map((guide) => (
+                {filteredStates.length > 0 ? (
+                  filteredStates.map((guide) => (
                     <StateCard key={guide.slug} guide={guide} />
                   ))
                 ) : (
@@ -287,7 +331,7 @@ export default function StateGuides() {
           {/* Request Guide */}
           <div className="bg-card rounded-xl shadow-sm border border-border p-8 text-center">
             <div className="max-w-2xl mx-auto">
-              <MapPin className="w-12 h-12 text-primary mx-auto mb-4" />
+              <Star className="w-12 h-12 text-primary mx-auto mb-4" />
               <h2 className="font-serif text-2xl font-bold text-foreground mb-4">
                 Don't See Your State?
               </h2>

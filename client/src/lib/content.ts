@@ -13,7 +13,7 @@ export interface Post {
 export interface StateGuide {
   slug: string;
   name: string;
-  type: 'deed' | 'lien' | 'hybrid' | 'tbd';
+  type: 'Tax Deed State' | 'Tax Lien State' | 'Redeemable Deed' | 'Hybrid';
   status: 'available' | 'coming_soon' | 'research';
   difficulty: 'beginner' | 'intermediate' | 'advanced' | 'tbd';
   summary: string;
@@ -25,23 +25,33 @@ export interface StateGuide {
 // Static post data - in a real implementation this would come from markdown files
 const posts: Post[] = [
   {
-    slug: "3-ways-buy-real-estate-without-banks",
-    title: "3 Ways to Buy Real Estate Without Banks (And Why They Work)",
-    description: "Discover the proven strategies I've used to acquire over $2M in real estate without traditional financing. From tax deed auctions to probate deals, here's your complete roadmap.",
-    date: "March 15, 2024",
-    tags: ["Tax Deeds", "Strategy", "No-Bank Investing"],
+    slug: "quiet-title-actions-tax-deed-investing",
+    title: "Why Quiet Title Actions Are the Unsung Hero of Tax Deed Investing",
+    description: "Quiet title explained: the legal process that secures your investment and unlocks property value. Learn how this legal step transforms tax sale wins into clean, financeable properties.",
+    date: "September 17, 2025",
+    tags: ["Legal", "Tax Deeds"],
+    cover: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+    readTime: "3 min read",
+    category: "Legal"
+  },
+  {
+    slug: "3-proven-ways-buy-real-estate-without-banks",
+    title: "3 Proven Ways to Buy Real Estate Without Banks: Tax Deeds, Tax Liens & HOA Foreclosures",
+    description: "Learn how tax deeds, tax liens, and HOA foreclosures can open the door to real estate ownership without relying on traditional mortgages. No banks, no brokers — just opportunity.",
+    date: "September 4, 2025",
+    tags: ["Strategy", "Tax Liens", "HOA"],
     cover: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-    readTime: "5 min read",
+    readTime: "3 min read",
     category: "Strategy"
   },
   {
-    slug: "alaska-tax-sales-guide",
-    title: "How Alaska Tax Sales Work: September 2025 Borough Auction Guide",
-    description: "Alaska's unique borough structure creates exceptional opportunities. Here's everything you need to know about the upcoming September auction.",
-    date: "March 8, 2024",
-    tags: ["Alaska", "Tax Sales", "State Guide"],
-    cover: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-    readTime: "3 min read",
+    slug: "new-mexico-tax-deed-sales-complete-guide",
+    title: "New Mexico Tax Deed Sales: A Complete Investor's Guide",
+    description: "Forget tax liens — New Mexico only sells full properties through public auction. This deep dive covers eligibility, bidding, title risks, and why NM is one of the most overlooked tax deed states.",
+    date: "September 30, 2025",
+    tags: ["State Guide", "New Mexico", "Tax Deeds"],
+    cover: "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+    readTime: "4 min read",
     category: "State Guide"
   },
   {

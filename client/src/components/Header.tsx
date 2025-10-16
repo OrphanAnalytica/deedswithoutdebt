@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 
 export default function Header() {
   const [location] = useLocation();
@@ -15,6 +15,7 @@ export default function Header() {
     { href: "/about", label: "About" },
     { href: "/resources", label: "Resources" },
     { href: "/state-guides", label: "State Guides" },
+    { href: "/contact", label: "Contact" },
   ];
 
   return (
@@ -28,7 +29,7 @@ export default function Header() {
             </div>
             <div>
               <h1 className="font-serif font-bold text-xl text-foreground">Deeds Without Debt</h1>
-              <p className="text-muted-foreground text-sm font-sans">Buy Real Estate Without Banks</p>
+              <p className="text-muted-foreground text-sm font-sans">Own Property Through Tax Deeds & Liens</p>
             </div>
           </Link>
 
@@ -50,10 +51,13 @@ export default function Header() {
             ))}
             <Button
               asChild
-              className="bg-primary text-primary-foreground px-6 py-2 rounded-md font-mono font-semibold text-sm hover:bg-secondary transition-colors"
+              className="bg-primary text-primary-foreground px-6 py-2 rounded-md font-mono font-semibold text-sm hover:bg-white hover:text-primary hover:border-primary border border-transparent transition-all duration-200 flex items-center gap-2"
               data-testid="button-subscribe-nav"
             >
-              <Link href="/subscribe">Subscribe</Link>
+              <Link href="/subscribe">
+                Get Free Access
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </Button>
           </nav>
 
@@ -90,11 +94,14 @@ export default function Header() {
               ))}
               <Button
                 asChild
-                className="bg-primary text-primary-foreground px-6 py-2 rounded-md font-mono font-semibold text-sm hover:bg-secondary transition-colors w-fit"
+                className="bg-primary text-primary-foreground px-6 py-2 rounded-md font-mono font-semibold text-sm hover:bg-white hover:text-primary hover:border-primary border border-transparent transition-all duration-200 w-fit flex items-center gap-2"
                 onClick={() => setIsMobileMenuOpen(false)}
                 data-testid="button-subscribe-mobile"
               >
-                <Link href="/subscribe">Subscribe</Link>
+                <Link href="/subscribe">
+                  Get Free Access
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
               </Button>
             </nav>
           </div>

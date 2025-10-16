@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "wouter";
 import { setSEOData } from "@/lib/seo";
 import { StateGuide, getState } from "@/lib/stateGuides";
-import StateGuideRenderer from "@/components/StateGuideRenderer";
+import EnhancedStateGuideRenderer from "@/components/EnhancedStateGuideRenderer";
+import stateGuidesData from "@/data/stateGuides.json";
 
 export default function StateGuidePage() {
   const { slug } = useParams<{ slug: string }>();
   const [guide, setGuide] = useState<StateGuide | null>(null);
+  const [enhancedData, setEnhancedData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
@@ -23,6 +25,12 @@ export default function StateGuidePage() {
         
         if (foundGuide) {
           setGuide(foundGuide);
+          
+          // Try to load enhanced data from JSON file
+          const enhanced = stateGuidesData.states.find((s: any) => s.id === slug);
+          if (enhanced) {
+            setEnhancedData(enhanced);
+          }
           
           // Set SEO data with JSON-LD
           setSEOData({
@@ -101,5 +109,5 @@ export default function StateGuidePage() {
     );
   }
 
-  return <StateGuideRenderer guide={guide} />;
+  return <EnhancedStateGuideRenderer guide={guide} enhancedData={enhancedData} />;
 }

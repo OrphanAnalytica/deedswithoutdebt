@@ -24,14 +24,27 @@ export default defineConfig({
     },
   },
   root: path.resolve(import.meta.dirname, "client"),
+  publicDir: path.resolve(import.meta.dirname, "public"),
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    copyPublicDir: true,
   },
   server: {
     fs: {
       strict: true,
       deny: ["**/.*"],
+    },
+    proxy: {
+      '/downloads': {
+        target: 'http://localhost:5173',
+        bypass: (req) => {
+          if (req.url?.startsWith('/downloads/')) {
+            // Return the URL to serve the file directly from /public
+            return req.url;
+          }
+        },
+      },
     },
   },
 });

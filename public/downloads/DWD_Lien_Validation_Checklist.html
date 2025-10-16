@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lien Validation Checklist - Deeds Without Debt</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            line-height: 1.4;
+            color: #1a1a1a;
+            background: #0B2E13;
+            padding: 20px;
+        }
+        
+        .page {
+            width: 8.5in;
+            height: 11in;
+            background: white;
+            margin: 0 auto 20px;
+            padding: 0.75in;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #0B2E13;
+            padding-bottom: 20px;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 900;
+            color: #0B2E13;
+            margin-bottom: 10px;
+        }
+        
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #0B2E13;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .copyright {
+            font-size: 10px;
+            color: #888;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #0B2E13;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid #EDE6D7;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            padding: 4px 0;
+        }
+        
+        .checkbox {
+            width: 14px;
+            height: 14px;
+            border: 2px solid #0B2E13;
+            margin-right: 10px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .item-text {
+            flex: 1;
+            font-size: 11px;
+            line-height: 1.4;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ff6b35;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 4px;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #ff6b35;
+            margin-bottom: 6px;
+        }
+        
+        .warning-text {
+            font-size: 10px;
+            line-height: 1.4;
+            color: #333;
+        }
+        
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 9px;
+            color: #666;
+            border-top: 1px solid #EDE6D7;
+            padding-top: 8px;
+            margin-top: 30px;
+        }
+        
+        @page {
+            margin: 0.75in;
+            size: letter;
+        }
+        
+        @media print {
+            @page {
+                margin: 0.75in;
+            }
+            
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+            
+            .footer {
+                position: absolute;
+                bottom: 0.5in;
+                left: 0.75in;
+                right: 0.75in;
+                margin-top: 0;
+            }
+            
+            .section, .checklist-item, .warning-box {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="logo">DWD</div>
+            <div class="title">Lien Validation Checklist</div>
+            <div class="subtitle">Verify Before You Buy – Avoid Worthless Liens</div>
+            <div class="copyright">© Deeds Without Debt | DeedsWithoutDebt.com</div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Basic Lien Information</div>
+            <div style="margin-bottom: 10px;">
+                <strong>Property Address:</strong> _________________________________
+            </div>
+            <div style="margin-bottom: 10px;">
+                <strong>Tax Lien Certificate #:</strong> _________________________________
+            </div>
+            <div style="margin-bottom: 10px;">
+                <strong>Original Tax Amount:</strong> $_________________________________
+            </div>
+            <div style="margin-bottom: 10px;">
+                <strong>Interest Rate:</strong> __________%
+            </div>
+            <div style="margin-bottom: 10px;">
+                <strong>Redemption Period:</strong> _________ months
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Title Research</div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Verified property ownership through county records</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Checked for superior liens (IRS, mortgage)</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Confirmed no bankruptcy filings by owner</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Verified no pending foreclosure actions</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Checked for judgments against property</div>
+            </div>
+        </div>
+        
+        <div class="warning-box">
+            <div class="warning-title">⚠️ Warning:</div>
+            <div class="warning-text">IRS liens and mortgage liens are almost always superior to tax liens. You could pay for the lien and still lose the property!</div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Property Condition Assessment</div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Property physically exists and matches records</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Property is occupied/vacant (note condition)</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">No major structural damage visible</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Property has road access</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Utilities are available</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Owner Contact & Redemption Likelihood</div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Attempted to contact property owner</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Assessed owner's financial situation (if possible)</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Property appears abandoned/neglected</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Owner has history of tax delinquency</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Market Analysis</div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Researched comparable property values</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Assessed neighborhood desirability</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Verified recent sales activity in area</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Property value exceeds lien cost by 3x minimum</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Legal Verification</div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Confirmed lien is properly recorded</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Verified all required notices were sent</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Checked state-specific lien laws</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Reviewed redemption rights and timeline</div>
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <div class="item-text">Consulted with tax lien attorney (if needed)</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Financial Analysis</div>
+            <div style="margin-bottom: 8px;">
+                <strong>Purchase Price:</strong> $_________________
+            </div>
+            <div style="margin-bottom: 8px;">
+                <strong>Interest Rate:</strong> ________%
+            </div>
+            <div style="margin-bottom: 8px;">
+                <strong>Projected Interest (1 year):</strong> $_________________
+            </div>
+            <div style="margin-bottom: 8px;">
+                <strong>Property Market Value:</strong> $_________________
+            </div>
+            <div style="margin-bottom: 8px;">
+                <strong>Expected ROI:</strong> ________%
+            </div>
+        </div>
+        
+        <div class="warning-box">
+            <div class="warning-title">Final Decision:</div>
+            <div class="warning-text" style="font-size: 12px; font-weight: 600;">
+                PROCEED WITH PURCHASE: ⬜ YES   ⬜ NO
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>Deeds Without Debt</div>
+            <div>DeedsWithoutDebt.com/resources</div>
+            <div>Page 1</div>
+        </div>
+    </div>
+</body>
+</html>
+

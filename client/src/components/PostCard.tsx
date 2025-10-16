@@ -11,6 +11,7 @@ export interface Post {
   cover?: string;
   readTime?: string;
   category?: string;
+  link?: string;
 }
 
 interface PostCardProps {
@@ -26,6 +27,8 @@ export default function PostCard({ post }: PostCardProps) {
         return 'bg-primary text-primary-foreground';
       case 'strategy':
         return 'bg-accent text-accent-foreground';
+      case 'legal':
+        return 'bg-green-800 text-white';
       default:
         return 'bg-muted text-muted-foreground';
     }

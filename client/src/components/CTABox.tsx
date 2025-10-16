@@ -7,9 +7,10 @@ interface CTABoxProps {
   title: string;
   description: string;
   buttonText: string;
-  buttonHref: string;
+  buttonHref?: string;
   icon?: ReactNode;
   variant?: "primary" | "secondary" | "accent";
+  onButtonClick?: () => void;
 }
 
 export default function CTABox({ 
@@ -18,7 +19,8 @@ export default function CTABox({
   buttonText, 
   buttonHref, 
   icon, 
-  variant = "primary" 
+  variant = "primary",
+  onButtonClick
 }: CTABoxProps) {
   const getVariantClasses = () => {
     switch (variant) {
@@ -69,13 +71,23 @@ export default function CTABox({
         {description}
       </p>
       
-      <Button 
-        asChild
-        className={`font-mono font-semibold transition-colors w-full ${getButtonClasses()}`}
-        data-testid={`button-cta-${title.toLowerCase().replace(/\s+/g, '-')}`}
-      >
-        <Link href={buttonHref}>{buttonText}</Link>
-      </Button>
+      {onButtonClick ? (
+        <Button 
+          onClick={onButtonClick}
+          className={`font-mono font-semibold transition-colors w-full ${getButtonClasses()}`}
+          data-testid={`button-cta-${title.toLowerCase().replace(/\s+/g, '-')}`}
+        >
+          {buttonText}
+        </Button>
+      ) : (
+        <Button 
+          asChild
+          className={`font-mono font-semibold transition-colors w-full ${getButtonClasses()}`}
+          data-testid={`button-cta-${title.toLowerCase().replace(/\s+/g, '-')}`}
+        >
+          <Link href={buttonHref || '#'}>{buttonText}</Link>
+        </Button>
+      )}
     </Card>
   );
 }

@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import NewsletterForm from "@/components/NewsletterForm";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { setSEOData } from "@/lib/seo";
 import { Link } from "wouter";
 import { CheckCircle, Clock, Shield, Users, TrendingUp, BookOpen } from "lucide-react";
+import ConvertKitForm from "@/components/ConvertKitForm";
+
 
 export default function Subscribe() {
   useEffect(() => {
@@ -18,8 +19,8 @@ export default function Subscribe() {
   const benefits = [
     {
       icon: <Clock className="w-6 h-6" />,
-      title: "Weekly Delivery",
-      description: "Fresh content delivered to your inbox every Tuesday morning"
+      title: "3x Weekly Delivery",
+      description: "Monday deep dives, Wednesday auction alerts, Friday case studies"
     },
     {
       icon: <Shield className="w-6 h-6" />,
@@ -28,8 +29,8 @@ export default function Subscribe() {
     },
     {
       icon: <Users className="w-6 h-6" />,
-      title: "Join 5,000+ Investors",
-      description: "Be part of a growing community of alternative real estate investors"
+      title: "Learn from 12+ Years of Experience",
+      description: "Get insights from over a decade of hands-on real estate investing across deeds and liens sales"
     },
     {
       icon: <TrendingUp className="w-6 h-6" />,
@@ -39,7 +40,7 @@ export default function Subscribe() {
     {
       icon: <BookOpen className="w-6 h-6" />,
       title: "Educational Focus",
-      description: "Learn proven strategies from 8+ years of investing experience"
+      description: "Learn proven strategies from real-world experience, not recycled blog posts."
     },
     {
       icon: <CheckCircle className="w-6 h-6" />,
@@ -73,35 +74,19 @@ export default function Subscribe() {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="font-serif text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Subscribe to Deeds Without Debt
+              Subscribe to Deeds Without Debt — Own Property Through Tax Deeds & Liens — Without Banks
             </h1>
             <p className="font-sans text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Join thousands of investors learning how to buy real estate without banks. 
-              Get weekly insights on tax deeds, tax liens, HOA foreclosures, and probate deals.
+              You'll receive 3 expert insights per week:<br/>
+              • Monday – Educational deep dive on tax sale strategies & due diligence<br/>
+              • Wednesday – Upcoming auction alerts and timely opportunities<br/>
+              • Friday – Real case studies, success stories & Q&A
             </p>
           </div>
 
-          {/* Newsletter Form */}
-          <div className="bg-card rounded-xl shadow-sm border border-border p-8 mb-12">
-            <div className="text-center mb-6">
-              <h2 className="font-serif text-2xl font-bold text-foreground mb-2">Get Started Today</h2>
-              <p className="font-sans text-muted-foreground">Free newsletter, no credit card required</p>
-            </div>
-            <NewsletterForm className="max-w-md mx-auto" />
-            <div className="flex items-center justify-center gap-6 mt-6 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-primary" />
-                <span className="font-sans">Free forever</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-primary" />
-                <span className="font-sans">No spam</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-primary" />
-                <span className="font-sans">Unsubscribe anytime</span>
-              </div>
-            </div>
+          {/* ConvertKit Form */}
+          <div className="mb-12">
+            <ConvertKitForm />
           </div>
 
           {/* Benefits Grid */}
@@ -192,8 +177,8 @@ export default function Subscribe() {
               Join the community of investors who are building wealth through alternative real estate strategies. 
               Your first issue will arrive within 24 hours.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <NewsletterForm className="max-w-md" />
+            <div className="flex justify-center">
+              <ConvertKitForm />
             </div>
             <div className="mt-8 pt-8 border-t border-border">
               <p className="font-sans text-sm text-muted-foreground">

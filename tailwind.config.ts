@@ -44,6 +44,8 @@ export default {
         border: "var(--border)",
         input: "var(--input)",
         ring: "var(--ring)",
+        "primary-green": "var(--primary-green)",
+        cream: "var(--cream)",
         chart: {
           "1": "var(--chart-1)",
           "2": "var(--chart-2)",
