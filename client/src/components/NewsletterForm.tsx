@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { useSubscription } from "@/contexts/SubscriptionContext";
 import { Check, Mail, Lock, ArrowRight } from "lucide-react";
 
 interface NewsletterFormProps {
@@ -13,6 +14,7 @@ export default function NewsletterForm({ variant = "default", className = "" }: 
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const { subscribe, isSubscribed } = useSubscription();
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -20,17 +22,8 @@ export default function NewsletterForm({ variant = "default", className = "" }: 
     setIsSubmitting(true);
 
     try {
-      const actionUrl = import.meta.env.VITE_NEWSLETTER_ACTION_URL || "https://api.beehiiv.com/v2/forms/submit";
-      
-      const response = await fetch(actionUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      if (response.ok) {
+      const success = await subscribe(email);
+      if (success) {
         setIsSuccess(true);
         setEmail("");
         toast({

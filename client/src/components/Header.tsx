@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { useSubscription } from "@/contexts/SubscriptionContext";
+import { Menu, X, ArrowRight, CheckCircle } from "lucide-react";
 
 export default function Header() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { isSubscribed, subscriberEmail } = useSubscription();
 
   const isActive = (path: string) => location === path;
 
@@ -49,16 +51,25 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-            <Button
-              asChild
-              className="bg-primary text-primary-foreground px-6 py-2 rounded-md font-mono font-semibold text-sm hover:bg-white hover:text-primary hover:border-primary border border-transparent transition-all duration-200 flex items-center gap-2"
-              data-testid="button-subscribe-nav"
-            >
-              <Link href="/subscribe">
-                Get Free Access
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </Button>
+            {isSubscribed ? (
+              <div className="flex items-center gap-2 px-4 py-2 bg-green-50 border border-green-200 rounded-md">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span className="text-sm font-medium text-green-800">
+                  Subscribed
+                </span>
+              </div>
+            ) : (
+              <Button
+                asChild
+                className="bg-primary text-primary-foreground px-6 py-2 rounded-md font-mono font-semibold text-sm hover:bg-white hover:text-primary hover:border-primary border border-transparent transition-all duration-200 flex items-center gap-2"
+                data-testid="button-subscribe-nav"
+              >
+                <Link href="/subscribe">
+                  Get Free Access
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </Button>
+            )}
           </nav>
 
           {/* Mobile Menu Button */}
@@ -92,17 +103,26 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
-              <Button
-                asChild
-                className="bg-primary text-primary-foreground px-6 py-2 rounded-md font-mono font-semibold text-sm hover:bg-white hover:text-primary hover:border-primary border border-transparent transition-all duration-200 w-fit flex items-center gap-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-                data-testid="button-subscribe-mobile"
-              >
-                <Link href="/subscribe">
-                  Get Free Access
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </Button>
+              {isSubscribed ? (
+                <div className="flex items-center gap-2 px-4 py-2 bg-green-50 border border-green-200 rounded-md w-fit">
+                  <CheckCircle className="w-4 h-4 text-green-600" />
+                  <span className="text-sm font-medium text-green-800">
+                    Subscribed
+                  </span>
+                </div>
+              ) : (
+                <Button
+                  asChild
+                  className="bg-primary text-primary-foreground px-6 py-2 rounded-md font-mono font-semibold text-sm hover:bg-white hover:text-primary hover:border-primary border border-transparent transition-all duration-200 w-fit flex items-center gap-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  data-testid="button-subscribe-mobile"
+                >
+                  <Link href="/subscribe">
+                    Get Free Access
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </Button>
+              )}
             </nav>
           </div>
         )}
