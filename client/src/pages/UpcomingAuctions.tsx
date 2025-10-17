@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { Link } from "wouter";
-import { ArrowLeft, ExternalLink, Search } from "lucide-react";
+import { ArrowLeft, ExternalLink, Search, CheckCircle, Filter } from "lucide-react";
 import { auctions, type Auction } from "@/data/auctions";
 
 type SortDirection = 'asc' | 'desc' | null;
@@ -9,25 +9,70 @@ type SortConfig = {
   direction: SortDirection;
 };
 
+type FilterOption = 'all' | 'upcoming' | 'completed';
+
 export default function UpcomingAuctions() {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortConfig, setSortConfig] = useState<SortConfig>({ key: 'auction_date', direction: 'asc' });
+  const [showCompleted, setShowCompleted] = useState(false);
+  const [filterOption, setFilterOption] = useState<FilterOption>('upcoming');
 
-  // Filter auctions based on search term
+  // Helper function to determine if an auction is completed
+  const isAuctionCompleted = (auctionDate: string): boolean => {
+    const today = new Date();
+    const auctionDateObj = new Date(auctionDate);
+    // Set time to start of day for accurate comparison
+    today.setHours(0, 0, 0, 0);
+    auctionDateObj.setHours(0, 0, 0, 0);
+    return auctionDateObj < today;
+  };
+
+  // Helper function to get auction status based on date and existing status
+  const getAuctionStatus = (auction: Auction): string => {
+    if (isAuctionCompleted(auction.auction_date)) {
+      return 'Completed';
+    }
+    return auction.auction_status;
+  };
+
+  // Filter auctions based on search term and completion status
   const filteredAuctions = useMemo(() => {
-    if (!searchTerm) return auctions;
-    
-    return auctions.filter(auction => 
-      auction.county.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      auction.property_address.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [searchTerm]);
+    let filtered = auctions;
 
-  // Sort auctions
+    // Filter by search term
+    if (searchTerm) {
+      filtered = filtered.filter(auction => 
+        auction.county.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        auction.property_address.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    // Filter by completion status
+    if (filterOption === 'upcoming') {
+      filtered = filtered.filter(auction => !isAuctionCompleted(auction.auction_date));
+    } else if (filterOption === 'completed') {
+      filtered = filtered.filter(auction => isAuctionCompleted(auction.auction_date));
+    }
+    // 'all' shows everything
+
+    return filtered;
+  }, [searchTerm, filterOption]);
+
+  // Sort auctions with special logic for completion status
   const sortedAuctions = useMemo(() => {
-    if (!sortConfig.direction) return filteredAuctions;
-
     return [...filteredAuctions].sort((a, b) => {
+      // First, prioritize upcoming auctions over completed ones
+      const aCompleted = isAuctionCompleted(a.auction_date);
+      const bCompleted = isAuctionCompleted(b.auction_date);
+      
+      if (aCompleted !== bCompleted) {
+        // Upcoming auctions come first
+        return aCompleted ? 1 : -1;
+      }
+
+      // If both have same completion status, apply normal sorting
+      if (!sortConfig.direction) return 0;
+
       const aValue = a[sortConfig.key];
       const bValue = b[sortConfig.key];
 
@@ -35,7 +80,14 @@ export default function UpcomingAuctions() {
       if (sortConfig.key === 'auction_date' || sortConfig.key === 'registration_deadline') {
         const aDate = new Date(aValue as string);
         const bDate = new Date(bValue as string);
-        return sortConfig.direction === 'asc' ? aDate.getTime() - bDate.getTime() : bDate.getTime() - aDate.getTime();
+        
+        // For upcoming auctions: sort by date ascending (nearest first)
+        // For completed auctions: sort by date descending (most recent first)
+        if (aCompleted && bCompleted) {
+          return sortConfig.direction === 'asc' ? bDate.getTime() - aDate.getTime() : aDate.getTime() - bDate.getTime();
+        } else {
+          return sortConfig.direction === 'asc' ? aDate.getTime() - bDate.getTime() : bDate.getTime() - aDate.getTime();
+        }
       }
 
       // Handle numeric sorting
@@ -82,6 +134,27 @@ export default function UpcomingAuctions() {
     });
   };
 
+  // Count auctions by status
+  const auctionCounts = useMemo(() => {
+    const upcoming = filteredAuctions.filter(auction => !isAuctionCompleted(auction.auction_date)).length;
+    const completed = filteredAuctions.filter(auction => isAuctionCompleted(auction.auction_date)).length;
+    return { upcoming, completed, total: filteredAuctions.length };
+  }, [filteredAuctions]);
+
+  // Get status badge styling
+  const getStatusBadgeStyle = (status: string) => {
+    switch (status) {
+      case 'Completed':
+        return 'bg-gray-100 text-gray-800';
+      case 'Registration Open':
+        return 'bg-green-100 text-green-800';
+      case 'Upcoming':
+        return 'bg-blue-100 text-blue-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
+    }
+  };
+
   return (
     <div className="min-h-screen bg-cream">
       {/* Header */}
@@ -99,9 +172,10 @@ export default function UpcomingAuctions() {
       </div>
 
       <div className="container mx-auto px-4 py-8">
-        {/* Search Bar */}
-        <div className="mb-6">
-          <div className="relative max-w-md">
+        {/* Search and Filter Controls */}
+        <div className="mb-6 flex flex-col lg:flex-row gap-4">
+          {/* Search Bar */}
+          <div className="relative flex-1 max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
@@ -111,11 +185,35 @@ export default function UpcomingAuctions() {
               className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-transparent"
             />
           </div>
+
+          {/* Filter Dropdown */}
+          <div className="flex items-center gap-2">
+            <Filter className="w-5 h-5 text-gray-500" />
+            <select
+              value={filterOption}
+              onChange={(e) => setFilterOption(e.target.value as FilterOption)}
+              className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-transparent bg-white"
+            >
+              <option value="upcoming">Upcoming Only</option>
+              <option value="completed">Completed Only</option>
+              <option value="all">All Auctions</option>
+            </select>
+          </div>
         </div>
 
         {/* Results Count */}
         <div className="mb-4 text-gray-600">
-          Showing {sortedAuctions.length} of {auctions.length} auctions
+          {filterOption === 'all' && (
+            <span>
+              Showing {auctionCounts.upcoming} upcoming and {auctionCounts.completed} completed auctions ({auctionCounts.total} total)
+            </span>
+          )}
+          {filterOption === 'upcoming' && (
+            <span>Showing {auctionCounts.upcoming} upcoming auctions</span>
+          )}
+          {filterOption === 'completed' && (
+            <span>Showing {auctionCounts.completed} completed auctions</span>
+          )}
         </div>
 
         {/* Table */}
@@ -190,48 +288,58 @@ export default function UpcomingAuctions() {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {sortedAuctions.map((auction, index) => (
-                  <tr 
-                    key={`${auction.county}-${auction.auction_date}`}
-                    className={`hover:bg-gray-50 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}
-                  >
-                    <td className="px-4 py-3 text-sm text-gray-900 font-medium">{auction.state}</td>
-                    <td className="px-4 py-3 text-sm text-gray-900 font-medium">{auction.county}</td>
-                    <td className="px-4 py-3 text-sm text-gray-900 font-semibold text-primary-green">
-                      {formatDate(auction.auction_date)}
-                    </td>
-                    <td className="px-4 py-3 text-sm text-gray-900">{auction.auction_time}</td>
-                    <td className="px-4 py-3 text-sm text-gray-900">{auction.auction_type}</td>
-                    <td className="px-4 py-3 text-sm text-gray-900">{auction.sale_type}</td>
-                    <td className="px-4 py-3 text-sm text-gray-900 font-semibold text-primary-green">
-                      {formatDate(auction.registration_deadline)}
-                    </td>
-                    <td className="px-4 py-3 text-sm text-gray-900">{auction.deposit_requirement}</td>
-                    <td className="px-4 py-3 text-sm text-gray-900 font-medium">{auction.num_properties}</td>
-                    <td className="px-4 py-3 text-sm">
-                      <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                        auction.auction_status === 'Registration Open' 
-                          ? 'bg-green-100 text-green-800'
-                          : auction.auction_status === 'Upcoming'
-                          ? 'bg-blue-100 text-blue-800'
-                          : 'bg-gray-100 text-gray-800'
+                {sortedAuctions.map((auction, index) => {
+                  const isCompleted = isAuctionCompleted(auction.auction_date);
+                  const currentStatus = getAuctionStatus(auction);
+                  
+                  return (
+                    <tr 
+                      key={`${auction.county}-${auction.auction_date}`}
+                      className={`hover:bg-gray-50 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'} ${
+                        isCompleted ? 'opacity-75' : ''
+                      }`}
+                    >
+                      <td className="px-4 py-3 text-sm text-gray-900 font-medium">{auction.state}</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 font-medium">{auction.county}</td>
+                      <td className={`px-4 py-3 text-sm font-semibold ${
+                        isCompleted ? 'text-gray-600' : 'text-primary-green'
                       }`}>
-                        {auction.auction_status}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 text-sm">
-                      <a
-                        href={auction.official_link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-primary-green hover:text-primary-green/80 transition-colors font-medium"
-                      >
-                        View Details
-                        <ExternalLink className="w-4 h-4" />
-                      </a>
-                    </td>
-                  </tr>
-                ))}
+                        {formatDate(auction.auction_date)}
+                      </td>
+                      <td className="px-4 py-3 text-sm text-gray-900">{auction.auction_time}</td>
+                      <td className="px-4 py-3 text-sm text-gray-900">{auction.auction_type}</td>
+                      <td className="px-4 py-3 text-sm text-gray-900">{auction.sale_type}</td>
+                      <td className={`px-4 py-3 text-sm font-semibold ${
+                        isCompleted ? 'text-gray-600' : 'text-primary-green'
+                      }`}>
+                        {formatDate(auction.registration_deadline)}
+                      </td>
+                      <td className="px-4 py-3 text-sm text-gray-900">{auction.deposit_requirement}</td>
+                      <td className="px-4 py-3 text-sm text-gray-900 font-medium">{auction.num_properties}</td>
+                      <td className="px-4 py-3 text-sm">
+                        <span className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold rounded-full ${getStatusBadgeStyle(currentStatus)}`}>
+                          {isCompleted && <CheckCircle className="w-3 h-3" />}
+                          {currentStatus}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-sm">
+                        <a
+                          href={auction.official_link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`inline-flex items-center gap-1 transition-colors font-medium ${
+                            isCompleted 
+                              ? 'text-gray-500 hover:text-gray-700' 
+                              : 'text-primary-green hover:text-primary-green/80'
+                          }`}
+                        >
+                          View Details
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

@@ -16,6 +16,38 @@ export interface Auction {
 }
 
 export const auctions: Auction[] = [
+  // Completed auctions (for testing)
+  {
+    state: "Idaho",
+    county: "Ada County",
+    auction_date: "2025-10-10",
+    auction_time: "8:00 AM",
+    auction_type: "Online",
+    sale_type: "Tax Deed",
+    registration_deadline: "2025-10-10",
+    deposit_requirement: "See official site",
+    num_properties: 4,
+    official_link: "https://www.publicsurplus.com/sms/adaco,id/list/current?orgid=291890",
+    apn_parcel_id: "Various",
+    property_address: "Multiple properties in Ada County, ID",
+    auction_status: "Completed"
+  },
+  {
+    state: "California",
+    county: "Riverside County",
+    auction_date: "2025-10-05",
+    auction_time: "9:00 AM PT",
+    auction_type: "Online",
+    sale_type: "Tax-Defaulted Property",
+    registration_deadline: "2025-10-01",
+    deposit_requirement: "$2,500 minimum",
+    num_properties: 23,
+    official_link: "https://www.riversidecountyca.gov/treasurer",
+    apn_parcel_id: "Various",
+    property_address: "Multiple properties in Riverside County, CA",
+    auction_status: "Completed"
+  },
+  // Upcoming auctions
   {
     state: "Idaho",
     county: "Ada County",
