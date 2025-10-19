@@ -5,6 +5,12 @@ import { Link } from "wouter";
 import { setSEOData } from "@/lib/seo";
 import newslettersData from "@/data/newsletters.json";
 import { loadMarkdown, getMarkdownPath } from "@/lib/loadMarkdown";
+import { Buffer } from 'buffer';
+import RelatedArticles from "@/components/RelatedArticles";
+
+if (typeof window !== 'undefined') {
+  window.Buffer = Buffer;
+}
 
 interface Newsletter {
   title: string;
@@ -22,6 +28,7 @@ interface MarkdownContent {
     date: string;
     tags: string[];
     description: string;
+    featuredImage?: string;
   };
 }
 
@@ -216,6 +223,9 @@ export default function NewsletterPost() {
               <div className="text-center text-gray-500">Loading content...</div>
             )}
           </div>
+
+          {/* Keep Reading Section */}
+          <RelatedArticles currentSlug={newsletter.slug} maxArticles={3} />
 
           {/* Newsletter CTA */}
           <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-2xl p-8 mt-8 text-white text-center">

@@ -1,0 +1,588 @@
+# Master registry of all US states and DC for tax deed/lien investing
+# Updated: 2025-09-05
+
+states:
+  # Verified states with detailed information
+  - slug: alaska
+    name: Alaska
+    type: Tax Deed State
+    status: available
+    difficulty: intermediate
+    summary: "Borough system; sealed-bid tax foreclosure sales; infrequent but interesting."
+    auctions_per_year: "Every ~2 years (borough dependent)"
+    format: "Sealed bid (varies by borough)"
+    last_updated: "2025-09-05"
+
+  - slug: texas
+    name: Texas
+    type: Redeemable Deed
+    status: available
+    difficulty: advanced
+    summary: "First Tuesday courthouse auctions; strong property rights; oil & gas considerations."
+    auctions_per_year: "Monthly (first Tuesday)"
+    format: "Courthouse steps auction"
+    last_updated: "2025-09-05"
+
+  - slug: new-mexico
+    name: New Mexico
+    type: Tax Deed State
+    status: available
+    difficulty: advanced
+    summary: "County variations; subdivision potential; water rights complexity."
+    auctions_per_year: "Varies by county"
+    format: "County-specific processes"
+    last_updated: "2025-09-05"
+
+  - slug: florida
+    name: Florida
+    type: Hybrid
+    status: available
+    difficulty: beginner
+    summary: "Certificate state; online bidding; hurricane recovery opportunities."
+    auctions_per_year: "Annual certificate sales"
+    format: "Online bidding platform"
+    last_updated: "2025-09-05"
+
+  - slug: arizona
+    name: Arizona
+    type: Tax Lien State
+    status: available
+    difficulty: beginner
+    summary: "Certificate auctions; competitive bidding; strong redemption rates."
+    auctions_per_year: "Annual certificate auctions"
+    format: "Competitive certificate bidding"
+    last_updated: "2025-09-05"
+
+  - slug: georgia
+    name: Georgia
+    type: Redeemable Deed
+    status: available
+    difficulty: intermediate
+    summary: "Redeemable deeds; First Tuesday tradition; 20% interest if redeemed."
+    auctions_per_year: "First Tuesday monthly"
+    format: "Courthouse steps (redeemable deed)"
+    last_updated: "2025-09-05"
+
+  - slug: alabama
+    name: Alabama
+    type: Hybrid
+    status: available
+    difficulty: intermediate
+    summary: "Tax lien certificate sales; 3-year redemption period; county-run auctions."
+    auctions_per_year: "Annual (county-run)"
+    format: "In-person or online by county"
+    last_updated: "2025-09-05"
+
+  - slug: arkansas
+    name: Arkansas
+    type: Tax Deed State
+    status: available
+    difficulty: intermediate
+    auctions_per_year: "Annual (July-September)"
+    format: "Live regional auctions"
+    summary: "Centralized tax deed system; no redemption after sale; Commissioner of State Lands manages all 75 counties."
+    last_updated: "2025-09-06"
+
+  - slug: california
+    name: California
+    type: Tax Deed State
+    status: available
+    difficulty: advanced
+    auctions_per_year: "County-specific (varies)"
+    format: "Online auctions (county-run)"
+    summary: "5-year delinquency tax deed system; online sales; no post-sale redemption; title challenges within one year."
+    last_updated: "2025-09-06"
+
+  - slug: colorado
+    name: Colorado
+    type: Tax Lien State
+    status: available
+    difficulty: intermediate
+    summary: "Hybrid system; treasurer's deeds with redemption; county variations."
+    auctions_per_year: "Annual county sales"
+    format: "Public auction at courthouse"
+    last_updated: "2025-09-05"
+
+  - slug: connecticut
+    name: Connecticut
+    type: Redeemable Deed
+    status: available
+    difficulty: beginner
+    summary: "Tax lien certificates; 18% interest rate; municipal tax collectors."
+    auctions_per_year: "Annual municipal sales"
+    format: "Municipal auctions (in-person/online)"
+    last_updated: "2025-09-05"
+
+  - slug: delaware
+    name: Delaware
+    type: Redeemable Deed
+    status: available
+    difficulty: advanced
+    auctions_per_year: "As needed (county-run)"
+    format: "Sheriff's monition sales"
+    summary: "Mortgage-style foreclosure sales; county-specific processes; limited inventory; high capital requirements."
+    last_updated: "2025-09-06"
+
+  - slug: washington-dc
+    name: Washington, DC
+    type: Tax Lien State
+    status: available
+    difficulty: intermediate
+    auctions_per_year: "Annual (July) + OTC sales"
+    format: "In-person auction + online OTC"
+    summary: "Tax lien certificate sales; annual July auction; over-the-counter sales year-round; 20% minimum deposit."
+    last_updated: "2025-09-06"
+
+  - slug: hawaii
+    name: Hawaii
+    type: Redeemable Deed
+    status: available
+    difficulty: advanced
+    auctions_per_year: "County-specific (varies)"
+    format: "Public auction by county"
+    summary: "County-managed tax deed system; 3+ year delinquency; 1-year redemption; 12% redemption interest."
+    last_updated: "2025-09-06"
+
+  - slug: idaho
+    name: Idaho
+    type: Tax Deed State
+    status: available
+    difficulty: intermediate
+    auctions_per_year: "Annual (spring/summer)"
+    format: "County auctions (online/in-person)"
+    summary: "3-year delinquency tax deed system; 14-month redemption period; county-run auctions."
+    last_updated: "2025-09-06"
+
+  - slug: illinois
+    name: Illinois
+    type: Tax Lien State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: indiana
+    name: Indiana
+    type: Tax Lien State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: iowa
+    name: Iowa
+    type: Tax Lien State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: kansas
+    name: Kansas
+    type: Tax Deed State
+    status: available
+    difficulty: intermediate
+    summary: "Kansas uses judicial foreclosure to sell tax deeds with NO post-sale redemption (except federal liens). Pure acquisition play - no waiting for redemption returns. Court confirmation required (4-6 weeks), then deed issued (30-45 days). Owners can redeem only until day before sale. 105 counties."
+    auctions_per_year: "Varies by county (after court foreclosure)"
+    format: "Judicial Tax Foreclosure - Sheriff's Deed"
+    last_updated: "2025-01-14"
+    featured: true
+    image: "/images/states/kansas-hero.jpg"
+    description: "Kansas uses judicial foreclosure to sell tax deeds with NO post-sale redemption (except federal liens). Pure acquisition play - no waiting for redemption returns. Court confirmation required (4-6 weeks), then deed issued (30-45 days). Owners can redeem only until day before sale. 105 counties."
+    saleType: "Judicial Tax Foreclosure - Sheriff's Deed"
+    redemptionPeriod: "None (except federal liens - 120 days)"
+    interestRate: "N/A (pure acquisition, no redemption returns)"
+    keyFeatures:
+      - "Tax deed sales (property, not liens) - pure acquisition"
+      - "NO post-sale redemption period (except federal 120 days)"
+      - "Judicial foreclosure process - court supervised"
+      - "Court confirmation required (4-6 weeks after sale)"
+      - "Deed issued 30-45 days after confirmation"
+      - "Owners can redeem only until day before sale"
+      - "105 counties provide statewide opportunities"
+      - "High bid wins (no interest rate bidding)"
+      - "Sheriff's Deed after court confirmation"
+
+  - slug: kentucky
+    name: Kentucky
+    type: Tax Lien State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: louisiana
+    name: Louisiana
+    type: Redeemable Deed
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: maine
+    name: Maine
+    type: Tax Deed State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: maryland
+    name: Maryland
+    type: Tax Lien State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: massachusetts
+    name: Massachusetts
+    type: Hybrid
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: michigan
+    name: Michigan
+    type: Tax Deed State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: minnesota
+    name: Minnesota
+    type: Tax Deed State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: mississippi
+    name: Mississippi
+    type: Redeemable Deed
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: missouri
+    name: Missouri
+    type: Tax Lien State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: montana
+    name: Montana
+    type: Tax Lien State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: nebraska
+    name: Nebraska
+    type: Tax Lien State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: nevada
+    name: Nevada
+    type: Tax Deed State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: new-hampshire
+    name: New Hampshire
+    type: Tax Deed State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: new-jersey
+    name: New Jersey
+    type: Tax Lien State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: new-york
+    name: New York
+    type: Hybrid
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: north-carolina
+    name: North Carolina
+    type: Tax Deed State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: north-dakota
+    name: North Dakota
+    type: Tax Deed State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: ohio
+    name: Ohio
+    type: Hybrid
+    status: available
+    difficulty: advanced
+    auctions_per_year: "County-specific (varies)"
+    format: "Bulk tax lien sales / Sheriff's tax deed sales"
+    summary: "Hybrid system; 34 counties bulk lien sales, 54 counties Sheriff's deed sales; high capital requirements."
+    last_updated: "2025-09-07"
+
+  - slug: oklahoma
+    name: Oklahoma
+    type: Tax Lien State
+    status: available
+    difficulty: intermediate
+    auctions_per_year: "Annual (second Monday of June)"
+    format: "County courthouse auctions"
+    summary: "Tax deed system; 3+ year delinquency; annual June sales; quiet title recommended."
+    last_updated: "2025-09-07"
+
+  - slug: oregon
+    name: Oregon
+    type: Tax Deed State
+    status: available
+    difficulty: intermediate
+    auctions_per_year: "County-specific (varies)"
+    format: "County foreclosure auctions"
+    summary: "Tax deed system; 3-year delinquency; 2-year redemption period; county-managed auctions."
+    last_updated: "2025-09-07"
+
+  - slug: pennsylvania
+    name: Pennsylvania
+    type: Tax Deed State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: rhode-island
+    name: Rhode Island
+    type: Hybrid
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: south-carolina
+    name: South Carolina
+    type: Redeemable Deed
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: south-dakota
+    name: South Dakota
+    type: Tax Lien State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: tennessee
+    name: Tennessee
+    type: Redeemable Deed
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: utah
+    name: Utah
+    type: Tax Deed State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: vermont
+    name: Vermont
+    type: Tax Deed State
+    status: available
+    difficulty: advanced
+    auctions_per_year: "Municipal (varies)"
+    format: "Public auction by municipality"
+    summary: "Municipal tax deed system; 1+ year delinquency; 1-year redemption; 1% monthly interest; Act 106 reforms."
+    last_updated: "2025-09-06"
+
+  - slug: virginia
+    name: Virginia
+    type: Tax Deed State
+    status: available
+    difficulty: intermediate
+    auctions_per_year: "County-specific (varies)"
+    format: "Judicial sales at courthouse"
+    summary: "Tax deed system; 3-year delinquency; special warranty deed; no post-sale redemption."
+    last_updated: "2025-09-06"
+
+  - slug: washington
+    name: Washington
+    type: Tax Deed State
+    status: available
+    difficulty: intermediate
+    auctions_per_year: "Annual (winter months)"
+    format: "County foreclosure auctions"
+    summary: "3-year delinquency tax deed system; no general redemption; 7-year title seasoning period."
+    last_updated: "2025-09-06"
+
+  - slug: west-virginia
+    name: West Virginia
+    type: Tax Lien State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: wisconsin
+    name: Wisconsin
+    type: Tax Deed State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"
+
+  - slug: wyoming
+    name: Wyoming
+    type: Tax Lien State
+    status: research
+    difficulty: tbd
+    
+    auctions_per_year: "TBD"
+    format: "TBD"
+    summary: "To be verified."
+    
+    last_updated: "2025-09-05"

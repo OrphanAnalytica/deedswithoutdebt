@@ -20,6 +20,7 @@ import Disclaimer from "@/pages/Disclaimer";
 import Contact from "@/pages/Contact";
 import Layout from "@/components/Layout";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import SubscriptionConfirmationDetector from "@/components/SubscriptionConfirmationDetector";
 
 function Router() {
   return (
@@ -73,6 +74,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <SubscriptionProvider>
+          <SubscriptionConfirmationDetector />
           <Toaster />
           <Router />
         </SubscriptionProvider>

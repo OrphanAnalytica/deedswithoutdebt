@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Comparison Matrix - Deeds Without Debt</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            line-height: 1.3;
+            color: #1a1a1a;
+            background: #0B2E13;
+            padding: 20px;
+        }
+        
+        .page {
+            width: 11in;
+            height: 8.5in;
+            background: white;
+            margin: 0 auto 20px;
+            padding: 0.5in;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #0B2E13;
+            padding-bottom: 15px;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: #0B2E13;
+            margin-bottom: 8px;
+        }
+        
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #0B2E13;
+            margin-bottom: 6px;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .copyright {
+            font-size: 8px;
+            color: #888;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 8px;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 6px 4px;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background: #0B2E13;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .state-name {
+            font-weight: 600;
+            color: #0B2E13;
+        }
+        
+        .legend {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 15px 0;
+            font-size: 9px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        
+        .easy { background: #4CAF50; }
+        .moderate { background: #FFC107; }
+        .difficult { background: #f44336; }
+        
+        .note-box {
+            background: #EDE6D7;
+            border-left: 4px solid #0B2E13;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-size: 8px;
+        }
+        
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 8px;
+            color: #666;
+            border-top: 1px solid #EDE6D7;
+            padding-top: 6px;
+            margin-top: 30px;
+        }
+        
+        @page {
+            margin: 0.5in;
+            size: letter landscape;
+        }
+        
+        @media print {
+            @page {
+                margin: 0.5in;
+                size: letter landscape;
+            }
+            
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+            
+            .footer {
+                position: absolute;
+                bottom: 0.3in;
+                left: 0.5in;
+                right: 0.5in;
+                margin-top: 0;
+            }
+            
+            .comparison-table {
+                page-break-inside: avoid;
+            }
+            
+            .comparison-table tr {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="logo">DWD</div>
+            <div class="title">State Comparison Matrix</div>
+            <div class="subtitle">Find the Best States for Your Investment Strategy</div>
+            <div class="copyright">© Deeds Without Debt | DeedsWithoutDebt.com</div>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot easy"></div>
+                <span>Investor-Friendly</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot moderate"></div>
+                <span>Moderate Complexity</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot difficult"></div>
+                <span>Complex/Risky</span>
+            </div>
+        </div>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>State</th>
+                    <th>Sale Type</th>
+                    <th>Redemption Period</th>
+                    <th>Interest Rate</th>
+                    <th>Investor Difficulty</th>
+                    <th>Key Advantages</th>
+                    <th>Key Risks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="state-name">Arizona</td>
+                    <td>Tax Lien</td>
+                    <td>3 years</td>
+                    <td>16%</td>
+                    <td style="text-align: center;">🟢</td>
+                    <td>High interest, clear process</td>
+                    <td>Long redemption period</td>
+                </tr>
+                <tr>
+                    <td class="state-name">Florida</td>
+                    <td>Tax Lien</td>
+                    <td>2 years</td>
+                    <td>Up to 18%</td>
+                    <td style="text-align: center;">🟢</td>
+                    <td>High ROI potential, active market</td>
+                    <td>Competitive bidding</td>
+                </tr>
+                <tr>
+                    <td class="state-name">Georgia</td>
+                    <td>Tax Deed</td>
+                    <td>1 year</td>
+                    <td>20%</td>
+                    <td style="text-align: center;">🟢</td>
+                    <td>Quick turnaround, high penalties</td>
+                    <td>Title research critical</td>
+                </tr>
+                <tr>
+                    <td class="state-name">Texas</td>
+                    <td>Tax Deed</td>
+                    <td>6 months - 2 years</td>
+                    <td>25%</td>
+                    <td style="text-align: center;">🟡</td>
+                    <td>Extremely high penalties</td>
+                    <td>Complex procedures vary by county</td>
+                </tr>
+                <tr>
+                    <td class="state-name">Illinois</td>
+                    <td>Tax Lien</td>
+                    <td>2.5 years</td>
+                    <td>Up to 36%</td>
+                    <td style="text-align: center;">🟡</td>
+                    <td>Highest interest rates in nation</td>
+                    <td>Long process, competitive</td>
+                </tr>
+                <tr>
+                    <td class="state-name">Colorado</td>
+                    <td>Tax Lien</td>
+                    <td>3 years</td>
+                    <td>9-12%</td>
+                    <td style="text-align: center;">🟢</td>
+                    <td>Good for beginners, organized</td>
+                    <td>Lower returns than other states</td>
+                </tr>
+                <tr>
+                    <td class="state-name">Alabama</td>
+                    <td>Tax Lien</td>
+                    <td>3 years</td>
+                    <td>12%</td>
+                    <td style="text-align: center;">🟢</td>
+                    <td>Simple process, good returns</td>
+                    <td>Must research rural properties</td>
+                </tr>
+                <tr>
+                    <td class="state-name">Michigan</td>
+                    <td>Tax Deed</td>
+                    <td>None</td>
+                    <td>N/A</td>
+                    <td style="text-align: center;">🟡</td>
+                    <td>No redemption period</td>
+                    <td>Very competitive, high prices</td>
+                </tr>
+                <tr>
+                    <td class="state-name">New Jersey</td>
+                    <td>Tax Lien</td>
+                    <td>2 years</td>
+                    <td>18%</td>
+                    <td style="text-align: center;">🔴</td>
+                    <td>High interest potential</td>
+                    <td>Complex legal system, expensive</td>
+                </tr>
+                <tr>
+                    <td class="state-name">California</td>
+                    <td>Tax Deed</td>
+                    <td>None</td>
+                    <td>N/A</td>
+                    <td style="text-align: center;">🔴</td>
+                    <td>High property values</td>
+                    <td>Very competitive, expensive entry</td>
+                </tr>
+                <tr>
+                    <td class="state-name">Iowa</td>
+                    <td>Tax Deed</td>
+                    <td>1.75 years</td>
+                    <td>24%</td>
+                    <td style="text-align: center;">🟢</td>
+                    <td>High returns, moderate process</td>
+                    <td>Rural property dominance</td>
+                </tr>
+                <tr>
+                    <td class="state-name">Mississippi</td>
+                    <td>Tax Deed</td>
+                    <td>2 years</td>
+                    <td>18%</td>
+                    <td style="text-align: center;">🟢</td>
+                    <td>Affordable properties</td>
+                    <td>Market liquidity concerns</td>
+                </tr>
+                <tr>
+                    <td class="state-name">South Carolina</td>
+                    <td>Tax Deed</td>
+                    <td>1 year</td>
+                    <td>3-8%</td>
+                    <td style="text-align: center;">🟡</td>
+                    <td>Quick process</td>
+                    <td>Lower interest rates</td>
+                </tr>
+                <tr>
+                    <td class="state-name">Indiana</td>
+                    <td>Tax Deed</td>
+                    <td>1 year</td>
+                    <td>10-25%</td>
+                    <td style="text-align: center;">🟢</td>
+                    <td>Good balance of risk/reward</td>
+                    <td>Varies significantly by county</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="note-box">
+            <strong>Important Notes:</strong> This matrix provides general guidance only. Laws change frequently, and procedures vary by county within each state. 
+            Always verify current rules with local authorities before investing. Redemption periods, interest rates, and procedures can vary significantly. 
+            Visit DeedsWithoutDebt.com for detailed state-specific guides.
+        </div>
+        
+        <div class="footer">
+            <div>Deeds Without Debt</div>
+            <div>DeedsWithoutDebt.com/resources | Full state guides available for Pro members</div>
+            <div>Page 1</div>
+        </div>
+    </div>
+</body>
+</html>
+

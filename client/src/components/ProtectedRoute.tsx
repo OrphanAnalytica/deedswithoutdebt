@@ -23,6 +23,7 @@ export default function ProtectedRoute({
     }
   }, [isSubscribed, isLoading]);
 
+
   const handleCloseGate = () => {
     setShowGate(false);
   };

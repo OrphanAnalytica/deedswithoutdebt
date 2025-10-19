@@ -8,6 +8,8 @@ import { StateGuide, listStates } from "@/lib/stateGuides";
 import { StateCard } from "@/components/ui/StateCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import Fuse from 'fuse.js';
+import { emailCaptureUtils } from "@/utils/emailCapture";
+import { useToast } from "@/hooks/use-toast";
 
 export default function StateGuides() {
   const [stateGuides, setStateGuides] = useState<StateGuide[]>([]);
@@ -16,6 +18,7 @@ export default function StateGuides() {
   const [selectedType, setSelectedType] = useState<string>('all');
   const searchParams = useSearch();
   const [, setLocation] = useLocation();
+  const { toast } = useToast();
 
   useEffect(() => {
     setSEOData({
@@ -42,6 +45,61 @@ export default function StateGuides() {
       setLoading(false);
     });
   }, [searchParams]);
+
+  // ConvertKit Email Confirmation Detection
+  useEffect(() => {
+    const detectEmailConfirmation = () => {
+      // Check if user just came from ConvertKit confirmation
+      const referrer = document.referrer.toLowerCase();
+      const urlParams = new URLSearchParams(window.location.search);
+      
+      const fromConvertKit = 
+        referrer.includes('kit.com') || 
+        referrer.includes('convertkit') ||
+        referrer.includes('app.kit.com') ||
+        urlParams.get('confirmed') === 'true' ||
+        urlParams.get('subscription') === 'confirmed' ||
+        urlParams.get('subscriber_id') !== null;
+
+      // Check if there's a pending confirmation
+      const isConfirmationPending = emailCaptureUtils.isConfirmationPending();
+      const hasAccess = emailCaptureUtils.hasProvidedEmail();
+      const email = emailCaptureUtils.getStoredEmail();
+
+      // DEBUG: Log all detection variables
+      console.log('🔍 StateGuides ConvertKit Detection:');
+      console.log('- Referrer:', document.referrer);
+      console.log('- URL params:', window.location.search);
+      console.log('- From ConvertKit?', fromConvertKit);
+      console.log('- Pending confirmation:', isConfirmationPending);
+      console.log('- Has access:', hasAccess);
+      console.log('- Email:', email);
+
+      // If they came from ConvertKit AND have pending confirmation AND don't have access yet
+      if (fromConvertKit && isConfirmationPending && !hasAccess && email) {
+        console.log('✅ StateGuides: GRANTING ACCESS - ConvertKit confirmation detected');
+        
+        // Grant access immediately
+        emailCaptureUtils.markEmailConfirmed(email);
+        
+        // Show success toast
+        toast({
+          title: "✓ Subscription Confirmed!",
+          description: "Welcome to Deeds Without Debt! You now have full access to all state guides.",
+          duration: 4000,
+          className: "bg-green-50 border-green-200 text-green-900 shadow-xl",
+        });
+        
+        // Force page refresh to update subscription state
+        setTimeout(() => {
+          window.location.reload();
+        }, 800);
+      }
+    };
+
+    // Run detection immediately
+    detectEmailConfirmation();
+  }, [toast]);
 
   // Update URL and localStorage when filters change
   useEffect(() => {

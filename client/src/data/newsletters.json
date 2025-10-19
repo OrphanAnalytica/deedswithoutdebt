@@ -1,66 +1,66 @@
 [
   {
+    "title": "Welcome to the New DeedsWithoutDebt.com",
+    "slug": "welcome-new-site-launch",
+    "publish_date": "2025-10-17",
+    "excerpt": "Big news — our brand-new site DeedsWithoutDebt.com is officially live. This isn't just a facelift. It's the foundation for everything we're building in the tax sale space.",
+    "image": "/images/newsletters/newsletter-001-launch.jpg",
+    "tags": ["Site Launch", "Newsletter", "Community", "Tax Sales", "Real Estate Investing"],
+    "file": "/src/content/newsletters/welcome-new-site-launch.md"
+  },
+  {
     "title": "Forget Liens — Here's Where You Can Actually Own the Property",
     "slug": "forget-liens-heres-where-you-can-actually-own-the-property",
     "publish_date": "2024-12-15",
-    "excerpt": "Why understanding deed states is the foundation of smart tax sale investing",
-    "image": "/images/articles/forget-liens-deed-states.jpg",
-    "tags": ["No-Bank Real Estate", "Tax Deeds", "Wealth Building", "High Yield Returns", "Real Estate Investing", "Passive Income"],
+    "excerpt": "Recently, I've been having a few back-and-forths on Reddit with folks curious about tax sales. What stood out? Almost everyone was more interested in deed sales than liens.",
+    "image": "/images/newsletters/deed-vs-lien-property-ownership.jpg",
+    "tags": ["Tax Deeds", "Tax Liens", "State Guide", "Real Estate Investing", "Property Ownership"],
     "file": "/src/content/newsletters/forget-liens-heres-where-you-can-actually-own-the-property.md"
   },
   {
-    "title": "3 Proven Ways to Buy Real Estate Without Banks: Tax Deeds, Tax Liens & HOA Foreclosures",
-    "slug": "3-proven-ways-to-buy-real-estate-without-banks",
+    "title": "Can AI Really Help You Buy Properties for Pennies on the Dollar?",
+    "slug": "can-ai-help-buy-properties-pennies-on-dollar",
     "publish_date": "2024-12-08",
-    "excerpt": "Discover three powerful methods to buy property without banks — through tax deeds, tax liens, and HOA foreclosures — and how to find overlooked deals in your county.",
-    "image": "/images/articles/3-ways-buy-without-banks.jpg",
-    "tags": ["Strategy", "Tax Deeds", "Tax Liens", "HOA Foreclosures"],
-    "file": "/src/content/newsletters/3-proven-ways-to-buy-real-estate-without-banks.md"
+    "excerpt": "Breaking down the promises, risks, and realities of AI-driven tax deed investing. I came across an article this week about Tax Deeds AI that made me stop and think.",
+    "image": "/images/newsletters/ai-tax-deed-investing-analysis.jpg",
+    "tags": ["AI Technology", "Tax Deeds", "Investment Tools", "Due Diligence", "Real Estate Tech"],
+    "file": "/src/content/newsletters/can-ai-help-buy-properties-pennies-on-dollar.md"
   },
   {
-    "title": "Alaska Tax Sales: September 2025 Borough Auction Guide",
-    "slug": "alaska-tax-sales-september-2025-borough-auction-guide",
+    "title": "North Carolina's Upset Bid System: Where the Real Action Happens",
+    "slug": "north-carolina-upset-bid-system",
     "publish_date": "2024-12-01",
-    "excerpt": "Alaska's unique borough structure creates exceptional opportunities",
-    "image": "/images/articles/alaska-tax-sales-2025.jpg",
-    "tags": ["Alaska", "Tax Sales", "State Guide", "Auctions"],
-    "file": "/src/content/newsletters/alaska-tax-sales-september-2025-borough-auction-guide.md"
+    "excerpt": "On August 27, 2025, both Chatham County and Chowan County held their tax deed sales. But here's the thing most newcomers don't realize: winning at the courthouse auction is just the beginning.",
+    "image": "/images/newsletters/north-carolina-upset-bid-system.jpg",
+    "tags": ["North Carolina", "Upset Bid", "Tax Deeds", "Auction Strategy", "State Guide"],
+    "file": "/src/content/newsletters/north-carolina-upset-bid-system.md"
   },
   {
-    "title": "Catron County Win: $17K to $120K in 18 Months",
-    "slug": "catron-county-win-17k-to-120k-in-18-months",
+    "title": "How to Pull & Research a Tax Deed Sale List (Even If You Don't Live There)",
+    "slug": "how-to-pull-research-tax-deed-sale-list",
     "publish_date": "2024-11-24",
-    "excerpt": "My personal case study of turning a tax deed purchase into a massive profit",
-    "image": "/images/articles/catron-county-case-study.jpg",
-    "tags": ["Case Study", "Profit", "New Mexico", "Tax Deeds"],
-    "file": "/src/content/newsletters/catron-county-win-17k-to-120k-in-18-months.md"
+    "excerpt": "A lot of people ask me: 'How do I even start if I don't live in the county where the sale is happening?' Here's exactly how I'd explain it to a friend — step by step.",
+    "image": "/images/newsletters/tax-deed-list-research-guide.jpg",
+    "tags": ["Tax Deeds", "Due Diligence", "Research Guide", "Remote Investing", "County Records"],
+    "file": "/src/content/newsletters/how-to-pull-research-tax-deed-sale-list.md"
   },
   {
-    "title": "HOA Foreclosures: The Hidden Opportunity in Every City",
-    "slug": "hoa-foreclosures-the-hidden-opportunity-in-every-city",
+    "title": "Will Property Taxes Ever Go Away? What Tax Deed and Lien Investors Need to Know",
+    "slug": "will-property-taxes-ever-go-away",
     "publish_date": "2024-11-17",
-    "excerpt": "While everyone focuses on tax sales, HOA foreclosures happen year-round with less competition",
-    "image": "/images/articles/hoa-foreclosures.jpg",
-    "tags": ["HOA", "Strategy", "Foreclosures", "Real Estate"],
-    "file": "/src/content/newsletters/hoa-foreclosures-the-hidden-opportunity-in-every-city.md"
+    "excerpt": "National headlines make bold claims, but local governments still rely on property taxes — and that keeps tax deed and lien sales alive for investors like you.",
+    "image": "/images/newsletters/property-tax-future-investing.jpg",
+    "tags": ["Property Taxes", "Tax Deeds", "Tax Liens", "Local Government", "Investment Strategy"],
+    "file": "/src/content/newsletters/will-property-taxes-ever-go-away.md"
   },
   {
-    "title": "Probate Real Estate: Finding Off-Market Deals",
-    "slug": "probate-real-estate-finding-off-market-deals",
+    "title": "Back to My Roots: The Torrance County Tax Sale 9/25/25",
+    "slug": "torrance-county-tax-sale-september-2025",
     "publish_date": "2024-11-10",
-    "excerpt": "Learn how to ethically approach probate situations and help families while building your portfolio",
-    "image": "/images/articles/probate-real-estate.jpg",
-    "tags": ["Probate", "Off-Market", "Strategy"],
-    "file": "/src/content/newsletters/probate-real-estate-finding-off-market-deals.md"
-  },
-  {
-    "title": "Tax Lien Certificates: Guaranteed Returns or Risky Gamble?",
-    "slug": "tax-lien-certificates-guaranteed-returns-or-risky-gamble",
-    "publish_date": "2024-11-03",
-    "excerpt": "Breaking down the reality of tax lien investing, including the states where it actually works",
-    "image": "/images/articles/tax-lien-certificates.jpg",
-    "tags": ["Tax Liens", "Certificates", "ROI"],
-    "file": "/src/content/newsletters/tax-lien-certificates-guaranteed-returns-or-risky-gamble.md"
+    "excerpt": "How My Team, My Mentor, and I Found Big Wins in the New Mexico Desert. Every time a new sale pops up in Torrance County, I feel a pull back to where it all started for me.",
+    "image": "/images/newsletters/torrance-county-new-mexico-tax-sale.jpg",
+    "tags": ["New Mexico", "Torrance County", "Tax Deeds", "Case Study", "Property Analysis"],
+    "file": "/src/content/newsletters/torrance-county-tax-sale-september-2025.md"
   },
   {
     "title": "Why Quiet Title Actions Are the Unsung Hero of Tax Deed Investing",

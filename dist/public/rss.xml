@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deeds Without Debt</title>
+    <link>https://deedswithoutdebt.com</link>
+    <description>Weekly insights on alternative real estate investing strategies including tax deeds, tax liens, and probate deals</description>
+    <language>en-us</language>
+    <managingEditor>ralph@deedswithoutdebt.com (Ralph Biah)</managingEditor>
+    <webMaster>ralph@deedswithoutdebt.com (Ralph Biah)</webMaster>
+    <lastBuildDate>Fri, 15 Mar 2024 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://deedswithoutdebt.com/rss.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>3 Ways to Buy Real Estate Without Banks (And Why They Work)</title>
+      <link>https://deedswithoutdebt.com/archive/3-ways-buy-real-estate-without-banks</link>
+      <description>Discover the proven strategies I've used to acquire over $2M in real estate without traditional financing. From tax deed auctions to probate deals, here's your complete roadmap.</description>
+      <author>ralph@deedswithoutdebt.com (Ralph Biah)</author>
+      <category>Strategy</category>
+      <category>Tax Deeds</category>
+      <category>No-Bank Investing</category>
+      <pubDate>Fri, 15 Mar 2024 00:00:00 GMT</pubDate>
+      <guid>https://deedswithoutdebt.com/archive/3-ways-buy-real-estate-without-banks</guid>
+    </item>
+
+    <item>
+      <title>How Alaska Tax Sales Work: September 2025 Borough Auction Guide</title>
+      <link>https://deedswithoutdebt.com/archive/alaska-tax-sales-guide</link>
+      <description>Alaska's unique borough structure creates exceptional opportunities. Here's everything you need to know about the upcoming September auction.</description>
+      <author>ralph@deedswithoutdebt.com (Ralph Biah)</author>
+      <category>Alaska</category>
+      <category>Tax Sales</category>
+      <category>State Guide</category>
+      <pubDate>Fri, 08 Mar 2024 00:00:00 GMT</pubDate>
+      <guid>https://deedswithoutdebt.com/archive/alaska-tax-sales-guide</guid>
+    </item>
+
+    <item>
+      <title>Catron County Win: $17K to $120K in 18 Months</title>
+      <link>https://deedswithoutdebt.com/archive/catron-county-case-study</link>
+      <description>My personal case study of turning a tax deed purchase into a massive profit by subdividing 5 acres and selling the cabin separately.</description>
+      <author>ralph@deedswithoutdebt.com (Ralph Biah)</author>
+      <category>Case Study</category>
+      <category>Profit</category>
+      <category>New Mexico</category>
+      <pubDate>Fri, 01 Mar 2024 00:00:00 GMT</pubDate>
+      <guid>https://deedswithoutdebt.com/archive/catron-county-case-study</guid>
+    </item>
+
+    <item>
+      <title>HOA Foreclosures: The Hidden Opportunity in Every City</title>
+      <link>https://deedswithoutdebt.com/archive/hoa-foreclosures-hidden-opportunity</link>
+      <description>While everyone focuses on tax sales, HOA foreclosures happen year-round with less competition and faster timelines.</description>
+      <author>ralph@deedswithoutdebt.com (Ralph Biah)</author>
+      <category>HOA</category>
+      <category>Strategy</category>
+      <category>Foreclosures</category>
+      <pubDate>Thu, 22 Feb 2024 00:00:00 GMT</pubDate>
+      <guid>https://deedswithoutdebt.com/archive/hoa-foreclosures-hidden-opportunity</guid>
+    </item>
+
+  </channel>
+</rss>

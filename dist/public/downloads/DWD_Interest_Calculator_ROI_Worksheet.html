@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interest Calculator & ROI Worksheet - Deeds Without Debt</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            line-height: 1.4;
+            color: #1a1a1a;
+            background: #0B2E13;
+            padding: 20px;
+        }
+        
+        .page {
+            width: 8.5in;
+            height: 11in;
+            background: white;
+            margin: 0 auto 20px;
+            padding: 0.75in;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #0B2E13;
+            padding-bottom: 20px;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 900;
+            color: #0B2E13;
+            margin-bottom: 10px;
+        }
+        
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: #0B2E13;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .copyright {
+            font-size: 10px;
+            color: #888;
+        }
+        
+        .section {
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #0B2E13;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid #EDE6D7;
+        }
+        
+        .input-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .input-label {
+            font-weight: 500;
+            flex: 1;
+        }
+        
+        .input-field {
+            width: 150px;
+            border-bottom: 2px solid #0B2E13;
+            padding: 4px 8px;
+            text-align: right;
+            background: white;
+        }
+        
+        .calculation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .calculation-table th,
+        .calculation-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        .calculation-table th {
+            background: #0B2E13;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .result-box {
+            background: #0B2E13;
+            color: white;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .result-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .result-amount {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .formula-box {
+            background: #EDE6D7;
+            border-left: 4px solid #0B2E13;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 4px;
+        }
+        
+        .formula-title {
+            font-weight: 600;
+            color: #0B2E13;
+            margin-bottom: 6px;
+        }
+        
+        .formula-text {
+            font-size: 10px;
+            line-height: 1.4;
+            color: #333;
+            font-family: monospace;
+        }
+        
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 9px;
+            color: #666;
+            border-top: 1px solid #EDE6D7;
+            padding-top: 8px;
+            margin-top: 30px;
+        }
+        
+        @page {
+            margin: 0.75in;
+            size: letter;
+        }
+        
+        @media print {
+            @page {
+                margin: 0.75in;
+            }
+            
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+            
+            .footer {
+                position: absolute;
+                bottom: 0.5in;
+                left: 0.75in;
+                right: 0.75in;
+                margin-top: 0;
+            }
+            
+            .section, .input-row, .formula-box, .result-box, .calculation-table {
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="logo">DWD</div>
+            <div class="title">Interest Calculator & ROI Worksheet</div>
+            <div class="subtitle">Project Returns Based on Redemption Timing</div>
+            <div class="copyright">© Deeds Without Debt | DeedsWithoutDebt.com</div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Lien Purchase Information</div>
+            <div class="input-row">
+                <div class="input-label">Property Address:</div>
+                <div class="input-field" style="width: 300px;"></div>
+            </div>
+            <div class="input-row">
+                <div class="input-label">Purchase Amount:</div>
+                <div class="input-field">$</div>
+            </div>
+            <div class="input-row">
+                <div class="input-label">Purchase Date:</div>
+                <div class="input-field"></div>
+            </div>
+            <div class="input-row">
+                <div class="input-label">Annual Interest Rate:</div>
+                <div class="input-field">%</div>
+            </div>
+            <div class="input-row">
+                <div class="input-label">Redemption Period (months):</div>
+                <div class="input-field"></div>
+            </div>
+        </div>
+        
+        <div class="formula-box">
+            <div class="formula-title">Interest Calculation Formula:</div>
+            <div class="formula-text">Interest = Principal × Rate × (Time / 12)</div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Redemption Scenarios</div>
+            <table class="calculation-table">
+                <thead>
+                    <tr>
+                        <th>Redemption Month</th>
+                        <th>Interest Earned</th>
+                        <th>Total Return</th>
+                        <th>Annualized ROI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>6 months</td>
+                        <td>$__________</td>
+                        <td>$__________</td>
+                        <td>______%</td>
+                    </tr>
+                    <tr>
+                        <td>12 months</td>
+                        <td>$__________</td>
+                        <td>$__________</td>
+                        <td>______%</td>
+                    </tr>
+                    <tr>
+                        <td>18 months</td>
+                        <td>$__________</td>
+                        <td>$__________</td>
+                        <td>______%</td>
+                    </tr>
+                    <tr>
+                        <td>24 months</td>
+                        <td>$__________</td>
+                        <td>$__________</td>
+                        <td>______%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Additional Costs & Fees</div>
+            <div class="input-row">
+                <div class="input-label">Legal Fees:</div>
+                <div class="input-field">$</div>
+            </div>
+            <div class="input-row">
+                <div class="input-label">Recording Fees:</div>
+                <div class="input-field">$</div>
+            </div>
+            <div class="input-row">
+                <div class="input-label">Subsequent Taxes (if paid):</div>
+                <div class="input-field">$</div>
+            </div>
+            <div class="input-row">
+                <div class="input-label">Other Expenses:</div>
+                <div class="input-field">$</div>
+            </div>
+            <div class="input-row">
+                <div class="input-label"><strong>Total Additional Costs:</strong></div>
+                <div class="input-field">$</div>
+            </div>
+        </div>
+        
+        <div class="result-box">
+            <div class="result-title">NET PROJECTED RETURN (12 months)</div>
+            <div class="result-amount">$______________</div>
+            <div style="margin-top: 10px; font-size: 14px;">ROI: _______% per annum</div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Foreclosure Scenario Analysis</div>
+            <div class="input-row">
+                <div class="input-label">Property Market Value:</div>
+                <div class="input-field">$</div>
+            </div>
+            <div class="input-row">
+                <div class="input-label">Estimated Foreclosure Costs:</div>
+                <div class="input-field">$</div>
+            </div>
+            <div class="input-row">
+                <div class="input-label">Estimated Property Sale Price:</div>
+                <div class="input-field">$</div>
+            </div>
+            <div class="input-row">
+                <div class="input-label">Selling Costs (commissions, fees):</div>
+                <div class="input-field">$</div>
+            </div>
+        </div>
+        
+        <div class="formula-box">
+            <div class="formula-title">Foreclosure Profit Formula:</div>
+            <div class="formula-text">Profit = Sale Price - Purchase Amount - Interest - All Costs</div>
+        </div>
+        
+        <div class="result-box">
+            <div class="result-title">FORECLOSURE PROFIT ESTIMATE</div>
+            <div class="result-amount">$______________</div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Risk Assessment Notes</div>
+            <div style="border: 1px solid #ddd; min-height: 80px; padding: 10px; background: #f8f9fa;">
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>Deeds Without Debt</div>
+            <div>DeedsWithoutDebt.com/resources</div>
+            <div>Page 1</div>
+        </div>
+    </div>
+</body>
+</html>
+

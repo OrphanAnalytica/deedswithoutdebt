@@ -10,6 +10,7 @@ export interface MarkdownContent {
     date: string;
     tags: string[];
     description: string;
+    featuredImage?: string;
   };
 }
 
@@ -38,6 +39,7 @@ export async function loadMarkdown(path: string): Promise<MarkdownContent> {
         date: data.date || "",
         tags: data.tags || [],
         description: data.description || "",
+        featuredImage: data.featuredImage || "",
       },
     };
   } catch (error) {
@@ -47,5 +49,5 @@ export async function loadMarkdown(path: string): Promise<MarkdownContent> {
 }
 
 export function getMarkdownPath(slug: string): string {
-  return `/src/content/newsletters/${slug}.md`;
+  return `/content/newsletters/${slug}.md`;
 }

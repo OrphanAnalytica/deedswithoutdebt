@@ -56,6 +56,8 @@ export default function BeautifulSubscriptionModal({
 }: BeautifulSubscriptionModalProps) {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [submittedEmail, setSubmittedEmail] = useState('');
   const { toast } = useToast();
   
   const config = variantConfigs[variant];
@@ -76,7 +78,7 @@ export default function BeautifulSubscriptionModal({
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        onClose();
+        handleClose();
       }
     };
 
@@ -87,13 +89,59 @@ export default function BeautifulSubscriptionModal({
     return () => {
       document.removeEventListener('keydown', handleEscape);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
-      onClose();
+      handleClose();
     }
   };
+
+  const handleClose = () => {
+    // Reset all states when closing
+    setShowSuccessMessage(false);
+    setSubmittedEmail('');
+    setEmail('');
+    setIsSubmitting(false);
+    onClose();
+  };
+
+  const handleGotItClick = () => {
+    // SECURITY FIX: Do NOT automatically grant access
+    // Simply close the modal - user must confirm via email
+    console.log('🔍 User clicked "Got It" - closing modal');
+    handleClose();
+  };
+
+  const handleAlreadyConfirmed = () => {
+    // SECURITY FIX: Do NOT bypass email verification
+    // Show message directing user to check their email
+    const isConfirmationPending = emailCaptureUtils.isConfirmationPending();
+    const email = emailCaptureUtils.getStoredEmail();
+
+    if (isConfirmationPending && email) {
+      console.log('🔍 User clicked "Already confirmed?" - directing to email');
+      
+      // Show message directing them to click the email link
+      toast({
+        title: "Please Check Your Email",
+        description: `Click the confirmation link we sent to ${email} to activate your subscription.`,
+        duration: 6000,
+        className: "bg-blue-50 border-blue-200 text-blue-900 shadow-xl",
+      });
+      
+      // Close modal but do NOT grant access
+      handleClose();
+    } else {
+      // Show error if no pending confirmation
+      toast({
+        title: "No Pending Confirmation",
+        description: "Please submit your email first to get access.",
+        variant: "destructive",
+      });
+    }
+  };
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -110,19 +158,17 @@ export default function BeautifulSubscriptionModal({
       });
 
       if (response.ok) {
-        // Mark email as captured in localStorage
-        emailCaptureUtils.markEmailCaptured(email);
+        // Store the submitted email for display
+        setSubmittedEmail(email);
         
-        toast({
-          title: "Welcome! 🎉",
-          description: "You now have full access to all premium content.",
-        });
+        // Show success message instead of closing immediately
+        setShowSuccessMessage(true);
         
-        setEmail('');
-        onClose();
+        // Mark email as submitted (but not confirmed yet)
+        emailCaptureUtils.markEmailSubmitted(email);
         
         // Log variant for analytics
-        console.log(`Subscription via ${variant} variant`);
+        console.log(`Subscription via ${variant} variant - awaiting email confirmation`);
       } else {
         throw new Error('Form submission failed');
       }
@@ -133,6 +179,7 @@ export default function BeautifulSubscriptionModal({
         description: "There was an error subscribing. Please try again.",
         variant: "destructive",
       });
+      // DO NOT grant access on error - user needs to try again
     } finally {
       setIsSubmitting(false);
     }
@@ -155,7 +202,7 @@ export default function BeautifulSubscriptionModal({
       >
         {/* Close button */}
         <button
-          onClick={onClose}
+          onClick={handleClose}
           className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full transition-colors z-10"
           aria-label="Close modal"
         >
@@ -163,95 +210,159 @@ export default function BeautifulSubscriptionModal({
         </button>
 
         <div className="p-8">
-          {/* Header Section */}
-          <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-primary-green/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <IconComponent className="w-8 h-8 text-primary-green" />
-            </div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">
-              {config.title}
-            </h2>
-            <p className="text-lg text-gray-600">
-              {config.subtitle}
-            </p>
-          </div>
-
-          {/* Benefits Section - 2x2 Grid */}
-          <div className="mb-8">
-            <div className="grid grid-cols-2 gap-3">
-              {config.benefits.map((benefit, index) => {
-                const BenefitIcon = benefit.icon;
-                return (
-                  <div 
-                    key={index}
-                    className="bg-green-50 p-3 rounded-lg flex items-center gap-3 hover:bg-green-100 transition-colors"
-                  >
-                    <BenefitIcon className="w-5 h-5 text-primary-green flex-shrink-0" />
-                    <span className="text-sm font-medium text-gray-800">
-                      {benefit.text}
-                    </span>
+          {showSuccessMessage ? (
+            /* Email Confirmation Instructions */
+            <div className="text-center">
+              {/* Email Icon */}
+              <div className="text-6xl mb-6">📧</div>
+              
+              {/* Header */}
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                Check Your Email!
+              </h3>
+              
+              <p className="text-lg text-gray-600 mb-2">
+                We just sent a confirmation link to:
+              </p>
+              <p className="text-lg font-semibold text-gray-900 mb-6">
+                {submittedEmail}
+              </p>
+              
+              <p className="text-gray-600 mb-8">
+                Click the link in that email to activate your subscription and unlock all premium content.
+              </p>
+              
+              {/* Next Steps */}
+              <div className="bg-green-50 rounded-lg p-6 mb-8 text-left">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                    <span className="text-gray-700">Check your inbox (and spam folder)</span>
                   </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Form Section */}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email address"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-green focus:border-transparent transition-colors text-base"
-              />
-            </div>
-
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-primary-green hover:bg-primary-green/90 text-white font-semibold py-3 text-base disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-            >
-              {isSubmitting ? (
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  Subscribing...
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                    <span className="text-gray-700">Click "Confirm your subscription"</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                    <span className="text-gray-700">Return here to access all content</span>
+                  </div>
                 </div>
-              ) : (
-                <>
-                  Get Instant Access
-                  <ArrowRight className="w-4 h-4" />
-                </>
-              )}
-            </Button>
-          </form>
-
-          {/* Trust Indicators */}
-          <div className="mt-6 text-center">
-            <div className="flex items-center justify-center gap-6 text-sm text-gray-500">
-              <div className="flex items-center gap-1">
-                <CheckCircle className="w-4 h-4" />
-                <span>No spam, ever</span>
               </div>
-              <div className="flex items-center gap-1">
-                <CheckCircle className="w-4 h-4" />
-                <span>Unsubscribe anytime</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <CheckCircle className="w-4 h-4" />
-                <span>Free forever</span>
+              
+              {/* Action Buttons */}
+              <div className="space-y-3">
+                <Button
+                  onClick={handleGotItClick}
+                  className="w-full bg-primary-green hover:bg-primary-green/90 text-white font-semibold py-3 text-base"
+                >
+                  Got It
+                </Button>
+                
+                {/* Already Confirmed Button */}
+                <button
+                  onClick={handleAlreadyConfirmed}
+                  className="w-full text-green-600 hover:text-green-700 underline text-sm font-medium py-2 transition-colors"
+                >
+                  Already confirmed? Click here
+                </button>
               </div>
             </div>
-          </div>
+          ) : (
+            /* Original Form Content */
+            <>
+              {/* Header Section */}
+              <div className="text-center mb-8">
+                <div className="w-16 h-16 bg-primary-green/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <IconComponent className="w-8 h-8 text-primary-green" />
+                </div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-3">
+                  {config.title}
+                </h2>
+                <p className="text-lg text-gray-600">
+                  {config.subtitle}
+                </p>
+              </div>
+
+              {/* Benefits Section - 2x2 Grid */}
+              <div className="mb-8">
+                <div className="grid grid-cols-2 gap-3">
+                  {config.benefits.map((benefit, index) => {
+                    const BenefitIcon = benefit.icon;
+                    return (
+                      <div 
+                        key={index}
+                        className="bg-green-50 p-3 rounded-lg flex items-center gap-3 hover:bg-green-100 transition-colors"
+                      >
+                        <BenefitIcon className="w-5 h-5 text-primary-green flex-shrink-0" />
+                        <span className="text-sm font-medium text-gray-800">
+                          {benefit.text}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Form Section */}
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email address"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-green focus:border-transparent transition-colors text-base"
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-primary-green hover:bg-primary-green/90 text-white font-semibold py-3 text-base disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  {isSubmitting ? (
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Submitting...
+                    </div>
+                  ) : (
+                    <>
+                      Get Instant Access
+                      <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
+                </Button>
+              </form>
+
+              {/* Trust Indicators */}
+              <div className="mt-6 text-center">
+                <div className="flex items-center justify-center gap-6 text-sm text-gray-500">
+                  <div className="flex items-center gap-1">
+                    <CheckCircle className="w-4 h-4" />
+                    <span>No spam, ever</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <CheckCircle className="w-4 h-4" />
+                    <span>Unsubscribe anytime</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <CheckCircle className="w-4 h-4" />
+                    <span>Free forever</span>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
   );
 }
+
 

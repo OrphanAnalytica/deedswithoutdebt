@@ -1,49 +1,92 @@
 ---
 title: "Forget Liens — Here's Where You Can Actually Own the Property"
 date: "2024-12-15"
-tags: ["No-Bank Real Estate", "Tax Deeds", "Wealth Building", "High Yield Returns", "Real Estate Investing", "Passive Income"]
-description: "Why understanding deed states is the foundation of smart tax sale investing"
+slug: "forget-liens-heres-where-you-can-actually-own-the-property"
+excerpt: "Recently, I've been having a few back-and-forths on Reddit with folks curious about tax sales. What stood out? Almost everyone was more interested in deed sales than liens."
+featuredImage: "/images/newsletters/deed-vs-lien-property-ownership.jpg"
+author: "Ralph Biah"
+tags: ["Tax Deeds", "Tax Liens", "State Guide", "Real Estate Investing", "Property Ownership"]
 ---
 
-# The Truth About Tax Deed vs Tax Lien States
+## Why I'm Writing About This Today
 
-Most investors get this wrong from day one.
+Recently, I've been having a few back-and-forths on Reddit with folks curious about tax sales. What stood out to me? Almost everyone was more interested in deed sales than liens. It makes sense — deeds mean you're buying the property itself, not just the debt.
 
-They hear about "guaranteed returns" from tax lien certificates and think they've found the holy grail of real estate investing.
+So I figured it was time to share something useful for everyone asking: Which states actually sell tax deeds?
 
-**Here's the reality:** Tax lien investing is mostly a myth for most people.
+## Tax Deeds vs. Tax Liens — A Quick Refresher
 
-## Why Tax Deed States Are Superior
+When someone doesn't pay property taxes, the county has to recover that money.
 
-In **tax deed states**, you actually buy the property itself at auction. No waiting, no hoping the owner doesn't pay.
+* **In lien states**, they sell a tax lien — basically an IOU secured by the property. Investors collect interest when the taxes are repaid.
+* **In deed states**, they sell the tax deed — which means you're bidding directly on ownership of the property itself.
 
-### Key Advantages:
+Lien states give you interest. Deed states give you the property. Big difference.
 
-- **Immediate ownership** - You get the deed right after the auction
-- **No redemption period** in most states
-- **Clear title** - The tax sale extinguishes most other liens
-- **Real property** - You own actual real estate, not just a piece of paper
+## The Tax Deed Advantage
 
-## The States That Actually Work
+Here's why investors like me (and my team) lean toward deed states:
 
-**Top tax deed states for beginners:**
+* **Immediate ownership** – Win the auction, pay the back taxes, and the deed is yours.
+* **High upside potential** – Properties valued at $100k+ can sometimes start at just a few thousand dollars.
+* **No multi-year wait** – Unlike liens, most deed states don't have long redemption periods.
 
-1. **Texas** - Monthly auctions, strong property rights
-2. **Florida** - High volume, good for learning
-3. **Georgia** - Hybrid system with deed opportunities
-4. **New Mexico** - Large parcels, subdivision potential
+But don't mistake speed for safety. Mortgages, IRS liens, state liens, and title issues don't vanish just because you hold the deed. Due diligence is survival in this business.
 
-## What You Need to Know
+## Which States Sell Tax Deeds?
 
-> "The best investment you can make is in yourself. The more you learn, the more you earn." - Warren Buffett
+Here's the current list of states where counties sell deeds instead of liens (or a redeemable version of them):
 
-Before you start:
+* Alaska
+* Arkansas
+* California
+* Connecticut (redeemable)
+* Delaware (redeemable)
+* Georgia (redeemable)
+* Hawaii (redeemable)
+* Idaho
+* Kansas
+* Louisiana (redeemable)
+* Maine
+* Michigan (redeemable)
+* Minnesota (redeemable)
+* Nevada (mixed system)
+* New Hampshire (redeemable)
+* New Mexico
+* New York
+* North Carolina (judicial deed with upset-bid system)
+* Ohio (mixed system)
+* Oregon
+* Pennsylvania
+* South Carolina
+* Tennessee (redeemable)
+* Texas (redeemable hybrid)
+* Utah
+* Vermont
+* Virginia
+* Washington
+* Wisconsin
 
-- Research your target state's specific laws
-- Understand the auction process
-- Have your financing ready
-- Know your exit strategy
+*(Note: Some are redeemable deed states or hybrids, meaning owners still have a short window to redeem even after the deed is sold.)*
 
-**Bottom line:** Skip the tax lien hype. Focus on tax deed states where you can actually own property and build real wealth.
+## Why This Matters for You
 
-*Ready to get started? Check out our state guides for detailed information on your target markets.*
+If you're serious about tax sales, this list is your starting map. It determines your entire playbook:
+
+* In **lien states**, you're mostly after interest income — like a fixed-income investment.
+* In **deed states**, you're after ownership — which means bigger rewards, but also bigger risks.
+* In **redeemable deed or hybrid states**, you have to factor in short redemption periods or upset-bid processes before you truly own the property.
+
+I cut my teeth in New Mexico, a deed state. The wins were life-changing, but I also saw deals go sideways fast when investors skipped their homework.
+
+## Final Thought
+
+Think of lien states vs. deed states as two different sports. Both can make you money, but the rules and the risks are completely different.
+
+If you know the map before you step into the game, you're already ahead of 90% of people who just "show up" at auctions.
+
+I'd love to hear from you: are there any specific deed states you want me to break down in detail? Hit reply and let me know.
+
+**Talk soon,**  
+Ralph T. Biah  
+Founder, Deeds Without Debt
