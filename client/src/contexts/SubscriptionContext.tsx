@@ -6,6 +6,7 @@ interface SubscriptionContextType {
   subscriberEmail: string | null;
   subscribe: (email: string) => Promise<boolean>;
   unsubscribe: () => void;
+  verifySubscription: (email: string) => boolean;
   isLoading: boolean;
 }
 
@@ -20,7 +21,7 @@ export function SubscriptionProvider({ children }: SubscriptionProviderProps) {
   const [subscriberEmail, setSubscriberEmail] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Check subscription status on mount
+  // Check subscription status on mount (enhanced with multi-layer persistence)
   useEffect(() => {
     const checkSubscriptionStatus = () => {
       const hasEmail = emailCaptureUtils.hasProvidedEmail();
@@ -50,7 +51,7 @@ export function SubscriptionProvider({ children }: SubscriptionProviderProps) {
       });
 
       if (response.ok) {
-        // Mark as subscribed in localStorage
+        // Mark as subscribed with enhanced persistence
         emailCaptureUtils.markEmailCaptured(email);
         setIsSubscribed(true);
         setSubscriberEmail(email);
@@ -66,6 +67,21 @@ export function SubscriptionProvider({ children }: SubscriptionProviderProps) {
     }
   };
 
+  const verifySubscription = (email: string): boolean => {
+    try {
+      const success = emailCaptureUtils.verifySubscription(email);
+      if (success) {
+        setIsSubscribed(true);
+        setSubscriberEmail(email);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error("Subscription verification error:", error);
+      return false;
+    }
+  };
+
   const unsubscribe = () => {
     emailCaptureUtils.clearCapture();
     setIsSubscribed(false);
@@ -77,6 +93,7 @@ export function SubscriptionProvider({ children }: SubscriptionProviderProps) {
     subscriberEmail,
     subscribe,
     unsubscribe,
+    verifySubscription,
     isLoading,
   };
 

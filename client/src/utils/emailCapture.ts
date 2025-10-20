@@ -4,30 +4,110 @@ const EMAIL_CAPTURED_KEY = 'dwd_email_captured';
 const USER_EMAIL_KEY = 'dwd_user_email';
 const EMAIL_SUBMITTED_KEY = 'dwd_email_submitted';
 const CONFIRMATION_PENDING_KEY = 'dwd_confirmation_pending';
+const SUBSCRIPTION_DATA_KEY = 'dwd_subscription';
+const COOKIE_NAME = 'dwd_subscriber';
+
+// Cookie utilities
+const setSubscriptionCookie = (email: string): void => {
+  const expiryDate = new Date();
+  expiryDate.setDate(expiryDate.getDate() + 90); // 90 days
+  document.cookie = `${COOKIE_NAME}=${encodeURIComponent(email)}; expires=${expiryDate.toUTCString()}; path=/; SameSite=Lax`;
+};
+
+const getSubscriptionCookie = (): string | null => {
+  const cookies = document.cookie.split(';');
+  for (let cookie of cookies) {
+    const [name, value] = cookie.trim().split('=');
+    if (name === COOKIE_NAME) {
+      return decodeURIComponent(value);
+    }
+  }
+  return null;
+};
+
+const clearSubscriptionCookie = (): void => {
+  document.cookie = `${COOKIE_NAME}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+};
+
+// Enhanced subscription data structure
+interface SubscriptionData {
+  email: string;
+  confirmedAt: number;
+  expiresAt: number;
+}
 
 export const emailCaptureUtils = {
-  // Check if user has already provided email
+  // Check if user has already provided email (enhanced with expiration)
   hasProvidedEmail: (): boolean => {
-    return localStorage.getItem(EMAIL_CAPTURED_KEY) === 'true';
+    const email = this.getStoredEmail();
+    return email !== null;
   },
 
-  // Store email capture flag
+  // Store email capture flag with 90-day expiration
   markEmailCaptured: (email: string): void => {
+    const subscriptionData: SubscriptionData = {
+      email: email,
+      confirmedAt: Date.now(),
+      expiresAt: Date.now() + (90 * 24 * 60 * 60 * 1000) // 90 days
+    };
+    
+    // Store in localStorage with expiration
+    localStorage.setItem(SUBSCRIPTION_DATA_KEY, JSON.stringify(subscriptionData));
     localStorage.setItem(EMAIL_CAPTURED_KEY, 'true');
     localStorage.setItem(USER_EMAIL_KEY, email);
     localStorage.setItem('dwd_capture_date', new Date().toISOString());
+    
+    // Set cookie as backup
+    setSubscriptionCookie(email);
   },
 
-  // Get stored email (optional, for display purposes)
+  // Get stored email with expiration check
   getStoredEmail: (): string | null => {
-    return localStorage.getItem(USER_EMAIL_KEY);
+    // Check localStorage first
+    const subscriptionData = localStorage.getItem(SUBSCRIPTION_DATA_KEY);
+    if (subscriptionData) {
+      try {
+        const data: SubscriptionData = JSON.parse(subscriptionData);
+        const now = Date.now();
+        
+        // Check if not expired
+        if (now < data.expiresAt) {
+          return data.email;
+        }
+        
+        // Expired - clear localStorage
+        this.clearCapture();
+      } catch (error) {
+        console.error('Error parsing subscription data:', error);
+        this.clearCapture();
+      }
+    }
+    
+    // Fallback to cookie
+    const cookieEmail = getSubscriptionCookie();
+    if (cookieEmail) {
+      // Restore to localStorage
+      const subscriptionData: SubscriptionData = {
+        email: cookieEmail,
+        confirmedAt: Date.now(),
+        expiresAt: Date.now() + (90 * 24 * 60 * 60 * 1000)
+      };
+      localStorage.setItem(SUBSCRIPTION_DATA_KEY, JSON.stringify(subscriptionData));
+      localStorage.setItem(EMAIL_CAPTURED_KEY, 'true');
+      localStorage.setItem(USER_EMAIL_KEY, cookieEmail);
+      return cookieEmail;
+    }
+    
+    return null;
   },
 
   // Clear capture flag (for testing or user logout)
   clearCapture: (): void => {
     localStorage.removeItem(EMAIL_CAPTURED_KEY);
     localStorage.removeItem(USER_EMAIL_KEY);
+    localStorage.removeItem(SUBSCRIPTION_DATA_KEY);
     localStorage.removeItem('dwd_capture_date');
+    clearSubscriptionCookie();
   },
 
   // Check if user captured within last X days (optional expiry)
@@ -53,7 +133,7 @@ export const emailCaptureUtils = {
     localStorage.setItem('dwd_last_confirmation_check', now.toString());
     
     // Check if user has email captured but might have just confirmed
-    const hasEmail = localStorage.getItem(EMAIL_CAPTURED_KEY) === 'true';
+    const hasEmail = this.hasProvidedEmail();
     const captureDate = localStorage.getItem('dwd_capture_date');
     
     if (hasEmail && captureDate) {
@@ -90,9 +170,20 @@ export const emailCaptureUtils = {
 
   // Mark email as confirmed (grants access)
   markEmailConfirmed: (email: string): void => {
+    const subscriptionData: SubscriptionData = {
+      email: email,
+      confirmedAt: Date.now(),
+      expiresAt: Date.now() + (90 * 24 * 60 * 60 * 1000) // 90 days
+    };
+    
+    localStorage.setItem(SUBSCRIPTION_DATA_KEY, JSON.stringify(subscriptionData));
     localStorage.setItem(EMAIL_CAPTURED_KEY, 'true');
     localStorage.setItem(USER_EMAIL_KEY, email);
     localStorage.setItem('dwd_capture_date', new Date().toISOString());
+    
+    // Set cookie as backup
+    setSubscriptionCookie(email);
+    
     // Clear pending state
     localStorage.removeItem(CONFIRMATION_PENDING_KEY);
     localStorage.removeItem(EMAIL_SUBMITTED_KEY);
@@ -107,15 +198,37 @@ export const emailCaptureUtils = {
     return minutesSinceSubmit < minutesValid;
   },
 
+  // Verify subscription by email (for "Already Subscribed?" flow)
+  verifySubscription: (email: string): boolean => {
+    // Store subscription data
+    const subscriptionData: SubscriptionData = {
+      email: email,
+      confirmedAt: Date.now(),
+      expiresAt: Date.now() + (90 * 24 * 60 * 60 * 1000) // 90 days
+    };
+    
+    localStorage.setItem(SUBSCRIPTION_DATA_KEY, JSON.stringify(subscriptionData));
+    localStorage.setItem(EMAIL_CAPTURED_KEY, 'true');
+    localStorage.setItem(USER_EMAIL_KEY, email);
+    localStorage.setItem('dwd_capture_date', new Date().toISOString());
+    
+    // Set cookie as backup
+    setSubscriptionCookie(email);
+    
+    return true;
+  },
+
   // Clear all subscription data
   clearAllData: (): void => {
     localStorage.removeItem(EMAIL_CAPTURED_KEY);
     localStorage.removeItem(USER_EMAIL_KEY);
     localStorage.removeItem(EMAIL_SUBMITTED_KEY);
     localStorage.removeItem(CONFIRMATION_PENDING_KEY);
+    localStorage.removeItem(SUBSCRIPTION_DATA_KEY);
     localStorage.removeItem('dwd_capture_date');
     localStorage.removeItem('dwd_submit_date');
     localStorage.removeItem('dwd_last_confirmation_check');
     localStorage.removeItem('dwd_welcome_shown');
+    clearSubscriptionCookie();
   }
 };

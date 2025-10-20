@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { X, CheckCircle, Download } from "lucide-react";
+import { X, CheckCircle, Download, UserCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { emailCaptureUtils } from "@/utils/emailCapture";
+import { useSubscription } from "@/contexts/SubscriptionContext";
+import { useToast } from "@/hooks/use-toast";
 
 interface InvestorToolsModalProps {
   isOpen: boolean;
@@ -11,8 +13,12 @@ interface InvestorToolsModalProps {
 export default function InvestorToolsModal({ isOpen, onClose }: InvestorToolsModalProps) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [email, setEmail] = useState('');
+  const [verifyEmail, setVerifyEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasAccess, setHasAccess] = useState(false);
+  const [showVerifyFlow, setShowVerifyFlow] = useState(false);
+  const { verifySubscription } = useSubscription();
+  const { toast } = useToast();
 
   useEffect(() => {
     if (isOpen) {
@@ -64,6 +70,35 @@ export default function InvestorToolsModal({ isOpen, onClose }: InvestorToolsMod
     onClose();
   };
 
+  const handleVerifySubscription = () => {
+    if (!verifyEmail.trim()) {
+      toast({
+        title: "Email Required",
+        description: "Please enter your email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    const success = verifySubscription(verifyEmail);
+    if (success) {
+      toast({
+        title: "Welcome Back!",
+        description: "Access restored successfully.",
+      });
+      setHasAccess(true);
+      setShowVerifyFlow(false);
+      triggerDownloads();
+      onClose();
+    } else {
+      toast({
+        title: "Verification Failed",
+        description: "Unable to verify subscription. Please try subscribing again.",
+        variant: "destructive"
+      });
+    }
+  };
+
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -79,7 +114,7 @@ export default function InvestorToolsModal({ isOpen, onClose }: InvestorToolsMod
       });
 
       if (response.ok) {
-        // Mark email as captured in localStorage
+        // Mark email as captured with enhanced persistence
         emailCaptureUtils.markEmailCaptured(email);
         
         // Trigger downloads
@@ -201,6 +236,31 @@ export default function InvestorToolsModal({ isOpen, onClose }: InvestorToolsMod
               {isSubmitting ? 'Processing...' : 'Get Instant Access'}
             </Button>
           </form>
+
+          {/* Already Subscribed Section */}
+          <div className="mt-6 pt-6 border-t border-gray-200">
+            <div className="text-center">
+              <p className="text-sm text-gray-600 mb-3">Already subscribed?</p>
+              <div className="space-y-3">
+                <input
+                  type="email"
+                  value={verifyEmail}
+                  onChange={(e) => setVerifyEmail(e.target.value)}
+                  placeholder="Enter your email to verify"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+                />
+                <Button
+                  type="button"
+                  onClick={handleVerifySubscription}
+                  variant="outline"
+                  className="w-full text-sm py-2"
+                >
+                  <UserCheck className="mr-2 h-4 w-4" />
+                  Verify Subscription
+                </Button>
+              </div>
+            </div>
+          </div>
 
           <p className="text-xs text-gray-500 text-center mt-4">
             No spam, ever. Unsubscribe anytime.
