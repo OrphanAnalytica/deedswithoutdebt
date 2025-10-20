@@ -22,8 +22,8 @@ export default function StateGuides() {
 
   useEffect(() => {
     setSEOData({
-      title: "State Investment Guides | Deeds Without Debt",
-      description: "Guides to tax deed, tax lien, and hybrid (redeemable deed) investing by state. Learn auction schedules, redemption periods, and investment opportunities across all 50 states plus Washington DC.",
+      title: "Tax Deed & Tax Lien State Guides (2025 Update)",
+      description: "Access state-by-state Tax Deed and Tax Lien investing laws, redemption periods, and auction schedules.",
       canonical: "/state-guides"
     });
 

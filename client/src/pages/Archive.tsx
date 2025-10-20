@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'wouter';
 import { Search, ArrowRight, Calendar, Clock } from 'lucide-react';
 import newslettersData from '@/data/newsletters.json';
+import { setSEOData } from '@/lib/seo';
 
 const Archive = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortBy, setSortBy] = useState('newest');
+
+  useEffect(() => {
+    setSEOData({
+      title: "Deeds Without Debt Newsletter Archive | Tax Sale Insights",
+      description: "Browse past articles and real stories on Tax Deed and Tax Lien investing from the Deeds Without Debt newsletter.",
+      canonical: "/archive"
+    });
+  }, []);
 
   // Use newsletters data from JSON file
   const articles = newslettersData.map((newsletter, index) => ({

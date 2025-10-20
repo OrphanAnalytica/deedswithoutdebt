@@ -7,8 +7,8 @@ import { Linkedin } from "lucide-react";
 export default function About() {
   useEffect(() => {
     setSEOData({
-      title: "About Deeds Without Debt | Alternative Real Estate Investing",
-      description: "Learn why Deeds Without Debt exists and how this newsletter helps investors discover real estate opportunities without traditional bank financing.",
+      title: "About Deeds Without Debt | Tax Sale Investing Education",
+      description: "Discover how Deeds Without Debt helps investors learn Tax Deed and Tax Lien strategies for property ownership through tax sales.",
       canonical: "/about"
     });
   }, []);

@@ -5,8 +5,8 @@ import { Calculator, MapPin, BookOpen, CheckCircle, AlertTriangle, TrendingUp, S
 export default function Resources() {
   useEffect(() => {
     setSEOData({
-      title: "Free Resources | Deeds Without Debt",
-      description: "Download free tools, templates, and guides for alternative real estate investing. Tax deed checklists, calculators, scripts, and more.",
+      title: "Free Tax Sale Checklists & Investing Resources | Deeds Without Debt",
+      description: "Download free tax sale checklists and learn how to research, bid, and buy at tax deed and lien auctions.",
       canonical: "/resources",
     });
   }, []);
