@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { setSEOData, setBreadcrumbSchema } from "@/lib/seo";
+import { setSEOData, setBreadcrumbSchema, setArticleSchema, estimateWordCount } from "@/lib/seo";
 import { Link, useSearch, useLocation } from "wouter";
 import { Calendar, TrendingUp, DollarSign, CheckCircle, ArrowRight, Search, Star } from 'lucide-react';
 import { StateGuide, listStates } from "@/lib/stateGuides";
@@ -31,6 +31,19 @@ export default function StateGuides() {
       { name: "Home", url: "https://deedswithoutdebt.com" },
       { name: "State Guides", url: "https://deedswithoutdebt.com/state-guides" }
     ]);
+
+    // Add Article schema for the State Guides page
+    setArticleSchema({
+      headline: "Tax Deed & Tax Lien State Guides (2025 Update)",
+      description: "Access state-by-state Tax Deed and Tax Lien investing laws, redemption periods, and auction schedules.",
+      image: "https://deedswithoutdebt.com/images/state-guides-overview.jpg",
+      datePublished: "2025-01-01",
+      dateModified: new Date().toISOString(),
+      wordCount: estimateWordCount("Access state-by-state Tax Deed and Tax Lien investing laws, redemption periods, and auction schedules."),
+      articleSection: "State Guides",
+      keywords: ["Tax Deed Investing", "Tax Lien Investing", "State Laws", "Auction Schedules", "Redemption Periods"],
+      url: "https://deedswithoutdebt.com/state-guides"
+    });
 
     // Load saved preferences from localStorage
     const savedSearch = localStorage.getItem('stateGuides.search') || '';

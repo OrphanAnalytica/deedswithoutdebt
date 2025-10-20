@@ -7,6 +7,18 @@ interface SEOData {
   noindex?: boolean;
 }
 
+interface ArticleData {
+  headline: string;
+  description: string;
+  image?: string;
+  datePublished: string;
+  dateModified?: string;
+  wordCount?: number;
+  articleSection: string;
+  keywords?: string[];
+  url: string;
+}
+
 export function setSEOData({
   title,
   description,
@@ -80,7 +92,7 @@ function updateLinkTag(rel: string, href: string) {
   link.setAttribute("href", href);
 }
 
-export function generateJSONLD(type: "Organization" | "BlogPosting" | "BreadcrumbList", data: any) {
+export function generateJSONLD(type: "Organization" | "BlogPosting" | "BreadcrumbList" | "Article", data: any) {
   const script = document.createElement("script");
   script.type = "application/ld+json";
   
@@ -140,6 +152,36 @@ export function generateJSONLD(type: "Organization" | "BlogPosting" | "Breadcrum
         item: breadcrumb.url
       }))
     };
+  } else if (type === "Article") {
+    jsonLD = {
+      ...jsonLD,
+      "@type": "Article",
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": data.url
+      },
+      headline: data.headline,
+      description: data.description,
+      image: data.image || "https://deedswithoutdebt.com/images/dwd-logo.png",
+      author: {
+        "@type": "Person",
+        name: "Ralph Biah",
+        url: "https://www.linkedin.com/in/ralph-biah-260a5253/"
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Deeds Without Debt",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://deedswithoutdebt.com/images/dwd-logo.png"
+        }
+      },
+      datePublished: data.datePublished,
+      dateModified: data.dateModified || new Date().toISOString(),
+      wordCount: data.wordCount,
+      articleSection: data.articleSection,
+      keywords: data.keywords || ["Tax Deed Investing", "Tax Lien Investing", "Real Estate", "Foreclosure Auctions"]
+    };
   }
 
   script.textContent = JSON.stringify(jsonLD);
@@ -155,4 +197,12 @@ export function generateJSONLD(type: "Organization" | "BlogPosting" | "Breadcrum
 
 export function setBreadcrumbSchema(breadcrumbs: Array<{name: string, url: string}>) {
   generateJSONLD("BreadcrumbList", { breadcrumbs });
+}
+
+export function setArticleSchema(articleData: ArticleData) {
+  generateJSONLD("Article", articleData);
+}
+
+export function estimateWordCount(text: string): number {
+  return text.split(/\s+/).length;
 }

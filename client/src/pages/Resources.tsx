@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { setSEOData, setBreadcrumbSchema } from "@/lib/seo";
+import { setSEOData, setBreadcrumbSchema, setArticleSchema, estimateWordCount } from "@/lib/seo";
 import { Calculator, MapPin, BookOpen, CheckCircle, AlertTriangle, TrendingUp, Shield, Download } from "lucide-react";
 
 export default function Resources() {
@@ -14,6 +14,19 @@ export default function Resources() {
       { name: "Home", url: "https://deedswithoutdebt.com" },
       { name: "Resources", url: "https://deedswithoutdebt.com/resources" }
     ]);
+
+    // Add Article schema for the Resources page
+    setArticleSchema({
+      headline: "Free Tax Sale Checklists & Investing Resources | Deeds Without Debt",
+      description: "Download free tax sale checklists and learn how to research, bid, and buy at tax deed and lien auctions.",
+      image: "https://deedswithoutdebt.com/images/investor-resources.jpg",
+      datePublished: "2024-01-01",
+      dateModified: new Date().toISOString(),
+      wordCount: estimateWordCount("Download free tax sale checklists and learn how to research, bid, and buy at tax deed and lien auctions."),
+      articleSection: "Resources",
+      keywords: ["Tax Deed Investing", "Tax Lien Investing", "Checklists", "Resources", "Free Downloads"],
+      url: "https://deedswithoutdebt.com/resources"
+    });
   }, []);
 
   const handleDownload = (filename: string) => {

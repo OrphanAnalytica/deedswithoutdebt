@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'wouter';
 import { Search, ArrowRight, Calendar, Clock } from 'lucide-react';
 import newslettersData from '@/data/newsletters.json';
-import { setSEOData, setBreadcrumbSchema } from '@/lib/seo';
+import { setSEOData, setBreadcrumbSchema, setArticleSchema, estimateWordCount } from '@/lib/seo';
 
 const Archive = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -20,6 +20,19 @@ const Archive = () => {
       { name: "Home", url: "https://deedswithoutdebt.com" },
       { name: "Archive", url: "https://deedswithoutdebt.com/archive" }
     ]);
+
+    // Add Article schema for the Archive page
+    setArticleSchema({
+      headline: "Deeds Without Debt Newsletter Archive | Tax Sale Insights",
+      description: "Browse past articles and real stories on Tax Deed and Tax Lien investing from the Deeds Without Debt newsletter.",
+      image: "https://deedswithoutdebt.com/images/newsletter-archive.jpg",
+      datePublished: "2024-01-01",
+      dateModified: new Date().toISOString(),
+      wordCount: estimateWordCount("Browse past articles and real stories on Tax Deed and Tax Lien investing from the Deeds Without Debt newsletter."),
+      articleSection: "Newsletter Archive",
+      keywords: ["Tax Deed Investing", "Tax Lien Investing", "Newsletter", "Archive", "Real Estate"],
+      url: "https://deedswithoutdebt.com/archive"
+    });
   }, []);
 
   // Use newsletters data from JSON file
