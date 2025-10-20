@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import NewsletterForm from "@/components/NewsletterForm";
-import { setSEOData } from "@/lib/seo";
+import { setSEOData, setBreadcrumbSchema } from "@/lib/seo";
 import { Linkedin } from "lucide-react";
 
 export default function About() {
@@ -11,6 +11,11 @@ export default function About() {
       description: "Discover how Deeds Without Debt helps investors learn Tax Deed and Tax Lien strategies for property ownership through tax sales.",
       canonical: "/about"
     });
+
+    setBreadcrumbSchema([
+      { name: "Home", url: "https://deedswithoutdebt.com" },
+      { name: "About", url: "https://deedswithoutdebt.com/about" }
+    ]);
   }, []);
 
   return (

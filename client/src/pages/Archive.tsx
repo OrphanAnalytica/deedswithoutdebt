@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'wouter';
 import { Search, ArrowRight, Calendar, Clock } from 'lucide-react';
 import newslettersData from '@/data/newsletters.json';
-import { setSEOData } from '@/lib/seo';
+import { setSEOData, setBreadcrumbSchema } from '@/lib/seo';
 
 const Archive = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -15,6 +15,11 @@ const Archive = () => {
       description: "Browse past articles and real stories on Tax Deed and Tax Lien investing from the Deeds Without Debt newsletter.",
       canonical: "/archive"
     });
+
+    setBreadcrumbSchema([
+      { name: "Home", url: "https://deedswithoutdebt.com" },
+      { name: "Archive", url: "https://deedswithoutdebt.com/archive" }
+    ]);
   }, []);
 
   // Use newsletters data from JSON file

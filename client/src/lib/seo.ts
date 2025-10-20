@@ -80,7 +80,7 @@ function updateLinkTag(rel: string, href: string) {
   link.setAttribute("href", href);
 }
 
-export function generateJSONLD(type: "Organization" | "BlogPosting", data: any) {
+export function generateJSONLD(type: "Organization" | "BlogPosting" | "BreadcrumbList", data: any) {
   const script = document.createElement("script");
   script.type = "application/ld+json";
   
@@ -129,6 +129,17 @@ export function generateJSONLD(type: "Organization" | "BlogPosting", data: any) 
       },
       ...data
     };
+  } else if (type === "BreadcrumbList") {
+    jsonLD = {
+      ...jsonLD,
+      "@type": "BreadcrumbList",
+      itemListElement: data.breadcrumbs.map((breadcrumb: any, index: number) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: breadcrumb.name,
+        item: breadcrumb.url
+      }))
+    };
   }
 
   script.textContent = JSON.stringify(jsonLD);
@@ -140,4 +151,8 @@ export function generateJSONLD(type: "Organization" | "BlogPosting", data: any) 
   }
   
   document.head.appendChild(script);
+}
+
+export function setBreadcrumbSchema(breadcrumbs: Array<{name: string, url: string}>) {
+  generateJSONLD("BreadcrumbList", { breadcrumbs });
 }

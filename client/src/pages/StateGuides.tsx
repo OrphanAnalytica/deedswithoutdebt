@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { setSEOData } from "@/lib/seo";
+import { setSEOData, setBreadcrumbSchema } from "@/lib/seo";
 import { Link, useSearch, useLocation } from "wouter";
 import { Calendar, TrendingUp, DollarSign, CheckCircle, ArrowRight, Search, Star } from 'lucide-react';
 import { StateGuide, listStates } from "@/lib/stateGuides";
@@ -26,6 +26,11 @@ export default function StateGuides() {
       description: "Access state-by-state Tax Deed and Tax Lien investing laws, redemption periods, and auction schedules.",
       canonical: "/state-guides"
     });
+
+    setBreadcrumbSchema([
+      { name: "Home", url: "https://deedswithoutdebt.com" },
+      { name: "State Guides", url: "https://deedswithoutdebt.com/state-guides" }
+    ]);
 
     // Load saved preferences from localStorage
     const savedSearch = localStorage.getItem('stateGuides.search') || '';

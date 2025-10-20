@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { setSEOData } from "@/lib/seo";
+import { setSEOData, setBreadcrumbSchema } from "@/lib/seo";
 import { Calculator, MapPin, BookOpen, CheckCircle, AlertTriangle, TrendingUp, Shield, Download } from "lucide-react";
 
 export default function Resources() {
@@ -9,6 +9,11 @@ export default function Resources() {
       description: "Download free tax sale checklists and learn how to research, bid, and buy at tax deed and lien auctions.",
       canonical: "/resources",
     });
+
+    setBreadcrumbSchema([
+      { name: "Home", url: "https://deedswithoutdebt.com" },
+      { name: "Resources", url: "https://deedswithoutdebt.com/resources" }
+    ]);
   }, []);
 
   const handleDownload = (filename: string) => {
