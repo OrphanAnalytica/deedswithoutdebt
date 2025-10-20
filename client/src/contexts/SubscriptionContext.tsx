@@ -24,12 +24,20 @@ export function SubscriptionProvider({ children }: SubscriptionProviderProps) {
   // Check subscription status on mount (enhanced with multi-layer persistence)
   useEffect(() => {
     const checkSubscriptionStatus = () => {
-      const hasEmail = emailCaptureUtils.hasProvidedEmail();
-      const email = emailCaptureUtils.getStoredEmail();
-      
-      setIsSubscribed(hasEmail);
-      setSubscriberEmail(email);
-      setIsLoading(false);
+      try {
+        const hasEmail = emailCaptureUtils.hasProvidedEmail();
+        const email = emailCaptureUtils.getStoredEmail();
+        
+        setIsSubscribed(hasEmail);
+        setSubscriberEmail(email);
+      } catch (error) {
+        console.error('Error checking subscription status:', error);
+        // Don't break the site - just assume not subscribed
+        setIsSubscribed(false);
+        setSubscriberEmail(null);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     checkSubscriptionStatus();
