@@ -4,7 +4,7 @@ import { ArrowRight, Check, MapPin, TrendingUp } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative bg-gradient-to-br from-gray-900 via-green-900 to-gray-900 text-white overflow-hidden">
+    <section className="hero-section relative bg-gradient-to-br from-gray-900 via-green-900 to-gray-900 text-white overflow-hidden">
       <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative">
@@ -48,7 +48,7 @@ export default function Hero() {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="cta-buttons flex flex-col sm:flex-row gap-4">
               <Link 
                 href="/subscribe"
                 className="inline-flex items-center justify-center px-8 py-4 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-all shadow-xl hover:shadow-2xl"

@@ -79,6 +79,9 @@ export default function Home() {
                   <img 
                     src="/images/articles/new-mexico-tax-deed-guide.jpg" 
                     alt="New Mexico Tax Deed Sales"
+                    width="800"
+                    height="600"
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
@@ -157,6 +160,9 @@ export default function Home() {
                 <img 
                   src="/images/articles/quiet-title-actions.jpg" 
                   alt="Quiet Title Actions"
+                  width="400"
+                  height="300"
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -214,6 +220,9 @@ export default function Home() {
                 <img 
                   src="/images/articles/buy-without-banks.jpg" 
                   alt="Buy Without Banks"
+                  width="400"
+                  height="300"
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -271,6 +280,9 @@ export default function Home() {
                 <img 
                   src="/images/articles/connecticut-liens.jpg" 
                   alt="Connecticut Tax Liens"
+                  width="400"
+                  height="300"
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
