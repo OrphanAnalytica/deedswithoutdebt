@@ -2,19 +2,28 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { setSEOData } from "@/lib/seo";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { CheckCircle, Clock, Shield, Users, TrendingUp, BookOpen } from "lucide-react";
 import ConvertKitForm from "@/components/ConvertKitForm";
+import { useSubscription } from "@/contexts/SubscriptionContext";
 
 
 export default function Subscribe() {
+  const { isSubscribed, subscriberEmail } = useSubscription();
+  const [, setLocation] = useLocation();
+
   useEffect(() => {
     setSEOData({
       title: "Subscribe to Newsletter | Deeds Without Debt",
       description: "Join thousands of investors learning alternative real estate strategies. Get weekly insights on tax deeds, tax liens, HOA foreclosures, and probate deals.",
       canonical: "/subscribe"
     });
-  }, []);
+
+    // Redirect subscribed users to home or resources
+    if (isSubscribed) {
+      setLocation("/resources");
+    }
+  }, [isSubscribed, setLocation]);
 
   const benefits = [
     {

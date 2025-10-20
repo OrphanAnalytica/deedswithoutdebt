@@ -71,10 +71,10 @@ export default function InvestorToolsModal({ isOpen, onClose }: InvestorToolsMod
   };
 
   const handleVerifySubscription = () => {
-    if (!verifyEmail.trim()) {
+    if (!verifyEmail.trim() || !verifyEmail.includes('@')) {
       toast({
         title: "Email Required",
-        description: "Please enter your email address.",
+        description: "Please enter a valid email address.",
         variant: "destructive"
       });
       return;
@@ -83,13 +83,22 @@ export default function InvestorToolsModal({ isOpen, onClose }: InvestorToolsMod
     const success = verifySubscription(verifyEmail);
     if (success) {
       toast({
-        title: "Welcome Back!",
+        title: "✓ Welcome Back!",
         description: "Access restored successfully.",
+        duration: 3000,
       });
       setHasAccess(true);
       setShowVerifyFlow(false);
-      triggerDownloads();
+      
+      // DO NOT trigger downloads for verification
+      // Only restore access
+      
       onClose();
+      
+      // Refresh to update UI
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
     } else {
       toast({
         title: "Verification Failed",

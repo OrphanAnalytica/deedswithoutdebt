@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { X, Calendar, MapPin, Bell, FileText, BookOpen, CheckCircle, Download, Briefcase, Scale, Phone, Clock, DollarSign, ArrowRight } from 'lucide-react';
+import { X, Calendar, MapPin, Bell, FileText, BookOpen, CheckCircle, Download, Briefcase, Scale, Phone, Clock, DollarSign, ArrowRight, UserCheck } from 'lucide-react';
 import { emailCaptureUtils } from '@/utils/emailCapture';
+import { useSubscription } from '@/contexts/SubscriptionContext';
 
 export type ModalVariant = 'auctions' | 'resources' | 'guides';
 
@@ -55,10 +56,12 @@ export default function BeautifulSubscriptionModal({
   variant
 }: BeautifulSubscriptionModalProps) {
   const [email, setEmail] = useState('');
+  const [verifyEmail, setVerifyEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState('');
   const { toast } = useToast();
+  const { verifySubscription } = useSubscription();
   
   const config = variantConfigs[variant];
   const IconComponent = config.icon;
@@ -138,6 +141,42 @@ export default function BeautifulSubscriptionModal({
         title: "No Pending Confirmation",
         description: "Please submit your email first to get access.",
         variant: "destructive",
+      });
+    }
+  };
+
+  const handleVerifySubscription = () => {
+    if (!verifyEmail.trim() || !verifyEmail.includes('@')) {
+      toast({
+        title: "Email Required",
+        description: "Please enter a valid email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    const success = verifySubscription(verifyEmail);
+    if (success) {
+      toast({
+        title: "✓ Welcome Back!",
+        description: "Access restored successfully.",
+        duration: 3000,
+      });
+      
+      // DO NOT trigger downloads for verification
+      // Only restore access
+      
+      handleClose();
+      
+      // Refresh to update UI
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+    } else {
+      toast({
+        title: "Verification Failed",
+        description: "Unable to verify subscription. Please try subscribing again.",
+        variant: "destructive"
       });
     }
   };
@@ -339,6 +378,31 @@ export default function BeautifulSubscriptionModal({
                   )}
                 </Button>
               </form>
+
+              {/* Already Subscribed Section */}
+              <div className="mt-6 pt-6 border-t border-gray-200">
+                <div className="text-center">
+                  <p className="text-sm text-gray-600 mb-3">Already subscribed?</p>
+                  <div className="space-y-3">
+                    <input
+                      type="email"
+                      value={verifyEmail}
+                      onChange={(e) => setVerifyEmail(e.target.value)}
+                      placeholder="Enter your email to verify"
+                      className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-green focus:border-transparent"
+                    />
+                    <Button
+                      type="button"
+                      onClick={handleVerifySubscription}
+                      variant="outline"
+                      className="w-full text-sm py-2 border-primary-green text-primary-green hover:bg-primary-green hover:text-white"
+                    >
+                      <UserCheck className="mr-2 h-4 w-4" />
+                      Verify Subscription
+                    </Button>
+                  </div>
+                </div>
+              </div>
 
               {/* Trust Indicators */}
               <div className="mt-6 text-center">
