@@ -148,7 +148,7 @@ export const auctions: Auction[] = [
     registration_deadline: "See official site",
     deposit_requirement: "See official site",
     num_properties: 20,
-    official_link: "https://www.meridenct.gov/government/departments/tax_collector",
+    official_link: "https://cttaxsales.com/",
     apn_parcel_id: "Various",
     property_address: "Multiple properties in New Haven County, CT",
     auction_status: "Upcoming"
@@ -163,7 +163,7 @@ export const auctions: Auction[] = [
     registration_deadline: "See official site",
     deposit_requirement: "See official site",
     num_properties: 6,
-    official_link: "https://www.brooklynct.org/tax-collector",
+    official_link: "https://cttaxsales.com/",
     apn_parcel_id: "Various",
     property_address: "Multiple properties in Windham County, CT",
     auction_status: "Upcoming"
@@ -178,7 +178,7 @@ export const auctions: Auction[] = [
     registration_deadline: "See official site",
     deposit_requirement: "See official site",
     num_properties: 5,
-    official_link: "https://www.brookfieldct.gov/tax-collector",
+    official_link: "https://cttaxsales.com/",
     apn_parcel_id: "Various",
     property_address: "Multiple properties in Fairfield County, CT",
     auction_status: "Upcoming"
@@ -193,7 +193,7 @@ export const auctions: Auction[] = [
     registration_deadline: "See official site",
     deposit_requirement: "See official site",
     num_properties: 11,
-    official_link: "https://www.norwichct.org/392/Tax-Collector",
+    official_link: "https://cttaxsales.com/",
     apn_parcel_id: "Various",
     property_address: "Multiple properties in New London County, CT",
     auction_status: "Upcoming"
@@ -208,7 +208,7 @@ export const auctions: Auction[] = [
     registration_deadline: "See official site",
     deposit_requirement: "See official site",
     num_properties: 3,
-    official_link: "https://www.town.new-hartford.ct.us/tax-collector",
+    official_link: "https://cttaxsales.com/",
     apn_parcel_id: "Various",
     property_address: "Multiple properties in Litchfield County, CT",
     auction_status: "Upcoming"
