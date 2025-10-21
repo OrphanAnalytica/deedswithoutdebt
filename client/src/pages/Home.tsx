@@ -75,10 +75,10 @@ export default function Home() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 
                 {/* Image Side */}
-                <Link href={ROUTES.STATE_GUIDES.NM} className="relative h-80 lg:h-full overflow-hidden block">
+                <Link href="/tax-sale-research-three-layers" className="relative h-80 lg:h-full overflow-hidden block">
                   <img 
-                    src="/images/articles/new-mexico-tax-deed-guide.jpg" 
-                    alt="New Mexico Tax Deed Sales"
+                    src="/images/newsletter/tax-sale-research-due-diligence.jpg" 
+                    alt="Stack of property research documents with reading glasses — representing tax sale research and due diligence."
                     width="800"
                     height="600"
                     loading="lazy"
@@ -97,7 +97,7 @@ export default function Home() {
                   {/* Category Badge */}
                   <div className="absolute bottom-6 left-6">
                     <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-gray-900 text-sm font-semibold rounded-full">
-                      STATE GUIDE
+                      EDUCATIONAL
                     </span>
             </div>
                 </Link>
@@ -108,38 +108,38 @@ export default function Home() {
                   <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
                     <time className="flex items-center gap-2">
                       <Calendar className="h-4 w-4" />
-                      September 30, 2025
+                      October 20, 2025
                     </time>
                     <span>•</span>
                     <span className="flex items-center gap-2">
                       <Clock className="h-4 w-4" />
-                      4 min read
+                      8 min read
                     </span>
         </div>
 
                   {/* Title */}
                   <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors">
-                    <Link href={ROUTES.STATE_GUIDES.NM}>
-                      New Mexico Tax Deed Sales: A Complete Investor's Guide
+                    <Link href="/tax-sale-research-three-layers">
+                      The 3 Layers of Tax Sale Research (Or: How to Not Buy Someone Else's Problem)
                     </Link>
             </h3>
 
                   {/* Excerpt */}
                   <p className="text-gray-700 leading-relaxed mb-6 text-lg">
-                    Forget tax liens — New Mexico only sells full properties through public auction. This deep dive covers eligibility, bidding, title risks, and why NM is one of the most overlooked tax deed states.
+                    Avoid costly mistakes in tax sales by mastering the 3 layers of due diligence—tax history, title clarity, and property reality. Learn how pros research before they bid.
                   </p>
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-6">
-                    <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">State Guide</span>
-                    <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">New Mexico</span>
+                    <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Educational</span>
+                    <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">Tax Sale Research</span>
                   </div>
 
                   {/* CTA */}
                   <Link 
-                    href={ROUTES.STATE_GUIDES.NM}
+                    href="/tax-sale-research-three-layers"
                     className="inline-flex items-center text-green-600 hover:text-green-700 font-bold text-lg group/link"
-                    aria-label="Read the New Mexico Tax Investment Guide"
+                    aria-label="Read the Tax Sale Research Guide"
                   >
                     Read Full Article
                     <ArrowRight className="ml-2 h-6 w-6 group-hover/link:translate-x-2 transition-transform" />

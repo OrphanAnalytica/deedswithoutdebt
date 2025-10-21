@@ -1,5 +1,14 @@
 [
   {
+    "title": "The 3 Layers of Tax Sale Research (Or: How to Not Buy Someone Else's Problem)",
+    "slug": "tax-sale-research-three-layers",
+    "publish_date": "2025-10-20",
+    "excerpt": "A practical 3-step framework for investors to evaluate tax sale properties and avoid buying problem deals.",
+    "image": "/images/newsletter/tax-sale-research-due-diligence.jpg",
+    "tags": ["Educational Deep Dive", "Tax Sale Research", "Due Diligence", "Tax Deed Investing", "Tax Lien Investing"],
+    "file": "/src/pages/newsletters/tax-sale-research-three-layers.tsx"
+  },
+  {
     "title": "Welcome to the New DeedsWithoutDebt.com",
     "slug": "welcome-new-site-launch",
     "publish_date": "2025-10-17",
