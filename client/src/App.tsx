@@ -14,6 +14,7 @@ import StateGuides from "@/pages/StateGuides";
 import StateGuidePage from "@/pages/StateGuidePage";
 import UpcomingAuctions from "@/pages/UpcomingAuctions";
 import NewsletterPost from "@/pages/NewsletterPost";
+import TaxSaleResearchThreeLayers from "@/pages/newsletters/tax-sale-research-three-layers";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfService from "@/pages/TermsOfService";
 import Disclaimer from "@/pages/Disclaimer";
@@ -36,6 +37,7 @@ function Router() {
         <Route path="/contact" component={Contact} />
         <Route path="/archive" component={Archive} />
         <Route path="/archive/:slug" component={NewsletterPost} />
+        <Route path="/tax-sale-research-three-layers" component={TaxSaleResearchThreeLayers} />
         
         {/* Protected routes - subscription required */}
         
