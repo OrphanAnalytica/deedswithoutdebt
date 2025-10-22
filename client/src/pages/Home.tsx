@@ -9,6 +9,7 @@ import { getAllPosts } from "@/lib/content";
 import type { Post } from "@/components/PostCard";
 import { emailCaptureUtils } from "@/utils/emailCapture";
 import ROUTES from "@/routes";
+import { resolveCoverImage } from "@/lib/images";
 
 export default function Home() {
   const [latestPosts, setLatestPosts] = useState<Post[]>([]);
@@ -76,15 +77,16 @@ export default function Home() {
                 
                 {/* Image Side */}
                 <Link href="/tax-sale-research-three-layers" className="relative h-80 lg:h-full overflow-hidden block">
-                  <img 
-                    src="/images/newsletter/tax-sale-research-due-diligence.jpg" 
+                  <img
+                    src={resolveCoverImage('/images/newsletter/tax-sale-research-due-diligence.jpg')}
                     alt="Stack of property research documents with reading glasses — representing tax sale research and due diligence."
-                    width="800"
-                    height="600"
                     loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    width="800"
+                    height="500"
+                    className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
+                  {/* Temporarily disabled gradient overlay for debugging */}
+                  {/* <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div> */}
                   
                   {/* NEW Badge */}
                   <div className="absolute top-6 left-6">

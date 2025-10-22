@@ -3,6 +3,7 @@ import { Link } from 'wouter';
 import { Search, ArrowRight, Calendar, Clock } from 'lucide-react';
 import newslettersData from '@/data/newsletters.json';
 import { setSEOData, setBreadcrumbSchema, setArticleSchema, estimateWordCount } from '@/lib/seo';
+import { resolveCoverImage } from '@/lib/images';
 
 const Archive = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -148,19 +149,15 @@ const Archive = () => {
               {/* Featured Image */}
               <Link href={`/archive/${article.slug}`}>
                 <div className="relative h-60 overflow-hidden">
-                  {article.image ? (
-                    <img 
-                      src={article.image} 
-                      alt={article.title}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-green-600 to-green-800 flex items-center justify-center">
-                      <span className="text-white text-4xl font-bold opacity-50">
-                        {article.title.charAt(0)}
-                      </span>
-                    </div>
-                  )}
+                  <img 
+                    src={resolveCoverImage(article.image)} 
+                    alt={article.title}
+                    width={1200}
+                    height={630}
+                    loading="lazy"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    style={{ display: 'block' }}
+                  />
                 </div>
               </Link>
 

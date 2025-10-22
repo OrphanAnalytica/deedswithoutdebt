@@ -36,6 +36,7 @@ function Router() {
         <Route path="/disclaimer" component={Disclaimer} />
         <Route path="/contact" component={Contact} />
         <Route path="/archive" component={Archive} />
+        <Route path="/archive/tax-sale-research-three-layers" component={TaxSaleResearchThreeLayers} />
         <Route path="/archive/:slug" component={NewsletterPost} />
         <Route path="/tax-sale-research-three-layers" component={TaxSaleResearchThreeLayers} />
         

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
+import { resolveCoverImage } from "@/lib/images";
 
 export interface Post {
   slug: string;
@@ -39,10 +40,11 @@ export default function PostCard({ post }: PostCardProps) {
       {post.cover && (
         <div className="aspect-video bg-accent/20 relative">
           <img
-            src={post.cover}
+            src={resolveCoverImage(post.cover)}
             alt={`Cover image for ${post.title}`}
             className="w-full h-full object-cover"
             loading="lazy"
+            style={{ display: 'block' }}
           />
           {post.category && (
             <div className="absolute top-4 left-4">
